@@ -1,0 +1,632 @@
+<ShowPositionOpening xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" releaseID="3.1" xmlns="http://www.hr-xml.org/3">
+  <ApplicationArea xmlns="http://www.openapplications.org/oagis/9">
+    <CreationDateTime>2012-12-29T00:09:56</CreationDateTime>
+  </ApplicationArea>
+  <DataArea>
+    <Show recordSetCount="562" xmlns="http://www.openapplications.org/oagis/9">
+      <OriginalApplicationArea>
+        <CreationDateTime>2012-12-29T00:09:56</CreationDateTime>
+      </OriginalApplicationArea>
+    </Show>
+    <PositionOpening>
+      <DocumentID>305972200</DocumentID>
+      <!--Marked Inactive-->
+      <PositionOpeningStatusCode>Inactive</PositionOpeningStatusCode>
+      <PostingRequester agencyRoleCode="ExternalContact">
+        <PartyName>AFPC EH DH </PartyName>
+        <PersonContact>
+          <PersonName>
+            <FormattedName>AFPC DEO</FormattedName>
+            <GivenName xmlns="http://www.openapplications.org/oagis/9">AFPC</GivenName>
+            <MiddleName />
+            <FamilyName>DEO</FamilyName>
+          </PersonName>
+          <Communication>
+            <Address>
+              <LineOne xmlns="http://www.openapplications.org/oagis/9">follow the instructions on the notice</LineOne>
+              <LineTwo xmlns="http://www.openapplications.org/oagis/9" />
+              <LineThree xmlns="http://www.openapplications.org/oagis/9" />
+              <LineFour xmlns="http://www.openapplications.org/oagis/9" />
+              <LineFive xmlns="http://www.openapplications.org/oagis/9" />
+              <CityName xmlns="http://www.openapplications.org/oagis/9">in How to Apply Tab</CityName>
+              <CountryCode>USA</CountryCode>
+              <PostalCode xmlns="http://www.openapplications.org/oagis/9">000000</PostalCode>
+            </Address>
+          </Communication>
+          <Communication>
+            <ChannelCode>Telephone</ChannelCode>
+            <DialNumber xmlns="http://www.openapplications.org/oagis/9">8005250102</DialNumber>
+          </Communication>
+          <Communication>
+            <ChannelCode>TDD</ChannelCode>
+            <CountryDialing xmlns="http://www.openapplications.org/oagis/9" />
+            <AreaDialing xmlns="http://www.openapplications.org/oagis/9" />
+            <DialNumber xmlns="http://www.openapplications.org/oagis/9">800-382-0893</DialNumber>
+            <Extension xmlns="http://www.openapplications.org/oagis/9" />
+          </Communication>
+          <Communication>
+            <ChannelCode>Email</ChannelCode>
+            <URI xmlns="http://www.openapplications.org/oagis/9">DO_NOT_.SEND_EMAIL@US.AF.MIL</URI>
+          </Communication>
+        </PersonContact>
+      </PostingRequester>
+      <PositionProfile>
+        <PostingInstruction>
+          <UserArea>
+            <GOVT_JOAType>Case File</GOVT_JOAType>
+          </UserArea>
+        </PostingInstruction>
+        <PositionID>AFPCMEDEH-583785-0602</PositionID>
+        <PositionTitle>Medical Officer</PositionTitle>
+        <PositionLocation>
+          <LocationID>482017441</LocationID>
+          <LocationName>Dyess AFB, TX United States</LocationName>
+          <UserArea>
+            <GOVT_Openings>Many</GOVT_Openings>
+          </UserArea>
+        </PositionLocation>
+        <PositionOrganization>
+          <OrganizationIdentifiers>
+            <OrganizationID>AF09</OrganizationID>
+            <OrganizationName>Air Force Personnel Center</OrganizationName>
+          </OrganizationIdentifiers>
+          <UserArea>
+            <GOVT_SubAgencyName />
+          </UserArea>
+        </PositionOrganization>
+        <JobCategoryCode>0602-Medical Officer</JobCategoryCode>
+        <JobGradeCode>GP</JobGradeCode>
+        <PositionOfferingTypeCode>15327-Multiple Appointment Types</PositionOfferingTypeCode>
+        <PositionPeriod>
+          <StartDate>
+            <FormattedDateTime>2011-12-28</FormattedDateTime>
+          </StartDate>
+          <EndDate>
+            <FormattedDateTime>2022-12-29</FormattedDateTime>
+          </EndDate>
+        </PositionPeriod>
+        <PositionScheduleTypeCode>1-Full-Time</PositionScheduleTypeCode>
+        <OfferedRemunerationPackage>
+          <RemunerationRange>
+            <RemunerationMinimumAmount currencyID="USD">60274</RemunerationMinimumAmount>
+            <RemunerationMaximumAmount currencyID="USD">155500</RemunerationMaximumAmount>
+            <RemunerationRateIntervalCode>PA</RemunerationRateIntervalCode>
+          </RemunerationRange>
+          <Description xmlns="http://www.openapplications.org/oagis/9" />
+        </OfferedRemunerationPackage>
+        <UserArea>
+          <GOVT_TotalOpenings>Many</GOVT_TotalOpenings>
+          <GOVT_PayGradeLow>12</GOVT_PayGradeLow>
+          <GOVT_PayGradeHigh>15</GOVT_PayGradeHigh>
+          <GOVT_PromotionPotential>15</GOVT_PromotionPotential>
+          <GOVT_WhoMayApply>15514-United States Citizens </GOVT_WhoMayApply>
+          <GOVT_XMLJobBody>
+            <Overview>
+              <WhoMayApplyText>United States Citizens </WhoMayApplyText>
+              <AppointmentDurationText>Multiple Appointment Types</AppointmentDurationText>
+              <JobStatusText>Full Time</JobStatusText>
+              <AgencyMarketingStatement>&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; mso-bidi-font-size: 12.0pt"&gt;The mission of the United States Air Force is to &lt;EM&gt;fly, fight&lt;/EM&gt; and &lt;EM&gt;win&lt;/EM&gt;&amp;#133;in air, space and cyberspace.&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;</AgencyMarketingStatement>
+              <JobSummary>&lt;P&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;To achieve that mission, the Air Force has a vision of Global Vigilance, Reach and Power. That vision orbits around three core competencies: Developing Airmen, Technology-to-Warfighting and Integrating Operations. Core competencies and distinctive capabilities are based on a shared commitment to three core values -- &lt;EM&gt;&lt;SPAN style="FONT-FAMILY: Verdana"&gt;integrity first, service before self, and excellence in all we do. &lt;/SPAN&gt;&lt;/EM&gt;&lt;/SPAN&gt;&lt;EM&gt;&lt;SPAN style="FONT-STYLE: normal; FONT-SIZE: 10pt"&gt;&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/EM&gt;&lt;/P&gt;
+&lt;DIV style="TEXT-ALIGN: center; MARGIN: 0in 0in 0pt" class=MsoNormal align=center&gt;&lt;EM&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;
+&lt;HR align=center color=black SIZE=2 width="100%" noShade&gt;
+&lt;/SPAN&gt;&lt;/EM&gt;&lt;/DIV&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;&lt;o:p&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;This is a Direct Hire Public Notice&lt;/SPAN&gt;&lt;/B&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;; under this recruitment procedure, each location/ installation, identified in this Public Notice will accept applications and make selections for vacancies as they occur. There may or may not be actual/projected vacancies at the time you submit your application. &lt;B style="mso-bidi-font-weight: normal"&gt;Please read this Public Notice in its entirety prior to submitting your application for consideration.&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/B&gt;&lt;/SPAN&gt;&amp;nbsp;&lt;/P&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: #454442; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNoSpacing&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;FONT color=#000000&gt;These positions are being filled under &lt;B style="mso-bidi-font-weight: normal"&gt;Medical Direct Hiring Authority&lt;/B&gt; for certain civilian healthcare professional positions and are located Air Force-Wide. Positions may be filled as permanent, temporary or term with a full-time or part-time work schedule. Pay will vary by geographic location.&lt;o:p&gt;&lt;/o:p&gt;&lt;/FONT&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;/o:p&gt;&lt;/SPAN&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: #454442; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;B&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: #000090; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;Please send all required documents directly to the Civilian Personnel Flight at the base/location at which you wish to be considered.&amp;nbsp; Additional information specific to the expedited hiring authority for acquisition positions can be found at the link under the How to Apply tab.&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/B&gt;&lt;/P&gt;
+&lt;P&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&amp;nbsp;&lt;/P&gt;</JobSummary>
+              <KeyRequirement>U.S. Citizenship Required</KeyRequirement>
+              <KeyRequirement>Travel and relocation expenses may be paid</KeyRequirement>
+              <KeyRequirement>This announcement may be used to fill one or more vacancies</KeyRequirement>
+              <KeyRequirement>Total salary varies depending on location of position (locality)</KeyRequirement>
+              <KeyRequirement>A security clearance may be required</KeyRequirement>
+              <KeyRequirement>Recruitment incentives may be authorized</KeyRequirement>
+            </Overview>
+            <Duties>
+              <MajorDuties>&lt;FONT face=Verdana&gt;
+&lt;P style="LINE-HEIGHT: normal; TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.25in; mso-pagination: none; mso-list: l0 level1 lfo1; mso-layout-grid-align: none; mso-add-space: auto" class=MsoListParagraphCxSpFirst&gt;&lt;SPAN style="FONT-FAMILY: Symbol; FONT-SIZE: 10pt; mso-bidi-font-family: Symbol; mso-fareast-font-family: Symbol"&gt;&lt;SPAN style="mso-list: Ignore"&gt;&amp;#183;&lt;SPAN style="FONT: 7pt 'Times New Roman'"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;Serve as a primary care manager to provide medical examination, diagnosis and treatment of military and retired personnel and their dependents and selected civilian service personnel in one or more fields of medicine.&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: red; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.25in; mso-pagination: none; mso-list: l0 level1 lfo1; mso-layout-grid-align: none; mso-add-space: auto" class=MsoListParagraphCxSpMiddle&gt;&lt;SPAN style="FONT-FAMILY: Symbol; FONT-SIZE: 10pt; mso-bidi-font-family: Symbol; mso-fareast-font-family: Symbol"&gt;&lt;SPAN style="mso-list: Ignore"&gt;&amp;#183;&lt;SPAN style="FONT: 7pt 'Times New Roman'"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt"&gt;Advise on, administer, supervise, or perform professional and scientific work.&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: red; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.25in; mso-pagination: none; mso-list: l0 level1 lfo1; mso-layout-grid-align: none; mso-add-space: auto" class=MsoListParagraphCxSpMiddle&gt;&lt;SPAN style="FONT-FAMILY: Symbol; FONT-SIZE: 10pt; mso-bidi-font-family: Symbol; mso-fareast-font-family: Symbol"&gt;&lt;SPAN style="mso-list: Ignore"&gt;&amp;#183;&lt;SPAN style="FONT: 7pt 'Times New Roman'"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-style: italic"&gt;Practice of medicine or direct service to patients &lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt"&gt;involving performance of diagnostic, preventive, or therapeutic services to patients in hospitals, clinics, public health programs, diagnostic centers, etc.;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: red; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.25in; mso-pagination: none; mso-list: l0 level1 lfo1; mso-layout-grid-align: none; mso-add-space: auto" class=MsoListParagraphCxSpMiddle&gt;&lt;SPAN style="FONT-FAMILY: Symbol; FONT-SIZE: 10pt; mso-bidi-font-family: Symbol; mso-fareast-font-family: Symbol"&gt;&lt;SPAN style="mso-list: Ignore"&gt;&amp;#183;&lt;SPAN style="FONT: 7pt 'Times New Roman'"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'"&gt;Provide service to patients in an occupational health program; Research&lt;SPAN style="mso-bidi-font-style: italic"&gt; and experimental work &lt;/SPAN&gt;in causes, methods, or prevention and control, and methods of treatment of disease and other health conditions.&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: red; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.25in; mso-pagination: none; mso-list: l0 level1 lfo1; mso-layout-grid-align: none; mso-add-space: auto" class=MsoListParagraphCxSpLast&gt;&lt;SPAN style="FONT-FAMILY: Symbol; FONT-SIZE: 12pt; mso-bidi-font-family: Symbol; mso-fareast-font-family: Symbol"&gt;&lt;SPAN style="mso-list: Ignore"&gt;&amp;#183;&lt;SPAN style="FONT: 7pt 'Times New Roman'"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-style: italic; mso-bidi-font-family: 'Times New Roman'"&gt;Evaluate disability and rating &lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'"&gt;of claims for compensation or pension.&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Times New Roman', 'serif'; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'"&gt;&amp;nbsp;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P&gt;&lt;/FONT&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; COLOR: red; FONT-SIZE: 10pt"&gt;&lt;/SPAN&gt;&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; COLOR: red; FONT-SIZE: 10pt"&gt;&lt;FONT face=Verdana&gt;&lt;/FONT&gt;&lt;/SPAN&gt;&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; COLOR: red; FONT-SIZE: 10pt"&gt;&lt;FONT face=Verdana&gt;&lt;/FONT&gt;&lt;/SPAN&gt;&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;&lt;SPAN&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; tab-stops: list .5in; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;FONT color=#000000&gt;&lt;SPAN&gt;&lt;STRONG&gt;&lt;FONT face=Verdana&gt;ADDITIONAL INFORMATION:&lt;o:p&gt;&lt;/o:p&gt;&lt;/FONT&gt;&lt;/STRONG&gt;&lt;/SPAN&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-fareast-font-family: Calibri"&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNoSpacing&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-fareast-font-family: Calibri"&gt;Duties and responsibilities vary and may increase according to grade level. &lt;SPAN style="COLOR: #454442"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNoSpacing&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt;This public notice may be used to fill target grades (e.g. GS-09 Target GS-12).&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNoSpacing&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt;Salary may increase depending on the specialty of the position.&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; tab-stops: list .5in; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&amp;nbsp;&lt;SPAN style="COLOR: #454442"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&amp;nbsp;&lt;/P&gt;</MajorDuties>
+            </Duties>
+            <QualificationsAndEvaluation>
+              <Qualifications>&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt; 
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;B&gt;&lt;I&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;Degree:&lt;/SPAN&gt;&lt;/I&gt;&lt;/B&gt;&lt;B&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt; &lt;/SPAN&gt;&lt;/B&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-weight: bold; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;Doctor of Medicine or Doctor of Osteopathy from a school in the United States or Canada approved by a recognized accrediting body in the year of the applicant's graduation. [A Doctor of Medicine or equivalent degree from a foreign medical school that provided education and medical knowledge substantially equivalent to accredited schools in the United States may be demonstrated by permanent certification by the Educational Commission for Foreign Medical Graduates (ECFMG) (or a fifth pathway certificate for Americans who completed premedical education in the United States and graduate education in a foreign country).]&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-outline-level: 4" class=MsoNormal&gt;&lt;B&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;Graduate Training:&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/B&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-weight: bold; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;Subsequent to obtaining a Doctor of Medicine or Doctor of Osteopathy degree, a candidate must have had at least 1 year of supervised experience providing direct service in a clinical setting, i.e., a 1-year internship or the first year of a residency program in an institution accredited for such training. (This 1 year of supervised experience may be waived for research or administrative positions not requiring direct patient care.) For purposes of this standard, graduate training programs include only those internship, residency, and fellowship programs that are approved by accrediting bodies&lt;B&gt; recognized within the United States or Canada. &lt;o:p&gt;&lt;/o:p&gt;&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;B&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;License&lt;/SPAN&gt;&lt;/B&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;:&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;For positions involving patient care, candidates must have a permanent, full, and unrestricted license to practice medicine in a State, District of Columbia, the Commonwealth of Puerto Rico, or a territory of the United States.&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;Additional Requirements for Grades GS-12 and Above:&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/B&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/B&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNoSpacing&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt;The requirements below are grouped according to types of programs-clinical and training, aviation medical, occupational health, disability evaluation, maternal and child health, and research.&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNoSpacing&gt;&lt;I&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/I&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNoSpacing&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;&lt;I&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt;Clinical and Training Programs&lt;/SPAN&gt;&lt;/I&gt;&lt;/B&gt;&lt;I&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt;-&lt;/SPAN&gt;&lt;/I&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt; Within Federal clinical and training programs, a distinction is made between general practice and specialist positions. General practitioners must be skilled in recognizing various medical pathologies that require referral to specialists for diagnostic and treatment procedures. Graduate training and experience must, therefore, be well rounded. Specialist positions require graduate training and experience related to the specialty and subspecialty of the position to be filled. Experience may not be substituted for training essential for performing specialized duties. The length and content of residency programs depends upon the specialization and requirements of recognized accrediting American medical specialty boards. These boards are authorized to conduct examinations to determine the competence of physicians in the specialty, to issue certificates of qualification, to participate in evaluating the quality of residency programs, and to determine the requirements for certification.&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNoSpacing&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNoSpacing&gt;&lt;B&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt;General Practice positions&lt;/SPAN&gt;&lt;/B&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt; &lt;BR&gt;&lt;SPAN style="mso-bidi-font-style: italic"&gt;For GS-12: Two&lt;/SPAN&gt; years of graduate training or equivalent experience and training. &lt;BR&gt;&lt;SPAN style="mso-bidi-font-style: italic"&gt;For GS-13: Three&lt;/SPAN&gt; years of graduate training or equivalent experience and training. &lt;BR&gt;&lt;SPAN style="mso-bidi-font-style: italic"&gt;For GS-14 and above: &lt;/SPAN&gt;In addition to the requirements for GS-13, one year of appropriate experience equivalent to at least the next lower grade level.&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/B&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;B&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;AND&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/B&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;B&gt;&lt;SPAN style="FONT-FAMILY: 'Times New Roman', 'serif'; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/B&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;Click on the following link to view occupational requirements for this position:&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Times New Roman', 'serif'; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;A href="http://www.opm.gov/qualifications/Standards/IORs/gs0600/0602.htm"&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: purple; FONT-SIZE: 10pt; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;http://www.opm.gov/qualifications/Standards/IORs/gs0600/0602.htm&lt;/SPAN&gt;&lt;/A&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;/SPAN&gt;
+&lt;P style="MARGIN: 0in 0in 0pt; tab-stops: 39.75pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;&lt;/SPAN&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt; tab-stops: 39.75pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;&amp;nbsp;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P&gt;&lt;B&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;KNOWLEDGE, SKILLS AND ABILITIES (KSAs):&amp;nbsp; Your qualifications will be evaluated on the basis of your level of knowledge, skills, abilities and/or competencies in the following areas:&lt;/SPAN&gt;&lt;/B&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;&amp;nbsp;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;&lt;/SPAN&gt;&amp;nbsp;&lt;/P&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;1.&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;Knowledge of the principles of the specialization being filled (e.g. clinical, preventive medicine, including aviation medicine, occupational medicine and public health, research, teaching or training, disability evaluation, or administration) gained by experience performing diagnostic, preventive, or therapeutic services to patients in hospitals, clinics, public health programs, diagnostic centers, etc.&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;2.&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;Knowledge of laws, regulations, policies, standards and instructions that govern medical practices.&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;3.&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;Skill in diagnosis, evaluation and treatment of patients.&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;4.&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;Ability to instruct, guide and advise providers, support staff and/or patients on medical issues.&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;5. &lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt;Skill in the evaluation, diagnosis, and treatment of a wide variety of diseases and medical conditions to include but not limited to:&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;diabetes, hypertension, cardiovascular disease, asthma, arthritis, cancer, extremity injuries, and psychiatric/psychological disorders.&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P&gt;&lt;/SPAN&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;B&gt;&lt;U&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;PART-TIME OR UNPAID EXPERIENCE&lt;/SPAN&gt;&lt;/U&gt;&lt;/B&gt;&lt;B&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;: &lt;/SPAN&gt;&lt;/B&gt;&lt;SPAN style="FONT-FAMILY: Verdana; COLOR: black; FONT-SIZE: 10pt"&gt;Credit will be given for appropriate unpaid and or part-time work.&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;You must clearly identify the duties and responsibilities in each position held and the total number of hours per week.&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: Verdana; COLOR: green; FONT-SIZE: 10pt"&gt;&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;</Qualifications>
+              <Education>&lt;P class=MsoNormal style="MARGIN: 0in 0in 0pt"&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;&lt;SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Verdana"&gt;ARE YOU USING YOUR EDUCATION TO QUALIFY?&lt;/SPAN&gt;&lt;/B&gt;&lt;SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Verdana"&gt; You&amp;nbsp;&lt;U&gt;MUST&lt;/U&gt; provide transcripts to support your educational claims.&amp;nbsp; Education must be accredited by an accrediting institution recognized by the U.S. Department of Education.&amp;nbsp;&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P class=MsoNormal style="MARGIN: 0in 0in 0pt"&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;&lt;SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Verdana"&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/B&gt;&lt;/P&gt;
+&lt;P class=MsoNormal style="MARGIN: 0in 0in 0pt"&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;&lt;SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Verdana"&gt;FOREIGN EDUCATION:&lt;/SPAN&gt;&lt;/B&gt;&lt;SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Verdana"&gt; Education completed in foreign colleges or universities may be used to meet the requirements. You must show proof the education credentials have been deemed to be at least equivalent to that gained in conventional &lt;?xml:namespace prefix = st1 ns = "urn:schemas-microsoft-com:office:smarttags" /&gt;&lt;st1:country-region w:st="on"&gt;&lt;st1:place w:st="on"&gt;U.S.&lt;/st1:place&gt;&lt;/st1:country-region&gt; education program.&amp;nbsp; It is your responsibility to provide such evidence when applying.&lt;STRONG&gt;&lt;U&gt;&lt;SPAN style="FONT-FAMILY: Verdana"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/U&gt;&lt;/STRONG&gt;&lt;/SPAN&gt;&lt;/P&gt;</Education>
+              <Requirements>&lt;P&gt;&lt;STRONG&gt;&lt;U&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; mso-bidi-font-family: Arial"&gt;ADDITIONAL CONDITIONS OF EMPLOYMENT&lt;/SPAN&gt;&lt;/U&gt;&lt;/STRONG&gt;&lt;STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; mso-bidi-font-family: Arial"&gt;:&lt;/SPAN&gt;&lt;/STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; mso-bidi-font-family: Arial"&gt;&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; COLOR: red; FONT-SIZE: 10pt"&gt;&lt;/SPAN&gt;&lt;/STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;&lt;o:p&gt;
+&lt;P style="TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.25in; mso-list: l0 level1 lfo1" class=MsoNoSpacing&gt;&lt;SPAN style="FONT-FAMILY: Symbol; FONT-SIZE: 10pt; mso-bidi-font-family: Symbol; mso-fareast-font-family: Symbol"&gt;&lt;SPAN style="mso-list: Ignore"&gt;&amp;#183;&lt;SPAN style="FONT: 7pt 'Times New Roman'"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt;Employee may be required to work other than normal duty hours, which may include evenings, weekends, and/or holidays. &lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.25in; mso-list: l0 level1 lfo1" class=MsoNoSpacing&gt;&lt;SPAN style="FONT-FAMILY: Symbol; FONT-SIZE: 10pt; mso-bidi-font-family: Symbol; mso-fareast-font-family: Symbol"&gt;&lt;SPAN style="mso-list: Ignore"&gt;&amp;#183;&lt;SPAN style="FONT: 7pt 'Times New Roman'"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt;Shift work and emergency overtime may be required. &lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.25in; mso-list: l0 level1 lfo1" class=MsoNoSpacing&gt;&lt;SPAN style="FONT-FAMILY: Symbol; FONT-SIZE: 10pt; mso-bidi-font-family: Symbol; mso-fareast-font-family: Symbol"&gt;&lt;SPAN style="mso-list: Ignore"&gt;&amp;#183;&lt;SPAN style="FONT: 7pt 'Times New Roman'"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt;Employee may be required to obtain and maintain appropriate certifications.&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.25in; mso-list: l0 level1 lfo1" class=MsoNoSpacing&gt;&lt;SPAN style="FONT-FAMILY: Symbol; FONT-SIZE: 10pt; mso-bidi-font-family: Symbol; mso-fareast-font-family: Symbol"&gt;&lt;SPAN style="mso-list: Ignore"&gt;&amp;#183;&lt;SPAN style="FONT: 7pt 'Times New Roman'"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: Arial"&gt;These positions are designated by the Air Force as a testing designated position under the AF Civilian Drug Testing Program and are subject to random drug testing.&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt; tab-stops: list .5in; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt; tab-stops: list .5in; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;FONT size=3&gt;&lt;FONT face="Times New Roman"&gt;&amp;nbsp;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt; tab-stops: list .5in; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;Your latest resume will be used to determine your qualifications.&amp;nbsp;&amp;nbsp;&lt;/SPAN&gt;&lt;/STRONG&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/P&gt;</Requirements>
+              <Evaluations>&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: Arial"&gt; 
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoPlainText&gt;&lt;FONT face=Verdana&gt;To determine if you are qualified for this position, your complete &lt;/FONT&gt;&lt;FONT face=Verdana&gt;application will be reviewed against the qualifications required for the &lt;/FONT&gt;&lt;FONT face=Verdana&gt;position.&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/FONT&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt"&gt;&lt;/SPAN&gt;&lt;/P&gt;</Evaluations>
+            </QualificationsAndEvaluation>
+            <HowToApplyInformation>
+              <HowToApply>&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: #454442; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-weight: bold"&gt;To apply for this position, you must provide a complete Application Package, which includes &lt;/SPAN&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: #454442; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;all &lt;/SPAN&gt;&lt;/B&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: #454442; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-weight: bold"&gt;of the following: &lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Arial', 'sans-serif'; COLOR: #454442; FONT-SIZE: 10pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-weight: bold"&gt;&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: #454442; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-weight: bold"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;1) Your r&amp;#233;sum&amp;#233; &lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Arial', 'sans-serif'; COLOR: #454442; FONT-SIZE: 10pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-weight: bold"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: #454442; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-weight: bold"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;2)&amp;nbsp; Any other documents specified in the Required Documents section of this&amp;nbsp;job announcement.&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Times New Roman', 'serif'; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-weight: bold"&gt;All of your documents including your resume, curriculum vitae, or any other written format you choose to describe your job-related qualifications are to be submitted directly to the Civilian Personnel Office at the location for which you are applying.&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp;&amp;nbsp; &lt;/SPAN&gt;Each civilian personnel office determines how long resumes are kept on file.&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;Location addresses are listed at the below link:&amp;nbsp; &lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-weight: bold"&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoPlainText&gt;&lt;A href="http://www.afciviliancareers.com/sites/default/files/AFD-100303-013.pdf"&gt;&lt;FONT size=3 face=Consolas&gt;http://www.afciviliancareers.com/sites/default/files/AFD-100303-013.pdf&lt;/FONT&gt;&lt;/A&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;A href="http://www.afciviliancareers.com/careers/hiringopportunities/specialhiring/exphire/AFD-100315-009.pdf&amp;amp;amp;amp;amp;amp;amp;amp;nbsp;"&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: blue; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-weight: bold"&gt;&lt;BR&gt;&lt;/SPAN&gt;&lt;/A&gt;&lt;FONT size=3 face=Calibri&gt;Y&lt;/FONT&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-weight: bold"&gt;ou will need to click on Expedited Hiring Authority for Acquisition Positions and then scroll down to see base locations and addresses.&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: blue; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-weight: bold"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; tab-stops: list .5in" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-weight: bold"&gt;Please ensure that all submitted documents contain your full name, address, phone number and at least the last four digits of your social security number.&amp;nbsp;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; COLOR: red; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-weight: bold"&gt;&amp;nbsp;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Arial', 'sans-serif'; FONT-SIZE: 10pt; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 10pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;The complete Application Package &lt;B style="mso-bidi-font-weight: normal"&gt;must&lt;/B&gt; be submitted by 11:59 PM (EST) on the closing date of this Public Notice&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;It is the applicant&amp;#146;s responsibility to verify that information mailed (i.e., resume) is received, accurate and submitted by the closing date&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: Arial; mso-fareast-font-family: 'Times New Roman'"&gt;Human Resources &lt;B style="mso-bidi-font-weight: normal"&gt;WILL NOT&lt;/B&gt; modify or change any documentation submitted by an applicant.&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;</HowToApply>
+              <RequiredDocuments>&lt;P&gt;&lt;STRONG&gt;The following documents are required and must be provided by the closing date of the announcement.&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;1) &lt;STRONG&gt;Resume&lt;/STRONG&gt; (must include beginning/ending month &amp;amp; year for each employment period)&lt;/P&gt;
+&lt;P&gt;2) &lt;STRONG&gt;Transcripts&lt;/STRONG&gt;, if qualifying based on education (must contain the university logo) &lt;/P&gt;
+&lt;P&gt;3) &lt;STRONG&gt;Veterans&amp;#146; Preference&lt;/STRONG&gt; - a copy of your DD Form 214 which must include character of service or a Statement of Service/Proof of Service which must include service dates and character of service. In addition, if claiming 10 point preference you must submit a VA Letter or a disability determination from a branch of the Armed Forces (or documentation of purple heart, if applicable) and a SF 15 (Application for 10-point veteran preference).&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;Ensure all submitted documents contain your full name, address, phone number and last four digits of your social security number.&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt; &lt;/STRONG&gt;&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;</RequiredDocuments>
+              <WhatToExpectNext>&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;After you send your application to the appropriate Civilian Personnel Office, you will be contacted if further evaluation or interviews are required.&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana', 'sans-serif'; FONT-SIZE: 10pt; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'"&gt;The length of time your application will remain active will vary. The Civilian Personnel Flight will determine the length of time your application will remain active depending on local requirements/guidance. &lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Times New Roman', 'serif'; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;</WhatToExpectNext>
+            </HowToApplyInformation>
+            <BenefitsAndOtherInformation>
+              <Benefits>&lt;P style="tab-stops: .5in"&gt;&lt;FONT face=Verdana&gt;&lt;SPAN class=nowrap1&gt;&lt;SPAN style="COLOR: black; FONT-SIZE: 10pt"&gt;Benefits of Working for the Federal Government -&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN class=nowrap1&gt;&lt;SPAN style="FONT-SIZE: 10pt"&gt;&lt;FONT color=#007fc2&gt; &lt;/FONT&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/FONT&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; mso-bidi-font-family: Arial"&gt;Click &lt;U&gt;&lt;SPAN style="COLOR: blue"&gt;&lt;A href="http://www.usajobs.gov/EI/benefits.asp"&gt;&lt;SPAN style="FONT-FAMILY: 'Times New Roman'; mso-bidi-font-family: Arial"&gt;here&lt;/SPAN&gt;&lt;/A&gt;&lt;/SPAN&gt;&lt;/U&gt; for an overview of the benefits currently offered to Federal employees.&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;</Benefits>
+              <OtherInformation>&lt;P style="tab-stops: .5in"&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;Males born after 12-31-59 must be registered or exempt from Selective Service.&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;For additional information, click &lt;A href="http://www.sss.gov/"&gt;here&lt;/A&gt;. &lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="tab-stops: .5in"&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;&lt;/SPAN&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;Interagency Career Transition Assistance Program (ICTAP):&lt;/SPAN&gt;&lt;/STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;For information on how to apply as an ICTAP eligible click &lt;U&gt;&lt;A href="http://www.opm.gov/rif/employee_guides/career_transition.asp#ictap"&gt;here&lt;/A&gt;&lt;/U&gt;.&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;To be well-qualified and exercise selection priority for this vacancy, displaced Federal employees must be rated at&amp;nbsp;&lt;SPAN style="COLOR: black"&gt;90&lt;/SPAN&gt;&lt;SPAN style="COLOR: red"&gt; &lt;/SPAN&gt;or above on the rating criteria for this position.&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;Employed Annuitants (Reemployed Annuitants)&lt;/SPAN&gt;&lt;/STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;: Applicants in receipt of an annuity based on civilian employment in the Federal Service are subject to the DoD Policy on The Employment of Annuitants. &amp;nbsp; Click &lt;U&gt;&lt;A href="http://www.cpms.osd.mil/ASSETS/E8AB932EA1E44617BAC7222922E42A62/DoDI140025-V300.pdf"&gt;here&lt;/A&gt;&lt;/U&gt; for more information. &lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt; tab-stops: .5in" class=MsoNormal&gt;&lt;STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;Incentives&lt;/SPAN&gt;&lt;/STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;: Recruitment and/or retention incentives may or may not be used.&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P style="MARGIN: 0in 0in 0pt" class=MsoNormal&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; mso-bidi-font-family: 'Courier New'"&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;Temporary and Term Appointments:&lt;/SPAN&gt;&lt;/STRONG&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"&gt;&amp;nbsp; &lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; mso-bidi-font-family: 'Courier New'"&gt;If you are selected for a temporary or term position, your appointment may be extended to the maximum period allowed by law without further competition.&lt;/SPAN&gt;&lt;/P&gt;</OtherInformation>
+            </BenefitsAndOtherInformation>
+          </GOVT_XMLJobBody>
+        </UserArea>
+      </PositionProfile>
+      <UserArea>
+        <GOVT_ApplyOnlineURL>https://my.usajobs.gov/Application/ApplyStart/305972200</GOVT_ApplyOnlineURL>
+        <GOVT_DetailStatusURL />
+      </UserArea>
+    </PositionOpening>
+    <PositionOpening>
+      <DocumentID>325054900</DocumentID>
+      <!--Marked for deletion with start date after end date-->
+      <PositionOpeningStatusCode>Active</PositionOpeningStatusCode>
+      <PostingRequester agencyRoleCode="ExternalContact">
+        <PartyName>VHA Charleston VAMC</PartyName>
+        <PersonContact>
+          <PersonName>
+            <FormattedName>Christina P. Ramsey</FormattedName>
+            <GivenName xmlns="http://www.openapplications.org/oagis/9">Christina</GivenName>
+            <MiddleName />
+            <FamilyName>Ramsey</FamilyName>
+          </PersonName>
+          <Communication>
+            <Address>
+              <LineOne xmlns="http://www.openapplications.org/oagis/9">Applications accepted ONLINE only</LineOne>
+              <LineTwo xmlns="http://www.openapplications.org/oagis/9">No mail No Email No Inperson</LineTwo>
+              <LineThree xmlns="http://www.openapplications.org/oagis/9">Human Resources</LineThree>
+              <LineFour xmlns="http://www.openapplications.org/oagis/9" />
+              <LineFive xmlns="http://www.openapplications.org/oagis/9" />
+              <CityName xmlns="http://www.openapplications.org/oagis/9">Charleston</CityName>
+              <CountrySubDivisionCode xmlns="http://www.openapplications.org/oagis/9">SC</CountrySubDivisionCode>
+              <CountryCode>USA</CountryCode>
+              <PostalCode xmlns="http://www.openapplications.org/oagis/9">29401</PostalCode>
+            </Address>
+          </Communication>
+          <Communication>
+            <ChannelCode>Telephone</ChannelCode>
+            <DialNumber xmlns="http://www.openapplications.org/oagis/9">(843)789-6332</DialNumber>
+          </Communication>
+          <Communication>
+            <ChannelCode>Email</ChannelCode>
+            <URI xmlns="http://www.openapplications.org/oagis/9">CHRISTINA.RAMSEY@VA.GOV</URI>
+          </Communication>
+        </PersonContact>
+      </PostingRequester>
+      <PositionProfile>
+        <PostingInstruction>
+          <UserArea>
+            <GOVT_JOAType>Case File</GOVT_JOAType>
+          </UserArea>
+        </PostingInstruction>
+        <PositionID>VHA12-NZ733276-CR</PositionID>
+        <PositionTitle>Physician (Surgical Critical Care)</PositionTitle>
+        <PositionLocation>
+          <LocationID>450410019</LocationID>
+          <LocationName>Charleston, SC United States</LocationName>
+          <UserArea>
+            <GOVT_Openings>4</GOVT_Openings>
+          </UserArea>
+        </PositionLocation>
+        <PositionOrganization>
+          <OrganizationIdentifiers>
+            <OrganizationID>VATA</OrganizationID>
+            <OrganizationName>Veterans Affairs, Veterans Health Administration</OrganizationName>
+          </OrganizationIdentifiers>
+          <UserArea>
+            <GOVT_SubAgencyName />
+          </UserArea>
+        </PositionOrganization>
+        <JobCategoryCode>0602-Medical Officer</JobCategoryCode>
+        <JobGradeCode>AD</JobGradeCode>
+        <PositionOfferingTypeCode>15317-Permanent</PositionOfferingTypeCode>
+        <PositionPeriod>
+          <StartDate>
+            <FormattedDateTime>2012-08-27</FormattedDateTime>
+          </StartDate>
+          <EndDate>
+            <FormattedDateTime>2012-01-31</FormattedDateTime>
+          </EndDate>
+        </PositionPeriod>
+        <PositionScheduleTypeCode>2-Part-Time</PositionScheduleTypeCode>
+        <OfferedRemunerationPackage>
+          <RemunerationRange>
+            <RemunerationMinimumAmount currencyID="USD">125000</RemunerationMinimumAmount>
+            <RemunerationMaximumAmount currencyID="USD">295000</RemunerationMaximumAmount>
+            <RemunerationRateIntervalCode>PA</RemunerationRateIntervalCode>
+          </RemunerationRange>
+          <Description xmlns="http://www.openapplications.org/oagis/9" />
+        </OfferedRemunerationPackage>
+        <UserArea>
+          <GOVT_TotalOpenings>4</GOVT_TotalOpenings>
+          <GOVT_PayGradeLow>15</GOVT_PayGradeLow>
+          <GOVT_PayGradeHigh>15</GOVT_PayGradeHigh>
+          <GOVT_WhoMayApply>15514-United States Citizens </GOVT_WhoMayApply>
+          <GOVT_XMLJobBody>
+            <Overview>
+              <WhoMayApplyText>U.S. Citizens</WhoMayApplyText>
+              <AppointmentDurationText>Excepted Service Permanent</AppointmentDurationText>
+              <JobStatusText>Part Time 5  hours</JobStatusText>
+              <AgencyMarketingStatement>&lt;P align=left&gt;&lt;FONT face=Verdana&gt;Southern charm, hospitality and history imbue Charleston, one of the most well-preserved cities in the United States.&lt;/FONT&gt;&lt;/P&gt;</AgencyMarketingStatement>
+              <JobSummary>&lt;BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px"&gt;
+&lt;P align=left&gt;&lt;FONT face=Verdana&gt;&lt;/FONT&gt;&lt;/P&gt;
+&lt;P align=left&gt;&lt;FONT face=Verdana&gt;&lt;STRONG&gt;Minimum to maximum salary quotes are based on full time employment.&amp;nbsp; Part time salaries are prorated.&lt;/STRONG&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;/FONT&gt;&lt;/STRONG&gt;&lt;/BLOCKQUOTE&gt;
+&lt;P&gt;&lt;FONT face=Verdana&gt;&lt;B&gt;Special Employment Consideration:&lt;/B&gt;&amp;nbsp; VA encourages persons with disabilities to apply.&lt;/FONT&gt;&lt;/P&gt;</JobSummary>
+              <KeyRequirement>U. S. Citizenship</KeyRequirement>
+              <KeyRequirement>Must pass pre-employment examination</KeyRequirement>
+              <KeyRequirement>English Language Proficiency required</KeyRequirement>
+              <KeyRequirement>Designated and-or Random Drug Testing required</KeyRequirement>
+              <KeyRequirement>Background and-or Security Investigation required</KeyRequirement>
+              <KeyRequirement>Relocation Expenses are NOT authorized</KeyRequirement>
+            </Overview>
+            <Duties>
+              <MajorDuties>&lt;P class=MsoNormal style="MARGIN: 0in 0in 10pt"&gt;&lt;SPAN style="FONT-SIZE: 10pt; COLOR: #252525; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;The Ralph H. Johnson VA Medical Center, Charleston SC, is recruiting&amp;nbsp;three (3)&amp;nbsp;part time (5 hours per week)&amp;nbsp;Surgical Critical&amp;nbsp;Specialists&amp;nbsp;to work a flexible schedule.&amp;nbsp; These provders will help Surgical Services&amp;nbsp;build a multi-disciplinary surgical critical care team to&amp;nbsp;provide state of the art&amp;nbsp;care to Veterans.&lt;/SPAN&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;The duties will be carried out&amp;nbsp;at the main Ralph H. Johnson VA medical center in Charleston S.C.&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp;&amp;nbsp;Experience is needed in managing critically ill patients in a surgical setting is mandatory; and requires&amp;nbsp;the ability to work collaboratively with&amp;nbsp;multiple surgical patients including general, vascular, cardiac, thoracic, ENT, urology, orthopedics and neurosurgery.&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P class=MsoNormal style="MARGIN: 0in 0in 10pt"&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;&lt;SPAN style="mso-spacerun: yes"&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA"&gt;The successful candidates should have a strong academic background as evidenced by publications in peer-reviewed journals and a history of academic excellence.&lt;SPAN style="mso-spacerun: yes"&gt;&amp;nbsp; &lt;/SPAN&gt;S/he should possess outstanding education/managerial skills and have experience in resident education. &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;</MajorDuties>
+            </Duties>
+            <QualificationsAndEvaluation>
+              <Qualifications>&lt;FONT face=Verdana&gt;
+&lt;P&gt;&lt;STRONG&gt;Basic Requirements&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;Citizenship:&lt;/STRONG&gt;&amp;nbsp; Must be a U.S. Citizen of the United States (Noncitizens may be appointed when it is not possible to recruit qualified citizens in accordance with chapter 3, section A, paragraph 3g.)&amp;nbsp;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;Education:&lt;/STRONG&gt;&amp;nbsp; Degree of Doctor of Medicine or an equivalent degree resulting from a course of education in medicine or osteopathic medicine? The degree must have been obtained from one of the schools approved by the Secretary of Veterans Affairs for the year in which the course of study was completed.&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;Licensure and Registration:&lt;/STRONG&gt;&amp;nbsp; Current, full and unrestricted license to practice in any state, territory or commonwealth of the United States, District of Columbia.&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;English Language Proficiency&lt;/STRONG&gt;:&amp;nbsp; Physicians, including residents, appointed to direct patient-care positions must be proficient in spoken and written English.&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;First-Year Residency:&lt;/STRONG&gt;&amp;nbsp; Completed first-year residency, or its equivalent, approved by the Secretary of Veterans Affairs for the year in which it was completed.&amp;nbsp; For a VA resident, the appropriate Deans Committee and Resident Review Board may recommend appointment on the basis of the candidate's acceptability for residency training.&amp;nbsp; Approved residences are:&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;a.&amp;nbsp;&amp;nbsp;Those approved by the Council on Medical Education and&amp;nbsp;Hospitals,&amp;nbsp;American Medical Association, in the list published for the year the residency was completed, or&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;b.&amp;nbsp; Other residences or their equivalents which the Professional Standards Board determines to have provided an applicant with appropriate professional training.&amp;nbsp; The Board may determine that the residency requirement has been met if the candidate has completed 1 year of post-graduate education.&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;Physical Standards&lt;/STRONG&gt;:&amp;nbsp;&amp;nbsp;Placement in this position is subject to meeting the physical requirements of this position.&amp;nbsp; Pre-placement medical examination is required.&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;Preferred Qualifications:&amp;nbsp;&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'; mso-fareast-font-family: Arial"&gt;&lt;SPAN style="mso-list: Ignore"&gt;A.&lt;SPAN style="FONT: 7pt 'Times New Roman'"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;Experience managing critically ill patients in a surgical setting.&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'; mso-fareast-font-family: Arial"&gt;&lt;SPAN style="mso-list: Ignore"&gt;B.&lt;SPAN style="FONT: 7pt 'Times New Roman'"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;Fellowship training in Surgical Critical Care.&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;C.&amp;nbsp; Fellowship training in Transplant/Trauma/Cardiac Surgery welcome.&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;D.&amp;nbsp; Ability to manage multiple surgical patients including - general, vascular, cardiac, thoracic, ENT, urology, and neurosurgery.&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;E.&amp;nbsp; Evidence of Teaching Ability documented by teaching experience.&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;F.&amp;nbsp; Academic interests as evidenced by published articles and national presentations.&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;G.&amp;nbsp; Current competence as evidenced&amp;nbsp; by peer reviews, letters of recommendation and continuing medical education activities.&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P&gt;
+&lt;P&gt;&lt;STRONG&gt;References: VA Handbook 5005/23, Part&amp;nbsp;II, &amp;nbsp;App G2, Physician Qualification Standard.&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;New appointees&amp;nbsp;may be required to serve a probationary period of 2 years. &lt;/STRONG&gt;&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;&lt;/FONT&gt;
+&lt;P&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;&lt;FONT face=Verdana&gt;IN DESCRIBING YOUR EXPERIENCE, PLEASE BE CLEAR AND SPECIFIC. WE MAY NOT MAKE ASSUMPTIONS REGARDING YOUR EXPERIENCE.&lt;/FONT&gt;&lt;/B&gt;&lt;/P&gt;</Qualifications>
+              <Education>&lt;FONT face=Verdana&gt;APPLICANTS PLEASE NOTE:&amp;nbsp; Education must be accredited by an accrediting institution recognized by the U.S. Department of Education in order for it to be credited towards qualifications (particularly positions with a positive education requirement.)&amp;nbsp; Therefore, applicants must report only attendance and/or degrees from schools accredited by accrediting institutions recognized by the U.S. Department of Education.&amp;nbsp; Applicants can verify accreditation at the following website: &lt;/FONT&gt;&lt;A href="http://www.ed.gov/admins/finaid/accred/index.html"&gt;&lt;FONT face=Verdana&gt;http://www.ed.gov/admins/finaid/accred/index.html&lt;/FONT&gt;&lt;/A&gt;&lt;FONT face=Verdana&gt; All education claimed by applicants will be verified by the appointing agency accordingly.&amp;nbsp; If you are using foreign education to meet qualification requirements, you must send a Certificate of Foreign Equivalency with your transcript in order to receive credit for that education.&lt;/FONT&gt;</Education>
+              <Requirements>&lt;P&gt;&lt;B&gt;&lt;FONT face=Verdana&gt;Veterans' Preference: &lt;/FONT&gt;&lt;/B&gt;&lt;/P&gt;
+&lt;P&gt;&lt;FONT face=Verdana&gt;When applying for Federal Jobs, eligible Veterans should claim preference on their application or r&amp;#233;sum&amp;#233;. Applicants claiming preference based on service-connected disability, or based on being the spouse or mother of a disabled or deceased Veteran, must complete an SF 15, Application for 10-Point Veteran Preference. Veterans who are still in the service may be granted tentative preference on the basis of information contained in their applications, but they must produce a DD Form 214 or other proof prior to appointment to document entitlement to preference.&amp;nbsp; For more information on Veterans' Preference, please visit &lt;/FONT&gt;&lt;A href="http://www.fedshirevets.gov/job/veterans.aspx"&gt;&lt;FONT face=Verdana&gt;http://www.fedshirevets.gov/job/veterans.aspx&lt;/FONT&gt;&lt;/A&gt;&lt;FONT face=Verdana&gt;. &lt;/FONT&gt;&lt;/P&gt;</Requirements>
+              <Evaluations>&lt;P&gt;&lt;FONT face=Verdana&gt;Your application, r&amp;#233;sum&amp;#233; and/or supporting documentation will be verified. Please follow all instructions carefully. Errors or omissions may affect consideration for employment. &amp;nbsp; You may also be evaluated based upon the question responses you provide during a structured interview. In responding to structured interview questions you should be sure to&amp;nbsp;cite specific examples of experience, explain exactly what you did, and the outcome.&lt;/FONT&gt;&lt;/P&gt;
+&lt;P&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;Current competence as evidenced&amp;nbsp;by peer reviews, letters of recommendation and continuing medical education activities.&lt;/SPAN&gt;&lt;/P&gt;&lt;SPAN style="FONT-SIZE: 10pt; LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'"&gt;
+&lt;P class=MsoNormal style="MARGIN: 0in 0in 0pt"&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; mso-bidi-font-family: Arial"&gt;Interviews:&lt;/SPAN&gt;&lt;/B&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; mso-bidi-font-family: Arial"&gt; Management may interview candidates for this position and may elect to use the Performance Based Interviewing (PBI) process. If PBI is used, questions will be job-related, reasonably consistent and fair to all candidates. You can visit the following two web sites (1) &lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; mso-bidi-font-family: Tahoma"&gt;&lt;A href="http://www.va.gov/pbi"&gt;&lt;SPAN style="COLOR: windowtext; TEXT-DECORATION: none; mso-bidi-font-family: Arial; mso-bidi-font-size: 11.0pt; text-underline: none"&gt;http://www.va.gov/pbi&lt;/SPAN&gt;&lt;/A&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; mso-bidi-font-family: Arial"&gt; (2) &lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; mso-bidi-font-family: Tahoma"&gt;&lt;A href="http://vaww.va.gov/ohrm/Staffing/PBI/PBI_Intr.htm"&gt;&lt;SPAN style="COLOR: windowtext; TEXT-DECORATION: none; mso-bidi-font-family: Arial; mso-bidi-font-size: 11.0pt; text-underline: none"&gt;http://vaww.va.gov/ohrm/Staffing/PBI/PBI_Intr.htm&lt;/SPAN&gt;&lt;/A&gt;&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; mso-bidi-font-family: Arial"&gt; to learn more about PBI, frequently asked questions and aids to prepare for an interview.&amp;nbsp; Additionally, printed reference material is available at each Human Resources Office.&lt;/SPAN&gt;&lt;SPAN style="FONT-FAMILY: 'Verdana','sans-serif'"&gt;&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;/SPAN&gt;</Evaluations>
+            </QualificationsAndEvaluation>
+            <HowToApplyInformation>
+              <HowToApply>&lt;FONT face=Verdana&gt;To begin the process, click the &lt;B&gt;Apply Online&lt;/B&gt; button at the right side of this screen to create an account or log in to your existing USAJOBS account. Follow the prompts to complete the occupational questionnaire. Please ensure you click the &lt;B&gt;Submit My Answers&lt;/B&gt; button at the end of the process. &lt;/FONT&gt;
+&lt;P&gt;&lt;/P&gt;
+&lt;P&gt;&lt;FONT face=Verdana&gt;&lt;B&gt;YOU MUST INCLUDE VA FORM 10-2850 IN YOUR APPLICATION PACKAGE TO BE CONSIDERED FOR THIS VACANCY.&lt;/B&gt; &amp;nbsp; You may upload the completed form to your USAJOBS or Application Manager account if you apply online.&amp;nbsp; Then you can use the uploaded form again and again when applying for future vacancies.&amp;nbsp; Please see this guide (&lt;/FONT&gt;&lt;A href="http://www4.va.gov/OHRM/joblistings/uploading-and-using-documents-online.doc"&gt;&lt;FONT face=Verdana&gt;http://www4.va.gov/OHRM/joblistings/uploading-and-using-documents-online.doc&lt;/FONT&gt;&lt;/A&gt;&lt;FONT face=Verdana&gt;) for more information on uploading and re-using the form in your applications.&amp;nbsp; Other required forms and documents can also be saved in your account and used the same way.&amp;nbsp; Applicants are urged to apply online; this process is much easier and faster.&lt;/FONT&gt;&lt;/P&gt;
+&lt;P&gt;&lt;FONT face=Verdana&gt;&lt;B&gt;Note:&lt;/B&gt; To return to a previously Saved or Incomplete application, just reapply through your account in USAJOBS. &amp;nbsp;Check your account (&lt;/FONT&gt;&lt;A href="https://my.usajobs.gov/Login.aspx"&gt;&lt;FONT face=Verdana&gt; https://my.usajobs.gov/Login.aspx&lt;/FONT&gt;&lt;/A&gt;&lt;FONT face=Verdana&gt; ) to see the status of your application after applying, including any messages that may have been sent to you.&lt;/FONT&gt;&lt;/P&gt;
+&lt;P&gt;&lt;FONT face=Verdana&gt;If you cannot apply online:&lt;/FONT&gt;&lt;/P&gt;
+&lt;OL type=1&gt;
+&lt;LI style="FONT-FAMILY: Verdana"&gt;&lt;FONT face=Verdana&gt;Click the following link to view and print the occupational questionnaire: &lt;/FONT&gt;&lt;a href="https://ApplicationManager.gov/Questionnaire.aspx?ID=4498973&amp;PreviewType=Questionnaire" target="_blank"&gt;View Occupational Questionnaire&lt;/a&gt;&lt;FONT face=Verdana&gt;.&lt;/FONT&gt;&lt;/LI&gt;
+&lt;LI style="FONT-FAMILY: Verdana"&gt;&lt;FONT face=Verdana&gt;Print this 1203FX form to provide your response to the occupational questionnaire: &lt;/FONT&gt;&lt;A href="http://www.opm.gov./forms/pdf_fill/OPM1203fx.pdf"&gt;&lt;FONT face=Verdana&gt;http://www.opm.gov./forms/pdf_fill/OPM1203fx.pdf&lt;/FONT&gt;&lt;/A&gt;&lt;FONT face=Verdana&gt;.&lt;/FONT&gt;&lt;/LI&gt;
+&lt;LI style="FONT-FAMILY: Verdana"&gt;&lt;FONT face=Verdana&gt;Fax the completed 1203FX form along with all supporting documents to (478)757-3144.&amp;nbsp; Your 1203FX form must be placed on top of all materials being faxed and will serve as a cover page for your fax transmission.&lt;/FONT&gt;&lt;/LI&gt;
+&lt;LI style="FONT-FAMILY: Verdana"&gt;&lt;FONT face=Verdana&gt;Keep a copy of your fax receipt in case verification is needed.&lt;/FONT&gt;&lt;/LI&gt;&lt;/OL&gt;
+&lt;P&gt;&lt;FONT face=Verdana&gt;To fax supporting documents you are unable to upload:&lt;/FONT&gt;&lt;/P&gt;
+&lt;OL type=1&gt;
+&lt;LI style="FONT-FAMILY: Verdana"&gt;&lt;FONT face=Verdana&gt;Complete this cover page&amp;nbsp;&lt;/FONT&gt;&lt;A href="http://staffing.opm.gov/pdf/usascover.pdf"&gt;&lt;FONT face=Verdana&gt; http://staffing.opm.gov/pdf/usascover.pdf&lt;/FONT&gt;&lt;/A&gt;&lt;FONT face=Verdana&gt; using the following Vacancy ID: &lt;/FONT&gt;733276&lt;FONT face=Verdana&gt;.&amp;nbsp; You must use this fax cover sheet in order for your documents to be matched with your online application.&lt;/FONT&gt;&lt;/LI&gt;
+&lt;LI style="FONT-FAMILY: Verdana"&gt;&lt;FONT face=Verdana&gt;Fax your documents to (478)757-3144.&lt;/FONT&gt;&lt;/LI&gt;&lt;/OL&gt;
+&lt;P&gt;&lt;FONT face=Verdana&gt;The complete Application Package must be submitted by 11:59 PM (EST) on &lt;/FONT&gt;Thursday, January 31, 2013.&lt;/P&gt;</HowToApply>
+              <RequiredDocuments>&lt;FONT face=Verdana&gt;You must provide a complete Application Package which includes: &lt;/FONT&gt;
+&lt;P&gt;&lt;/P&gt;
+&lt;OL&gt;
+&lt;LI style="FONT-FAMILY: Verdana"&gt;&lt;FONT face=Verdana&gt;&lt;B&gt;CV or Resume.&lt;/B&gt;&lt;B&gt; &lt;/B&gt;&lt;/FONT&gt;&lt;/LI&gt;
+&lt;LI style="FONT-FAMILY: Verdana"&gt;&lt;FONT face=Verdana&gt;&lt;B&gt;VA Form 10-2850- &lt;/B&gt;&lt;B&gt;Application (signed)&lt;/B&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;&amp;nbsp;&lt;/B&gt;for Physicians and Dentists(Available at &amp;nbsp;&lt;/FONT&gt;&lt;A href="http://vaww4.va.gov/vaforms/"&gt;&lt;/A&gt;&lt;A href="http://www.va.gov/vaforms/medical/pdf/vha-10-2850-fill.pdf"&gt;&lt;FONT face=Verdana&gt;http://www.va.gov/vaforms/medical/pdf/vha-10-2850-fill.pdf&lt;/FONT&gt;&lt;/A&gt;&lt;A href="http://www.vacareers.va.gov/jobs_download/vha-10-2850c-fill.pdf"&gt;&lt;/A&gt;&lt;FONT face=Verdana&gt;) &lt;B style="mso-bidi-font-weight: normal"&gt;(required).&lt;/B&gt;&lt;/FONT&gt;&lt;/LI&gt;
+&lt;LI style="FONT-FAMILY: Verdana"&gt;&lt;FONT face=Verdana&gt;&lt;B style="mso-bidi-font-weight: normal"&gt;Occupational Questionnaire&lt;/B&gt; &lt;/FONT&gt;&lt;/LI&gt;
+&lt;LI style="FONT-FAMILY: Verdana"&gt;&lt;FONT face=Verdana&gt;&lt;B&gt;Optional Form 306 - &lt;/B&gt;Declaration for Federal Employment (signed)&amp;nbsp;(Available at &lt;SPAN style="FONT-SIZE: 9pt; FONT-FAMILY: 'Verdana','sans-serif'; mso-bidi-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA"&gt;&lt;A href="http://www.opm.gov/forms/pdf_fill/of0306.pdf"&gt;&lt;FONT size=2&gt;http://www.opm.gov/forms/pdf_fill/of0306.pdf&lt;/FONT&gt;&lt;/A&gt;&lt;/SPAN&gt;).&amp;nbsp; This is a &lt;B style="mso-bidi-font-weight: normal"&gt;required&lt;/B&gt; form and&amp;nbsp;should be submitted with your application.&lt;/FONT&gt;&lt;/LI&gt;
+&lt;LI style="FONT-FAMILY: Verdana"&gt;&lt;FONT face=Verdana&gt;&lt;B&gt;If&lt;/B&gt; prior military service, include all copies of your DD Forms 214 &lt;B&gt;(required). &amp;nbsp; &lt;/B&gt;Applicants claiming preference based on service-connected disability, or based on being the spouse or mother of a disabled or deceased Veteran, must also complete and submit an SF 15, Application for 10-Point Veteran Preference (available at &lt;/FONT&gt;&lt;A href="http://www.opm.gov/forms/pdf_fill/SF15.pdf"&gt;&lt;FONT face=Verdana&gt;http://www.opm.gov/forms/pdf_fill/SF15.pdf&lt;/FONT&gt;&lt;/A&gt;&lt;FONT face=Verdana&gt;). &amp;nbsp; &lt;/FONT&gt;&lt;/LI&gt;
+&lt;LI style="FONT-FAMILY: Verdana"&gt;&lt;FONT face=Verdana&gt;&lt;B&gt;If &lt;/B&gt;currently employed in the VA system, include latest SF-50 - Notification of Personnel Action.&lt;B&gt; (required).&lt;/B&gt;&lt;/FONT&gt;&lt;/LI&gt;&lt;/OL&gt;</RequiredDocuments>
+              <WhatToExpectNext>&lt;P&gt;&lt;FONT face=Verdana&gt;After we receive your complete application package (including any required documents), your qualifications will be reviewed to decide if you meet the basic requirements.&amp;nbsp; You will be notified when this decision is made.&lt;/FONT&gt;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;Interviews:&lt;/STRONG&gt;&amp;nbsp; Management may interview candidates for this position and may elect to use the Performance Based Interviewing (PBI)process.&amp;nbsp; If PBI is used, questions will be job-related, reasonably consistent and fair to all candidates. You can visit the following website (1) &lt;A href="http://www.va.gov/pbi"&gt;http://www.va.gov/pbi&lt;/A&gt; to learn more about PBIs, frequently asked questions and aids to prepare for an interview.&amp;nbsp; Additionally, printed reference material is available at each Human Resources Office.&lt;/P&gt;</WhatToExpectNext>
+            </HowToApplyInformation>
+            <BenefitsAndOtherInformation>
+              <Benefits>&lt;P&gt;&lt;FONT face=Verdana&gt;Working for the Department of Veterans Affairs&amp;nbsp;offers a comprehensive benefits package that includes, in part, paid vacation, sick leave, holidays, life insurance, health benefits, thrift savings plan, and participation in the Federal Employees Retirement System.&amp;nbsp;In addition to traditional "dollars and cents" benefits, we offer a range of benefits to help&amp;nbsp;balance work and life.&amp;nbsp;&amp;nbsp;For more information&amp;nbsp;please visit us at &lt;/FONT&gt;&lt;A href="http://www4.va.gov/JOBS/Job_Benefits/benefits.asp"&gt;&lt;FONT face=Verdana&gt;http://www4.va.gov/JOBS/Job_Benefits/benefits.asp&lt;/FONT&gt;&lt;/A&gt;&lt;FONT face=Verdana&gt; .&lt;/FONT&gt;&lt;/P&gt;
+&lt;P&gt;&lt;FONT face=Verdana&gt;&amp;nbsp;&lt;/FONT&gt;&lt;/P&gt;</Benefits>
+              <OtherInformation>&lt;P&gt;&lt;FONT face=Verdana&gt;This position is in the Excepted Service and does not confer competitive status.&amp;nbsp; &lt;/FONT&gt;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;Drug Testing Designated Positions:&lt;/STRONG&gt; In accordance with Executive Order 12564, Federal employees hired in a drug testing designated position will be subject to random testing for illegal drug use during employment.&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;Vet Pro Credentialing:&lt;/STRONG&gt;&amp;nbsp; individuals selected for positions that have patient care responsibilities are subject to undergoing an electronic credentialing process called VetPro.&amp;nbsp; As part of this process it will be necessary for you to submit complete information concerning your professional education, training, experience, licensure and certifications using VetPro.&amp;nbsp; The candidate selected will be provided with further information on how to use Vet Pro.&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;Applicant's Responsibility:&lt;/STRONG&gt; It is the applicant's responsibility to submit documentation to support his/her application for this position.&amp;nbsp; Applicant is responsible for ensuring that all experience, education, formal training, award recognition, etc. are documented in the application package. Experience may include voluntary or other non-paid experience in the appropriate field.&amp;nbsp; If you feel that your training record contains information pertinent to your qualifications, then you must submit a printed copy of your training record with your applications package.&amp;nbsp; Your training record will become a part of the specific vacancy file and will not be filed in the official personnel folder. &lt;/P&gt;
+&lt;P&gt;All qualified applicants will receive consideration for employment without regard to race, color, age, religion, national origin, sex, lawful political affiliation, marital status, disability or membership or non-membership in a labor union.&lt;/P&gt;
+&lt;P&gt;&lt;SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: 'Arial','sans-serif'"&gt;&lt;STRONG&gt;Reasonable Accommodation:&lt;/STRONG&gt; This Agency provides reasonable accommodations to applicants with disabilities.&amp;nbsp; If you need a reasonable accommodation for any part of the application and hiring process, you must notify the agency.&amp;nbsp; This decision on granting reasonable accommodation will be made on a case-by-case basis.&lt;/SPAN&gt;&lt;/P&gt;&lt;SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: 'Arial','sans-serif'"&gt;
+&lt;P class=MsoNormal style="MARGIN: 0in 0in 0pt"&gt;&lt;SPAN style="FONT-SIZE: 9pt; FONT-FAMILY: 'Verdana','sans-serif'"&gt;New Appointees are required to serve a probationary period of 2 years.&lt;?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/SPAN&gt;&lt;/P&gt;
+&lt;P&gt;&lt;/SPAN&gt;&lt;B&gt;INCOMPLETE APPLICATIONS&lt;/B&gt; will receive a rating of IFM (ineligible due to missing forms). Requests for reconsideration of ratings will not be considered for applicants who fail to submit a complete application package.&amp;nbsp; &lt;B&gt;We cannot be held responsible for incompatible software, fax transmissions, delays in mail service, etc.&lt;/B&gt;&amp;nbsp;&lt;/P&gt;</OtherInformation>
+            </BenefitsAndOtherInformation>
+          </GOVT_XMLJobBody>
+        </UserArea>
+      </PositionProfile>
+      <UserArea>
+        <GOVT_ApplyOnlineURL>https://my.usajobs.gov/Application/ApplyStart/325054900</GOVT_ApplyOnlineURL>
+        <GOVT_DetailStatusURL>https://ApplicationManager.gov/Login.aspx?VacancyID=733276&amp;CheckStatus=Y</GOVT_DetailStatusURL>
+      </UserArea>
+    </PositionOpening>
+    <PositionOpening>
+      <DocumentID>327358300</DocumentID>
+      <!--New end date is in the past, so we must expire it-->
+      <PositionOpeningStatusCode>Active</PositionOpeningStatusCode>
+      <PostingRequester agencyRoleCode="ExternalContact">
+        <PartyName>VHA West Texas VA HCS Big Springs</PartyName>
+        <PersonContact>
+          <PersonName>
+            <FormattedName>Hilda Lara</FormattedName>
+            <GivenName xmlns="http://www.openapplications.org/oagis/9">Hilda</GivenName>
+            <MiddleName />
+            <FamilyName>Lara</FamilyName>
+          </PersonName>
+          <Communication>
+            <Address>
+              <LineOne xmlns="http://www.openapplications.org/oagis/9">Department of Veterans Affairs</LineOne>
+              <LineTwo xmlns="http://www.openapplications.org/oagis/9">300 Veterans Blvd</LineTwo>
+              <LineThree xmlns="http://www.openapplications.org/oagis/9" />
+              <LineFour xmlns="http://www.openapplications.org/oagis/9" />
+              <LineFive xmlns="http://www.openapplications.org/oagis/9" />
+              <CityName xmlns="http://www.openapplications.org/oagis/9">Big Spring</CityName>
+              <CountrySubDivisionCode xmlns="http://www.openapplications.org/oagis/9">TX</CountrySubDivisionCode>
+              <CountryCode>USA</CountryCode>
+              <PostalCode xmlns="http://www.openapplications.org/oagis/9">79720</PostalCode>
+            </Address>
+          </Communication>
+          <Communication>
+            <ChannelCode>Telephone</ChannelCode>
+            <DialNumber xmlns="http://www.openapplications.org/oagis/9">(432)264-4820</DialNumber>
+          </Communication>
+          <Communication>
+            <ChannelCode>Email</ChannelCode>
+            <URI xmlns="http://www.openapplications.org/oagis/9">HILDA.LARA@VA.GOV</URI>
+          </Communication>
+        </PersonContact>
+      </PostingRequester>
+      <PositionProfile>
+        <PostingInstruction>
+          <UserArea>
+            <GOVT_JOAType>Case File</GOVT_JOAType>
+          </UserArea>
+        </PostingInstruction>
+        <PositionID>VHA-519-NR-12-750125  hhl</PositionID>
+        <PositionTitle>Student Nurse Technicians</PositionTitle>
+        <PositionLocation>
+          <LocationID>485030135</LocationID>
+          <LocationName>Odessa, TX United States</LocationName>
+          <UserArea>
+            <GOVT_Openings>6</GOVT_Openings>
+          </UserArea>
+        </PositionLocation>
+        <PositionLocation>
+          <LocationID>480640227</LocationID>
+          <LocationName>Pentagon, Arlington, VA United States</LocationName>
+          <UserArea>
+            <GOVT_Openings>6</GOVT_Openings>
+          </UserArea>
+        </PositionLocation>
+        <PositionLocation>
+          <LocationID>486080451</LocationID>
+          <LocationName>San Angelo, TX United States</LocationName>
+          <UserArea>
+            <GOVT_Openings>6</GOVT_Openings>
+          </UserArea>
+        </PositionLocation>
+        <PositionLocation>
+          <LocationID>480030253</LocationID>
+          <LocationName>Abilene, TX United States</LocationName>
+          <UserArea>
+            <GOVT_Openings>6</GOVT_Openings>
+          </UserArea>
+        </PositionLocation>
+        <PositionOrganization>
+          <OrganizationIdentifiers>
+            <OrganizationID>VATA</OrganizationID>
+            <OrganizationName>Veterans Affairs, Veterans Health Administration</OrganizationName>
+          </OrganizationIdentifiers>
+          <UserArea>
+            <GOVT_SubAgencyName />
+          </UserArea>
+        </PositionOrganization>
+        <JobCategoryCode>0699-Medical And Health Student Trainee</JobCategoryCode>
+        <JobGradeCode>GS</JobGradeCode>
+        <PositionOfferingTypeCode>15522-Intermittent</PositionOfferingTypeCode>
+        <PositionPeriod>
+          <StartDate>
+            <FormattedDateTime>2012-09-19</FormattedDateTime>
+          </StartDate>
+          <EndDate>
+            <FormattedDateTime>2012-12-31</FormattedDateTime>
+          </EndDate>
+        </PositionPeriod>
+        <PositionScheduleTypeCode>2-Part-Time</PositionScheduleTypeCode>
+        <OfferedRemunerationPackage>
+          <RemunerationRange>
+            <RemunerationMinimumAmount currencyID="USD">17</RemunerationMinimumAmount>
+            <RemunerationMaximumAmount currencyID="USD">23</RemunerationMaximumAmount>
+            <RemunerationRateIntervalCode>PH</RemunerationRateIntervalCode>
+          </RemunerationRange>
+          <Description xmlns="http://www.openapplications.org/oagis/9" />
+        </OfferedRemunerationPackage>
+        <UserArea>
+          <GOVT_TotalOpenings>24</GOVT_TotalOpenings>
+          <GOVT_PayGradeLow>04</GOVT_PayGradeLow>
+          <GOVT_PayGradeHigh>04</GOVT_PayGradeHigh>
+          <GOVT_WhoMayApply>15514-United States Citizens </GOVT_WhoMayApply>
+          <GOVT_XMLJobBody>
+            <Overview>
+              <WhoMayApplyText>United States Citizens </WhoMayApplyText>
+              <AppointmentDurationText>Intermittent</AppointmentDurationText>
+              <JobStatusText>Part Time 40 hours</JobStatusText>
+              <AgencyMarketingStatement>&lt;P&gt;&lt;STRONG&gt;Vacancy Identification Number&lt;/STRONG&gt; (VIN): 750125(Include on all documents)&lt;/P&gt;</AgencyMarketingStatement>
+              <JobSummary>&lt;P&gt;The &lt;B&gt;Department of Veterans Affairs&lt;/B&gt; (VA) needs employees who possess the energy, compassion, and commitment &lt;/P&gt;
+&lt;P&gt;to serve those who serve our Country. Whatever the job title, every position in VA will give you a chance to make a meaningful &lt;/P&gt;
+&lt;P&gt;and personal contribution to the lives of truly special and deserving people - our Veterans.&amp;nbsp; Working for VA is one of the most emotionally satisfying and professionally rewarding ways to dedicate the best within you to your country's service.&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;&lt;FONT size=3&gt;The West Texas VA Health Care System is currently recruiting for the positions of &lt;/FONT&gt;&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;&lt;FONT size=3&gt;(24) Student Nurse Technicians for the Big Spring facility and the&lt;/FONT&gt;&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;&lt;FONT size=3&gt;Community Based Outpatient Clinics in Abilene, San Angelo and Midland/Odessa, Texas.&lt;/FONT&gt;&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;&lt;FONT size=3&gt;&lt;/FONT&gt;&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;Are You the One?&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P align=center&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;Safety:&amp;nbsp; Safety comes first!&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;Kindness:&amp;nbsp; Treat Veterans, families, guests and WTVAHCS &lt;/STRONG&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;team members with compassion, respect, and dignity.&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;Performance Excellence:&amp;nbsp; Give your personal best and strive to "exceed expectations."&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;Presentation:&amp;nbsp; Demonstrate professionalism, positive attitude and passion.&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;Stewardship:&amp;nbsp; Accept responsibility for the duties entrusted to you, maintain the &lt;/STRONG&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;environment and support the WTVAHCS&amp;nbsp; tradition of exceptional health care.&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;If you are transitioning from the military or a Veteran already, we invite you to explore the benefits of continuing your career at the VA. &lt;U&gt;&lt;B&gt;The VA is committed to hiring Veterans&lt;/B&gt;&lt;/U&gt;. &lt;/P&gt;
+&lt;P align=left&gt;The VA is much more than just another employer. It is an honorable, open and welcoming community of those who care. Gratitude is our motivation and service is our mission.&lt;/P&gt;
+&lt;P align=left&gt;The VA has adopted Core Values and Characteristics that apply universally across the Department. The five Core Values define "who we are," our culture, and how we care for Veterans, their families and other beneficiaries. The Values are &lt;U&gt;&lt;B&gt;I&lt;/B&gt;&lt;/U&gt;ntegrity, &lt;U&gt;&lt;B&gt;C&lt;/B&gt;&lt;/U&gt;ommitment, &lt;U&gt;&lt;B&gt;A&lt;/B&gt;&lt;/U&gt;dvocacy, &lt;U&gt;&lt;B&gt;R&lt;/B&gt;&lt;/U&gt;espect and &lt;U&gt;&lt;B&gt;E&lt;/B&gt;&lt;/U&gt;xcellence (" &lt;B&gt;I CARE&lt;/B&gt;").&lt;/P&gt;
+&lt;P align=center&gt;&lt;B&gt;America's Veterans need you!&lt;/B&gt;&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;
+&lt;P&gt;To find out more, go to &lt;A href="http://www.va.gov/jobs/"&gt;http://www.va.gov/jobs/&lt;/A&gt;.&lt;/P&gt;</JobSummary>
+              <KeyRequirement>You must be a U.S. citizen to apply for this job.</KeyRequirement>
+              <KeyRequirement>Designated and/or random drug testing may be required.</KeyRequirement>
+              <KeyRequirement>Subject to a background/suitability investigation.</KeyRequirement>
+              <KeyRequirement>You must pass a pre-employment physical</KeyRequirement>
+            </Overview>
+            <Duties>
+              <MajorDuties>&lt;P&gt;&lt;STRONG&gt;The Student Nurse Technicians is a team member of the West Texas VA Health Care System in Big Spring, Texas&amp;nbsp;or the Community Based Outpatient Clinics in Abilene, San Angelo and/or Midland/Odessa&amp;nbsp;nursing team who performs a range of nursing duties according to the Nursing Care Plan on the unit and/or area assigned.&amp;nbsp; The SNT assists physicians and nurses in the care and treatment of&amp;nbsp;our Veterans&amp;nbsp;receiving medical, surgical, psychiatric or outpatient treatment.&amp;nbsp; The SNT observes and reports to the professional nurse changes in patient behavior, attitude and appearance.&amp;nbsp; The SNT performs a variety of duties aimed at increasing the comfort and safety of the patient.&amp;nbsp; Assists with personal hygiene (ADL's), physical comfort, nutrition, elimination, prevention of skin breakdown, rehabilitation and safety.&amp;nbsp; Encourages patients in self-care activities within their individual capacity, as outlined in their care plan.&lt;/STRONG&gt;&lt;/P&gt;</MajorDuties>
+            </Duties>
+            <QualificationsAndEvaluation>
+              <Qualifications>&lt;P&gt;&lt;STRONG&gt;Must be a citizen of the United States:&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;English Language Proficiency:&lt;/STRONG&gt; In accordance with 38 U.S.C. 7402(d), No person shall serve in direct patient care positions unless they are proficient in basic written and spoken English. You must be proficient in basic written and spoken English in order to meet the requirements of this position. &lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;Must be enrolled in a school of professional nursing approved by the appropriate State accrediting agency and accredited by one of the following accrediting bodies:&amp;nbsp; The National League for Nursing Accrediting Commission (NLNAC) or the Commission on Collegiate Nursing Education (CCNE).&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;GS-4&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;A transcript or course listing must be submitted with your application if you are basing all or part of your qualifications on education. &lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;
+&lt;P&gt;Specialized Experience: Qualifying specialized experience includes nonprofessional nursing care work in a hospital, outpatient clinic, nursing home, or other medical, nursing, or patient care facility, or in such work as that of a home health aid performing duties, such as: &lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;Providing personal nursing care such as providing pre- and post-operative care. 
+&lt;LI&gt;Support duties for diagnostic and technical treatment procedures, such as setting up and operating special medical equipment and apparatus. 
+&lt;LI&gt;Caring for mentally ill patients, including observing, recording, and reporting changes in their behavior, and providing reassurance and encouragement. 
+&lt;LI&gt;Assisting surgeons and registered nurses in operating room activities, including passing instruments, maintaining sterile conditions, and draping and positioning patients.&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;&lt;STRONG&gt;&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;For more information on these qualification standards, please visit OPM's web site at &lt;A href="http://www.opm.gov/qualifications"&gt;&lt;STRONG&gt;http://www.opm.gov/qualifications&lt;/STRONG&gt;&lt;/A&gt;&lt;STRONG&gt;.&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;B&gt;IN DESCRIBING YOUR EXPERIENCE, PLEASE BE CLEAR AND SPECIFIC. WE WILL NOT MAKE ASSUMPTIONS REGARDING YOUR EXPERIENCE.&lt;/B&gt;&lt;/P&gt;</Qualifications>
+              <Education>&lt;P&gt;&lt;B&gt;APPLICANTS PLEASE NOTE:&lt;/B&gt; Education must be accredited by an accrediting institution recognized by the U.S. Department of Education in order for it to be credited towards qualifications. You can verify accreditation at the following website: &lt;A href="http://www.ed.gov/admins/finaid/accred/index.html"&gt;http://www.ed.gov/admins/finaid/accred/index.html&lt;/A&gt;. All education claimed by applicants will be verified by the appointing agency. &lt;/P&gt;
+&lt;P&gt;&lt;IF are using foreign education meet qualification requirements, you must send a Certificate of Foreign Equivalency with your transcript in order to receive credit for that education.&lt; FONT&gt;&lt;/P&gt;</Education>
+              <Requirements>&lt;P&gt;&lt;B&gt;Veteran's Preference&lt;/B&gt;: When applying for Federal jobs, eligible veterans should claim preference on the Occupational Questionnaire in the section provided and provide a legible copy of DD-214(s) showing all dates of service as well as character of service (honorable, general, etc.). Additionally, veterans with service-connected disability of 10% or more must also submit a copy of their official statement from the Department of Veterans Affairs, or from a branch of the Armed Forces, certifying their service-connected disability and/or their receipt of compensation for service-connected disability.&amp;nbsp; If the military member is within 120 days of separation and does not yet have a DD214, the member may instead submit any written document from the armed forces that certifies the service member is expected to be discharged or released from active duty service in the armed forces under honorable conditions not later than 120 days after the date the certification is signed.&lt;/P&gt;
+&lt;P&gt;Veterans with service-connected disability of less than 10%, nonservice-connected disability, and Purple Heart recipients, as-well-as those claiming derived preference for a spouse, widow or widower, or natural mother, should refer to and submit a completed SF 15, "Application for 10-Point Veteran Preference," and required documentation with your application materials. &lt;/P&gt;
+&lt;P&gt;For more information on Veterans' Preference, go to &lt;A href="http://www.opm.gov/veterans/html/vetsinfo.asp"&gt;http://www.opm.gov/veterans/html/vetsinfo.asp&lt;/A&gt;. &lt;/P&gt;</Requirements>
+              <Evaluations>&lt;P&gt;Complete application packages will be reviewed to determine if the basic qualifications for this position have been met. A listing of candidates who meet the basic qualification requirements will be forwarded to the hiring facility where the credentialing and privileging screening process is completed.&lt;/P&gt;</Evaluations>
+            </QualificationsAndEvaluation>
+            <HowToApplyInformation>
+              <HowToApply>&lt;P&gt;To apply for this position, you must provide a complete Application Package (See "Required Documents" section below).&amp;nbsp; The complete Application Package must be submitted by 11:59 PM (EST) on Thursday, February 28, 2013. &lt;/P&gt;
+&lt;P&gt;To begin the process, click the &lt;STRONG&gt;Apply Online&lt;/STRONG&gt; button to create an account or log in to your existing USAJOBS account. Follow the prompts to complete the occupational questionnaire. Please ensure you click the &lt;STRONG&gt;Submit My Answers&lt;/STRONG&gt; button at the end of the process. &lt;/P&gt;
+&lt;P&gt;Note: To return to a previously Saved or Incomplete application return to your member account in USAJOBS to see the status of your application, including any messages that may have been sent to you. &lt;/P&gt;
+&lt;P&gt;If you cannot apply online: &lt;/P&gt;
+&lt;P&gt;1. Click the following link to view and print the occupational questionnaire &lt;a href="https://ApplicationManager.gov/Questionnaire.aspx?ID=4521348&amp;PreviewType=Questionnaire" target="_blank"&gt;View Occupational Questionnaire&lt;/a&gt;, &lt;/P&gt;
+&lt;P&gt;2. Print this 1203FX form to provide your response to the occupational questionnaire &lt;A href="http://www.opm.gov/forms/pdfimage/opm1203fx.pdf"&gt;http://www.opm.gov/forms/pdfimage/opm1203fx.pdf&lt;/A&gt;, and &lt;/P&gt;
+&lt;P&gt;3. Fax the completed 1203FX form along with any supporting documents to &lt;STRONG&gt;(478)757-3144&lt;/STRONG&gt;. Your 1203FX will serve as a cover page for your fax transmission. Keep a copy of your fax receipt in case verification is needed. &lt;/P&gt;
+&lt;P&gt;To fax supporting documents you are unable to upload: &lt;/P&gt;
+&lt;P&gt;1. Complete this cover page &lt;A href="http://staffing.opm.gov/pdf/usascover.pdf"&gt;http://staffing.opm.gov/pdf/usascover.pdf&lt;/A&gt; &amp;nbsp;using the following Vacancy ID 750125. &lt;/P&gt;
+&lt;P&gt;2. Fax your documents to (478)757-3144.&lt;/P&gt;</HowToApply>
+              <RequiredDocuments>&lt;P&gt;The following documents are required: &lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;Completed Online Questionnaire &lt;/LI&gt;
+&lt;LI&gt;Resume (required)&lt;/LI&gt;
+&lt;LI&gt;Application 10-2850c "Application for Associate Health Occupation (required)&lt;/LI&gt;
+&lt;LI&gt;Form 306, Declaration for Federal Employment (required)&lt;/LI&gt;
+&lt;LI&gt;If you are qualifying on education substitution or a combination of education and experience, an unofficial college transcript must be submitted with your application package. (An official college transcript will be required before being hired). &lt;/LI&gt;
+&lt;LI&gt;Veterans should submit appropriate documentation as described previously in this vacancy announcement. &lt;/LI&gt;
+&lt;LI&gt;If currently employed in the VA system, include a copy of your latest SF-50, Notification of Personnel Action.&lt;/LI&gt;&lt;/UL&gt;</RequiredDocuments>
+              <WhatToExpectNext>&lt;P&gt;&lt;FONT face=Verdana&gt;You will receive e-mail notification as to whether or not you were included on the list of referred candidates.&amp;nbsp; If you do not provide an e-mail address, your notification will be sent via U.S. Postal Service within 2-4 weeks.&lt;/FONT&gt;&lt;/P&gt;
+&lt;P&gt;&lt;FONT face=Verdana&gt;Important note:&amp;nbsp; Applicants have the burden of producing all needed information prior to the closing of the announcement Thursday, February 28, 2013.&amp;nbsp; If this requirement is not met and you are not referred to the hiring facility, you may contact the local HR office for Direct Hiring Authority options.&amp;nbsp; &lt;/FONT&gt;&lt;/P&gt;</WhatToExpectNext>
+            </HowToApplyInformation>
+            <BenefitsAndOtherInformation>
+              <Benefits>Working for the Department of Veterans Affairs offers a comprehensive benefits package that includes, in part, paid vacation, sick leave, holidays, life insurance, health benefits, and participation in the Federal Employees Retirement System. In addition to traditional "dollars and cents" benefits, we offer a range of benefits to help balance work and life. For more information please visit us at &lt;A href="http://www.va.gov/jobs/job_benefits/benefits.asp"&gt;http://www.va.gov/jobs/job_benefits/benefits.asp&lt;/A&gt; .</Benefits>
+              <OtherInformation>&lt;P&gt;The &lt;STRONG&gt;Interagency Career Transition Assistance Plan&lt;/STRONG&gt; (ICTAP) and &lt;STRONG&gt;Career Transition Assistance Plan&lt;/STRONG&gt; (CTAP) provide eligible displaced Federal competitive service employees with selection priority over other candidates for competitive service vacancies. To be qualified you must submit appropriate documentation and be found well-qualified for this vacancy. Information about ICTAP and CTAP eligibility is on OPM's Career Transition Resources website at &lt;A href="http://www.opm.gov/rif/employee_guides/career_transition.asp#ctap"&gt;http://www.opm.gov/rif/employee_guides/career_transition.asp#ctap&lt;/A&gt; .&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;VA may offer newly-appointed Federal employees credit for their job-related non-federal experience or active duty uniformed military service. This credited service can be used in determining the rate at which they earn annual leave. This is not a guarantee and must be requested in advance. &lt;/P&gt;</OtherInformation>
+            </BenefitsAndOtherInformation>
+          </GOVT_XMLJobBody>
+        </UserArea>
+      </PositionProfile>
+      <UserArea>
+        <GOVT_ApplyOnlineURL>https://my.usajobs.gov/Application/ApplyStart/327358300</GOVT_ApplyOnlineURL>
+        <GOVT_DetailStatusURL>https://ApplicationManager.gov/Login.aspx?VacancyID=750125&amp;CheckStatus=Y</GOVT_DetailStatusURL>
+      </UserArea>
+    </PositionOpening>
+  </DataArea>
+</ShowPositionOpening>
