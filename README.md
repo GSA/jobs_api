@@ -74,7 +74,7 @@ Here are some examples of query formats that will work:
 * job opportunities at the cia
 * jobs at the treasury dept
 * tsa job openings
-* va jobs # will match jobs at Veterans Affairs, not jobs in Virginia
+* va jobs # will match jobs in Virginia
 
 ### Job-based (by relevance)
 
