@@ -4,13 +4,6 @@ GIT
   specs:
     us_states (0.1.1)
 
-GIT
-  remote: git://github.com/karmi/tire-contrib.git
-  revision: 420c4e6e0fbfad01dd428616b781536e7ee11c25
-  specs:
-    tire-contrib (0.1.1)
-      tire
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -169,6 +162,8 @@ GEM
       multi_json (~> 1.3)
       rake
       rest-client (~> 1.6)
+    tire-contrib (0.1.1)
+      tire
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
@@ -194,5 +189,5 @@ DEPENDENCIES
   simplecov-rcov
   thin
   tire
-  tire-contrib!
+  tire-contrib
   us_states!
