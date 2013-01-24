@@ -7,7 +7,7 @@ require 'capistrano/ext/multistage'
 server 'api', :web, :app, primary: true
 
 set :user, 'api'
-set :application, 'usajobs_api'
+set :application, 'jobs_api'
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
