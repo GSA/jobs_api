@@ -5,6 +5,8 @@ Federal Jobs API Server
 
 The Federal Jobs API Server provides access to searchable job openings across the federal government. It includes all current job openings posted on [USAJobs.gov](http://www.usajobs.gov) that are open to the public and located in the United States.
 
+You can see how this data is used when searching for jobs on federal websites that use USASearch ([TSA.gov](http://search.usa.gov/search?affiliate=tsa.gov&query=jobs), [USDA.gov](http://usdasearch.usda.gov/search?affiliate=usda&query=jobs), and [USA.gov](http://search.usa.gov/search?affiliate=usagov&query=jobs), for example).
+
 ## Ruby
 
 You will need [Ruby 1.9.3](http://www.ruby-lang.org/en/downloads/).
