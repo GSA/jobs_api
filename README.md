@@ -193,8 +193,8 @@ You can click around on the files that have < 100% coverage to see what lines we
 Feedback
 --------
 
-You can send feedback via [Github Issues](https://github.com/OCSIT/jobs_api/issues).
+You can send feedback via [Github Issues](https://github.com/GSA-OCSIT/jobs_api/issues).
 
 -----
 
-[Loren Siebert](https://github.com/loren) and [contributors](http://github.com/OCSIT/jobs_api/contributors).
+[Loren Siebert](https://github.com/loren) and [contributors](http://github.com/GSA-OCSIT/jobs_api/contributors).
