@@ -8,10 +8,10 @@ describe 'Position Openings API V1' do
     importer.import
   end
 
-  describe 'GET /api/position_openings/search.json' do
+  describe 'GET /search.json' do
     context 'when format is JSON' do
       context 'when searching for existing jobs in a particular organization' do
-        before { get '/api/position_openings/search.json', organization: 'VATA', query: 'nursing jobs', hl: 1 }
+        before { get '/search.json', organization: 'VATA', query: 'nursing jobs', hl: 1 }
 
         it 'should respond with status code 200' do
           response.status.should == 200
@@ -33,7 +33,7 @@ describe 'Position Openings API V1' do
       end
 
       context 'when searching for non-existing jobs' do
-        before { get '/api/position_openings/search.json', query: 'astronaut jobs', hl: 1 }
+        before { get '/search.json', query: 'astronaut jobs', hl: 1 }
 
         it 'should respond with status code 200' do
           response.status.should == 200

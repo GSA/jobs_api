@@ -29,13 +29,13 @@ Otherwise, follow the instructions to download and run it [here](http://www.elas
 
 Once it's running, create the index:
 
-    bundle exec rake jobs:position_openings:recreate_index
+    bundle exec rake jobs:recreate_index
 
 # Seed data
 
 Agencies can request XML files from USAJobs as described in the SIF Guide at [https://schemas.usajobs.gov/](https://schemas.usajobs.gov). If you don't have an official XML file from USAJobs, you can use the sample.xml file just to see it working with a few jobs:
 
-    bundle exec rake jobs:position_openings:import_xml[doc/sample.xml]
+    bundle exec rake jobs:import_xml[doc/sample.xml]
 
 The importer adds to or updates any existing entries, so you can run it multiple times if you have multiple XML files.
 
@@ -45,7 +45,7 @@ Fire up a server and try it all out:
 
     bundle exec rails s
 
-<http://127.0.0.1:3000/api/position_openings/search.json?query=nursing+jobs&organization_id=VATA&hl=1>
+<http://127.0.0.1:3000/search.json?query=nursing+jobs&organization_id=VATA&hl=1>
 
 ## Query
 
@@ -102,7 +102,7 @@ Note that if you specify an organization ID in the API call but the user's query
 query will be used instead of the organization_id parameter. Example where we specify a filter for Air Force jobs,
 but we type in a query searching for jobs at the VA. We show the VA jobs:
 
-<http://127.0.0.1:3000/api/position_openings/search.json?query=jobs+at+the+va&organization_id=AF>
+<http://127.0.0.1:3000/search.json?query=jobs+at+the+va&organization_id=AF>
 
 ## Highlighting
 
@@ -174,7 +174,7 @@ We support API versioning with JSON format. The current version is v1.
 
 You can specify a specific JSON API version like this:
 
-    curl -H 'Accept: application/vnd.usagov.position_openings.v1' http://localhost:3000/api/position_openings/search.json?query=jobs
+    curl -H 'Accept: application/vnd.usagov.position_openings.v1' http://localhost:3000/search.json?query=jobs
 
 # Tests
 
