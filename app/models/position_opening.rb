@@ -50,6 +50,7 @@ class PositionOpening
           boolean do
             must { match :position_schedule_type_code, query.position_schedule_type_code } if query.position_schedule_type_code.present?
             must { match :position_title, query.keywords } if query.keywords.present?
+            must { match :rate_interval_code, query.rate_interval_code } if query.rate_interval_code.present?
             must { send(query.organization_format, :organization_id, query.organization_id) } if query.organization_id.present?
             must do
               nested path: 'locations' do

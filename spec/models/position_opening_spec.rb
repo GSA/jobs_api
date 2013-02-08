@@ -10,18 +10,22 @@ describe PositionOpening do
     before(:all) do
       position_openings = []
       position_openings << {id: 1, type: 'position_opening', position_title: 'Deputy Special Assistant to the Chief Nurse Practitioner',
-                            organization_id: 'AF09', organization_name: 'Air Force Personnel Center',
+                            organization_id: 'AF09', organization_name: 'Air Force Personnel Center', position_schedule_type_code: 1,
                             start_date: Date.current, end_date: Date.tomorrow, minimum: 80000, maximum: 100000, rate_interval_code: 'PA',
                             locations: [{city: 'Andrews AFB', state: 'MD'},
                                         {city: 'Pentagon Arlington', state: 'VA'},
                                         {city: 'Air Force Academy', state: 'CO'}]}
-      position_openings << {id: 2, type: 'position_opening', position_title: 'Physician Assistant',
+      position_openings << {id: 2, type: 'position_opening', position_title: 'Physician Assistant', position_schedule_type_code: 2,
                             organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
                             start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
                             locations: [{city: 'Fulton', state: 'MD'}]}
       position_openings << {id: 3, type: 'position_opening', position_title: 'Future Person',
-                            organization_id: 'FUTU', organization_name: 'Future Administration',
+                            organization_id: 'FUTU', organization_name: 'Future Administration', position_schedule_type_code: 2,
                             start_date: Date.current + 1, end_date: Date.current + 8, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                            locations: [{city: 'San Francisco', state: 'CA'}]}
+      position_openings << {id: 4, type: 'position_opening', position_title: 'Making No Money',
+                            organization_id: 'FUTU', organization_name: 'Future Administration', position_schedule_type_code: 1,
+                            start_date: Date.current, end_date: Date.current + 8, minimum: 0, maximum: 0, rate_interval_code: 'WC',
                             locations: [{city: 'San Francisco', state: 'CA'}]}
 
 
@@ -84,13 +88,29 @@ describe PositionOpening do
       end
     end
 
+    describe 'searches for volunteer jobs' do
+      it 'should restrict search to jobs with rate interval code of WC' do
+        res = PositionOpening.search_for(query: 'volunteer jobs')
+        res.first[:position_title].should == 'Making No Money'
+      end
+    end
+
+    describe 'searches for part-time/full-time jobs' do
+      it 'should restrict search to jobs with appropriate remuneration codes' do
+        res = PositionOpening.search_for(query: 'part-time jobs')
+        res.first[:id].should == '2'
+        res = PositionOpening.search_for(query: 'full-time opportunities in colorado')
+        res.first[:id].should == '1'
+      end
+    end
+
     describe 'implicit organization searches' do
       before do
         Agencies.stub!(:find_organization_id).and_return 'VATA'
       end
 
       it "should find for queries like 'at the nsa'" do
-        res = PositionOpening.search_for(query: 'jobs at the nsa')
+        res = PositionOpening.search_for(query: 'opportunities at the nsa')
         res.first[:position_title].should == 'Physician Assistant'
       end
 
@@ -116,11 +136,11 @@ describe PositionOpening do
     describe 'limiting result set size and starting point' do
       it 'should use the size param' do
         PositionOpening.search_for(query: 'jobs', size: 1).count.should == 1
-        PositionOpening.search_for(query: 'jobs', size: 10).count.should == 2
+        PositionOpening.search_for(query: 'jobs', size: 10).count.should == 3
       end
 
       it 'should use the from param' do
-        PositionOpening.search_for(query: 'jobs', size: 1, from: 1).first[:id].should == '1'
+        PositionOpening.search_for(query: 'jobs', size: 1, from: 1).first[:id].should == '2'
       end
     end
 
@@ -136,7 +156,7 @@ describe PositionOpening do
       context 'when keywords not present' do
         it 'should sort by descending IDs (i.e., newest first)' do
           res = PositionOpening.search_for(query: 'jobs')
-          res.first[:id].should == '2'
+          res.first[:id].should == '4'
           res.last[:id].should == '1'
         end
       end

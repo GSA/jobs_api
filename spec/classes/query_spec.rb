@@ -34,6 +34,17 @@ describe Query do
       end
     end
 
+    context 'when volunteer job specified in query' do
+      it 'should set rate_interval_code to WC (i.e., without compensation)' do
+        Query.new('volunteer jobs', nil).rate_interval_code.should == 'WC'
+        Query.new('volunteering jobs', nil).rate_interval_code.should == 'WC'
+      end
+
+      it 'should remove the phrase from the query' do
+        Query.new('volunteer jobs', nil).keywords.should be_blank
+      end
+    end
+
     context 'when organization_id param is not passed in' do
       context "when query is of form 'jobs (at|with) (.*) in (.*)'" do
         before do

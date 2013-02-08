@@ -1,9 +1,9 @@
 class Query
 
   JOB_KEYWORD_TOKENS = '(position|job|employment|career)s?'.freeze
-  STOPWORDS = 'appl(y|ications?)|for|the|a|and|available|government|federal|(opening|posting|description|announcement|listing)s?|(opportunit|vacanc)(y|ies)|search(es)?'
+  STOPWORDS = 'appl(y|ications?)|for|the|a|and|available|gov(ernment)?|usa|civilian|fed(eral)?|(usajob|opening|posting|description|announcement|listing)s?|(opportunit|vacanc)(y|ies)|search(es)?'.freeze
 
-  attr_accessor :location, :organization_id, :keywords, :position_schedule_type_code
+  attr_accessor :location, :organization_id, :keywords, :position_schedule_type_code, :rate_interval_code
 
   def initialize(query, organization_id)
     organization_id.upcase! if organization_id.present?
@@ -20,7 +20,7 @@ class Query
   end
 
   def valid?
-    keywords.present? || location.present? || organization_id.present? || position_schedule_type_code.present?
+    keywords.present? || location.present? || organization_id.present? || position_schedule_type_code.present? || rate_interval_code.present?
   end
 
   def organization_format
@@ -30,20 +30,24 @@ class Query
   private
 
   def parse(query)
-    query.gsub!(/(full|part)([- ])?time /) do
+    query.gsub!(/volunteer(ing)? ?/) do
+      self.rate_interval_code = 'WC'
+      nil
+    end
+    query.gsub!(/(full|part)([- ])?time ?/) do
       self.position_schedule_type_code = PositionScheduleType.get_code("#{$1}_time")
       nil
     end
-    query.gsub!(/ (at|with) (.*) in (.*)/) do
+    query.gsub!(/ ?(at|with) (.*) in (.*)/) do
       self.organization_id = Agencies.find_organization_id($2)
       self.location = Location.new($3)
       nil
     end
-    query.gsub!(/ (at|with) (.*)/) do
+    query.gsub!(/ ?(at|with) (.*)/) do
       self.organization_id = Agencies.find_organization_id($2)
       nil
     end
-    query.gsub!(/ in (.*)/) do
+    query.gsub!(/ ?in (.*)/) do
       self.location = Location.new($1)
       nil
     end
