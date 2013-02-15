@@ -31,7 +31,7 @@ Once it's running, create the index:
 
     bundle exec rake jobs:recreate_index
 
-# Seed data
+## Seed data
 
 Agencies can request XML files from USAJobs as described in the SIF Guide at [https://schemas.usajobs.gov/](https://schemas.usajobs.gov). If you don't have an official XML file from USAJobs, you can use the sample.xml file just to see it working with a few jobs:
 
@@ -39,7 +39,7 @@ Agencies can request XML files from USAJobs as described in the SIF Guide at [ht
 
 The importer adds to or updates any existing entries, so you can run it multiple times if you have multiple XML files.
 
-# Running it
+## Running it
 
 Fire up a server and try it all out:
 
@@ -168,7 +168,7 @@ For Firefox: <https://addons.mozilla.org/en-US/firefox/search/?q=json>
 
 When a job opening's end application date has passed, it is automatically purged from the index and won't show up in search results.
 
-# API Versioning
+## API Versioning
 
 We support API versioning with JSON format. The current version is v1.
 
@@ -176,19 +176,23 @@ You can specify a specific JSON API version like this:
 
     curl -H 'Accept: application/vnd.usagov.position_openings.v1' http://localhost:3000/search.json?query=jobs
 
-# Tests
+## Tests
 
 These require an [ElasticSearch](http://www.elasticsearch.org/) server to be running.
 
     bundle exec rake spec
 
-# Code Coverage
+## Code Coverage
 
 We track test coverage of the codebase over time, to help identify areas where we could write better tests and to see when poorly tested code got introduced.
 
 After running your tests, view the report by opening `coverage/index.html` in your favorite browser.
 
 You can click around on the files that have < 100% coverage to see what lines weren't exercised.
+
+## Terms of Use
+
+By accessing this API, you agree to our [Terms of Service](http://www.usa.gov/About/developer-resources/terms-of-service.shtml).
 
 Feedback
 --------
