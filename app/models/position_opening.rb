@@ -10,23 +10,23 @@ class PositionOpening
     def create_search_index
       Tire.index index_name do
         create(
+          settings: {
+            index: {
+              analysis: {
+                analyzer: {custom_analyzer: {type: 'custom', tokenizer: 'whitespace', filter: %w(standard lowercase synonym snowball)}},
+                filter: {synonym: {type: 'synonym', synonyms_path: "#{Rails.root.join('config', 'synonyms.txt')}"}}
+              }
+            }
+          },
           mappings: {
             position_opening: {
               _ttl: {enabled: true},
               properties: {
                 type: {type: 'string'},
-                position_title: {
-                  type: 'string', analyzer: 'snowball', term_vector: 'with_positions_offsets', store: true
-                },
+                position_title: {type: 'string', analyzer: 'custom_analyzer', term_vector: 'with_positions_offsets', store: true},
                 organization_id: {type: 'string', analyzer: 'keyword'},
                 organization_name: {type: 'string', index: :not_analyzed},
-                locations: {
-                  type: 'nested',
-                  properties: {
-                    city: {type: 'string', analyzer: 'simple'},
-                    state: {type: 'string', analyzer: 'keyword'}
-                  }
-                },
+                locations: {type: 'nested', properties: {city: {type: 'string', analyzer: 'simple'}, state: {type: 'string', analyzer: 'keyword'}}},
                 start_date: {type: 'date', format: 'YYYY-MM-dd'},
                 end_date: {type: 'date', format: 'YYYY-MM-dd'},
                 minimum: {type: 'integer'},
@@ -49,7 +49,7 @@ class PositionOpening
         query do
           boolean do
             must { match :position_schedule_type_code, query.position_schedule_type_code } if query.position_schedule_type_code.present?
-            must { match :position_title, query.keywords } if query.keywords.present?
+            must { match :position_title, query.keywords, analyzer: 'custom_analyzer' } if query.keywords.present?
             must { match :rate_interval_code, query.rate_interval_code } if query.rate_interval_code.present?
             must { send(query.organization_format, :organization_id, query.organization_id) } if query.organization_id.present?
             must do

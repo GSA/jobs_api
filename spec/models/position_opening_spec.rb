@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe PositionOpening do
-  before(:all) do
+  before do
     PositionOpening.delete_search_index if PositionOpening.search_index.exists?
     PositionOpening.create_search_index
   end
 
   describe '.search_for(options)' do
-    before(:all) do
+    before do
       position_openings = []
       position_openings << {id: 1, type: 'position_opening', position_title: 'Deputy Special Assistant to the Chief Nurse Practitioner',
                             organization_id: 'AF09', organization_name: 'Air Force Personnel Center', position_schedule_type_code: 1,
@@ -36,6 +36,32 @@ describe PositionOpening do
       it 'should find and optionally highlight position title matches' do
         res = PositionOpening.search_for(query: 'nursing jobs', hl: '1')
         res.size.should == 1
+      end
+    end
+
+    context 'when query terms contain a synonym match with terms in job title' do
+      before do
+        position_openings, starting_idx = [], 10
+        @first_synonyms = []
+        open(Rails.root.join('config', 'synonyms.txt')).each_with_index do |batch_str, batch_number|
+          first_synonym, remainder = batch_str.gsub(/ ?, ?/, ',').split(',', 2)
+          @first_synonyms << first_synonym
+          remainder.split(',').each_with_index do |synonym, offset|
+            id_number = starting_idx + (10 * (batch_number + 1))
+            position_openings << {id: id_number + offset, type: 'position_opening', position_title: "Senior #{synonym}",
+                                  organization_id: 'ABCD', organization_name: 'Sample Org', position_schedule_type_code: 1,
+                                  start_date: Date.current, end_date: Date.current + 8, minimum: 100000, maximum: 200000, rate_interval_code: 'PA',
+                                  locations: [{city: 'San Francisco', state: 'CA'}]}
+
+          end
+        end
+        PositionOpening.import position_openings
+      end
+
+      it 'should find the matches' do
+        @first_synonyms.each do |synonym|
+          PositionOpening.search_for(query: synonym, organization_id: 'ABCD').size.should > 0
+        end
       end
     end
 

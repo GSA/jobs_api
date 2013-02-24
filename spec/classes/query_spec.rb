@@ -7,10 +7,10 @@ describe Query do
         Agencies.stub!(:find_organization_id)
       end
 
-      let(:query) { Query.new("  FUN, summer #{Date.current.year} job opportunity descriptions    available in miami,, fl", nil) }
+      let(:query) { Query.new("  FUN, summer #{Date.current.year} i.t. job opportunity descriptions    available in miami,, fl", nil) }
 
       it 'should normalize the query phrase' do
-        query.keywords.should == 'fun summer'
+        query.keywords.should == 'fun summer it'
       end
     end
 

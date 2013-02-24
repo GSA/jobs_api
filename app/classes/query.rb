@@ -64,7 +64,7 @@ class Query
   end
 
   def normalize(query)
-    query.downcase.gsub(/[^0-9a-z \-]/, ' ').gsub(/\b(#{Date.current.year}|#{STOPWORDS})\b/, ' ').squish
+    query.downcase.gsub('.','').gsub(/[^0-9a-z \-]/, ' ').gsub(/\b(#{Date.current.year}|#{STOPWORDS})\b/, ' ').squish
   end
 
   def extract_possible_org(query)
