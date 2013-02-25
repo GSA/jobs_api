@@ -70,6 +70,8 @@ Here are some examples of query formats that will work:
 * jobs in fulton, md
 * jobs in fulton, maryland
 * jobs in md
+* pentagon jobs
+* jobs fayetteville
 
 ### Agency-based (most recent first)
 

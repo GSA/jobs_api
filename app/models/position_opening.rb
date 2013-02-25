@@ -49,7 +49,14 @@ class PositionOpening
         query do
           boolean do
             must { match :position_schedule_type_code, query.position_schedule_type_code } if query.position_schedule_type_code.present?
-            must { match :position_title, query.keywords, analyzer: 'custom_analyzer' } if query.keywords.present?
+            should { match :position_title, query.keywords, analyzer: 'custom_analyzer' } if query.keywords.present?
+            should do
+              nested path: 'locations' do
+                query do
+                  match 'locations.city', query.keywords, operator: 'AND'
+                end
+              end
+            end if query.keywords.present? && query.location.nil?
             must { match :rate_interval_code, query.rate_interval_code } if query.rate_interval_code.present?
             must { send(query.organization_format, :organization_id, query.organization_id) } if query.organization_id.present?
             must do

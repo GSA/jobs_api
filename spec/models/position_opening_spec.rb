@@ -101,6 +101,9 @@ describe PositionOpening do
       it 'should find by city' do
         res = PositionOpening.search_for(query: 'jobs in Arlington')
         res.first[:position_title].should == 'Deputy Special Assistant to the Chief Nurse Practitioner'
+
+        PositionOpening.search_for(query: 'fulton jobs').first[:locations].first.should match(/Fulton/)
+        PositionOpening.search_for(query: 'san arlington jobs').should be_empty
       end
 
       it 'should find by city and state' do
