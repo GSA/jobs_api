@@ -47,7 +47,7 @@ class PositionOpening
       query = Query.new(options[:query], options[:organization_id])
       search = Tire.search index_name do
         query do
-          boolean do
+          boolean(minimum_number_should_match: 1) do
             must { match :position_schedule_type_code, query.position_schedule_type_code } if query.position_schedule_type_code.present?
             should { match :position_title, query.keywords, analyzer: 'custom_analyzer' } if query.keywords.present?
             should do

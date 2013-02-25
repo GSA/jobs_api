@@ -1,7 +1,7 @@
 class Query
 
   JOB_KEYWORD_TOKENS = '(position|job|employment|career)s?'.freeze
-  STOPWORDS = 'appl(y|ications?)|for|the|a|and|available|gov(ernment)?|usa|civilian|fed(eral)?|(usajob|opening|posting|description|announcement|listing)s?|(opportunit|vacanc)(y|ies)|search(es)?'.freeze
+  STOPWORDS = 'appl(y|ications?)|for|the|a|and|available|gov(ernment)?|usa|current|civilian|fed(eral)?|(usajob|opening|posting|description|announcement|listing)s?|(opportunit|vacanc)(y|ies)|search(es)?'.freeze
 
   attr_accessor :location, :organization_id, :keywords, :position_schedule_type_code, :rate_interval_code
 

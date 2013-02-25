@@ -5,7 +5,7 @@ rn, registered nurse
 lpn, licensed practical nurse
 lvn, licensed vocational nurse
 pa, physician assistant
-custodial, janitor
+custodial, janitor, custodian
 cys, child youth services
 clerk, clerical
 physician, doctor

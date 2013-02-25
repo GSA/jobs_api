@@ -196,6 +196,14 @@ describe PositionOpening do
         PositionOpening.search_for(query: 'future person').size.should == 0
       end
     end
+
+    describe "queries is of form 'nursing jobs at the va' or 'phlebotomy jobs in Ohio' or 'atlanta jobs at the ssa'" do
+      it 'should require at least the position title or location to match' do
+        PositionOpening.search_for(query: 'foobar jobs in virginia').should be_empty
+        PositionOpening.search_for(query: 'pentagon jobs', organization_id: 'VA').should be_empty
+        PositionOpening.search_for(query: 'foobar jobs', organization_id: 'VA').should be_empty
+      end
+    end
   end
 
   after(:all) do
