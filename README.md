@@ -72,6 +72,8 @@ Here are some examples of query formats that will work:
 * jobs in md
 * pentagon jobs
 * jobs fayetteville
+* fayetteville nc jobs
+* jobs atlanta georgia
 
 ### Agency-based (most recent first)
 
