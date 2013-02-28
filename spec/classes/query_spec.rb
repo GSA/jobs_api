@@ -14,11 +14,27 @@ describe Query do
       end
     end
 
-    context 'when city and valid state are passed in' do
-      let(:query) { Query.new('jobs in fulton md', nil)}
+    context 'when city and valid state are passed in before/after job token' do
+      let(:query_strings) { ["jobs fulton md", "fulton maryland jobs", "jobs in fulton, md"] }
       it 'should set both city and state' do
-        query.has_state?.should be_true
-        query.has_city?.should be_true
+        query_strings.each do |str|
+          query = Query.new(str, nil)
+          query.location.state.should == 'MD'
+          query.location.city.should == 'fulton'
+          query.keywords.should be_blank
+        end
+      end
+    end
+
+    context 'when city/state and job title surround job token' do
+      let(:query_strings) { ["fulton maryland jobs nursing", "nursing jobs fulton md"] }
+      it 'should set both city and state' do
+        query_strings.each do |str|
+          query = Query.new(str, nil)
+          query.location.state.should == 'MD'
+          query.location.city.should == 'fulton'
+          query.keywords.should == "nursing"
+        end
       end
     end
 
@@ -46,45 +62,36 @@ describe Query do
     end
 
     context 'when organization_id param is not passed in' do
-      context "when query is of form 'jobs (at|with) (.*) in (.*)'" do
+      context "when query has both organization and location specified in query" do
         before do
-          Agencies.stub!(:find_organization_id).with('cia')
-          Location.stub!(:new).with('miami fl')
+          Agencies.stub!(:find_organization_id).with('cia').and_return 'CI00'
         end
 
+        let(:queries) { ['jobs at the cia in miami fl', 'jobs with the cia in miami fl', 'jobs in miami fl at the cia', 'jobs in miami fl with the cia'] }
         it 'should create an Organization and a Location' do
-          Query.new('jobs at the cia in miami fl', nil)
-          Query.new('jobs with the cia in miami fl', nil)
-        end
-      end
-
-      context "when query is of form 'jobs in (.*) (at|with) (.*)'" do
-        before do
-          Agencies.stub!(:find_organization_id).with('cia')
-          Location.stub!(:new).with('miami fl')
-        end
-
-        it 'should create an Organization and a Location' do
-          Query.new('jobs at the cia in miami fl', nil)
-          Query.new('jobs with the cia in miami fl', nil)
+          queries.each do |query_str|
+            query = Query.new(query_str, nil)
+            query.location.city.should == 'miami'
+            query.location.state.should == 'FL'
+            query.organization_id.should == 'CI00'
+            query.keywords.should be_blank
+          end
         end
       end
 
       context "when query is of form 'jobs (at|with) (.*)'" do
         before do
-          Agencies.stub!(:find_organization_id).with('cia')
+          Agencies.stub!(:find_organization_id).with('cia').and_return 'CI00'
         end
 
+        let(:queries) { ['jobs at the cia', 'jobs with the cia'] }
         it 'should create an Organization' do
-          Query.new('jobs at the cia', nil)
-          Query.new('jobs with the cia', nil)
-        end
-      end
-
-      context "when query is of form 'jobs in (.*)'" do
-        it 'should create a Location' do
-          Location.should_receive(:new).with('miami fl')
-          Query.new('jobs in miami fl', nil)
+          queries.each do |query_str|
+            query = Query.new(query_str, nil)
+            query.organization_id.should == 'CI00'
+            query.location.should be_nil
+            query.keywords.should be_blank
+          end
         end
       end
 
@@ -96,7 +103,7 @@ describe Query do
         end
       end
 
-      context 'when some job-related keyword is preceeded/followed by some text' do
+      context 'when some job-related keyword is preceeded/followed by some non-location, non-organization text' do
         before do
           Agencies.stub!(:find_organization_id)
         end
@@ -105,7 +112,7 @@ describe Query do
           %w{position job opening posting opportunity vacancy employment}.each do |job_keyword|
             [job_keyword, job_keyword.pluralize].each do |variant|
               Query.new("fun summer #{variant}", nil).keywords.should == 'fun summer'
-              Query.new("#{variant} agency name", nil).keywords.should == 'agency name'
+              Query.new("#{variant} security", nil).keywords.should == 'security'
             end
           end
         end
@@ -121,17 +128,6 @@ describe Query do
             query.keywords.should be_blank
             query = Query.new('jobs tsa', nil)
             query.organization_id.should == 'ABCD'
-            query.keywords.should be_blank
-          end
-        end
-
-        context 'when the preceeding/following text is a valid state location' do
-          it 'should extract the state location out of it' do
-            query = Query.new('va jobs', nil)
-            query.location.state.should == 'VA'
-            query.keywords.should be_blank
-            query = Query.new('jobs md', nil)
-            query.location.state.should == 'MD'
             query.keywords.should be_blank
           end
         end
@@ -194,11 +190,11 @@ describe Query do
 
   describe '#organization_format' do
     it 'should return :prefix when org code is 2 chars long' do
-      Query.new('jobs','AB').organization_format.should == :prefix
+      Query.new('jobs', 'AB').organization_format.should == :prefix
     end
 
     it 'should return :term when org code is 4 chars long' do
-      Query.new('jobs','ABCD').organization_format.should == :term
+      Query.new('jobs', 'ABCD').organization_format.should == :term
     end
   end
 end
