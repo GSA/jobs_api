@@ -1,6 +1,8 @@
 Federal Jobs API Server
 ==============
 
+[![Build Status](https://travis-ci.org/GSA-OCSIT/jobs_api.png)](https://travis-ci.org/GSA-OCSIT/jobs_api)
+
 ## Purpose
 
 The Federal Jobs API Server provides access to searchable job openings across the federal government. It includes all current job openings posted on [USAJobs.gov](http://www.usajobs.gov) that are open to the public and located in the United States.
