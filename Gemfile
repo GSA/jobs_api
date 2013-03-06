@@ -11,7 +11,7 @@ gem 'net-http-persistent'
 gem 'airbrake'
 gem 'rack-contrib'
 
-gem 'us_states', :git => 'git://github.com/GSA-OCSIT/us_states.git'
+gem 'us_states'
 
 gem 'rspec'
 
