@@ -28,7 +28,7 @@ We use bundler to manage gems. You can install bundler and other required gems l
 
 ### ElasticSearch
 
-We're using [ElasticSearch](http://www.elasticsearch.org/) for fulltext search. On a Mac, it's easy to install with [http://mxcl.github.com/homebrew/](Homebrew):
+We're using [ElasticSearch](http://www.elasticsearch.org/) for fulltext search. On a Mac, it's easy to install with [Homebrew](http://mxcl.github.com/homebrew/):
 
     $ brew install elasticsearch
 
@@ -106,21 +106,13 @@ Sample results:
       }
     ]
 
-You can use browser extensions to view nicely formatted JSON data.
-
-For Chrome: <https://chrome.google.com/webstore/search/json?hl=en-US>
-
-For Firefox: <https://addons.mozilla.org/en-US/firefox/search/?q=json>
-
 ### Expiration
 
 When a job opening's end application date has passed, it is automatically purged from the index and won't show up in search results.
 
 ### API Versioning
 
-We support API versioning with JSON format. The current version is v1.
-
-You can specify a specific JSON API version like this:
+We support API versioning with JSON format. The current version is v1. You can specify a specific JSON API version like this:
 
     curl -H 'Accept: application/vnd.usagov.position_openings.v1' http://localhost:3000/search.json?query=jobs
 
