@@ -3,9 +3,7 @@ Jobs API Server
 
 [![Build Status](https://travis-ci.org/GSA-OCSIT/jobs_api.png)](https://travis-ci.org/GSA-OCSIT/jobs_api)
 
-The unemployment rate has hovered around 8 percent since early 2012. So, not surprisingly, many people are hitting the web to search for jobs.
-
-Federal, state, and local government agencies are hiring and have thousands of job openings across the country.
+The unemployment rate has hovered around 8 percent since early 2012. So, not surprisingly, many people are hitting the web to search for jobs. Federal, state, and local government agencies are hiring and have thousands of job openings across the country.
 
 ## Access the Data
 
