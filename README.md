@@ -11,9 +11,7 @@ Use our [Jobs API](http://usasearch.howto.gov/developer/jobs.html) to tap into a
 
 ## Contribute to the Code
 
-The server code that runs our Jobs API is here on Github. If you're a Rails developer, keep reading. 
-
-Fork this repo to add features (such as additional datasets) or fix bugs.
+The server code that runs our [Jobs API](http://usasearch.howto.gov/developer/jobs.html) is here on Github. If you're a Ruby developer, keep reading. Fork this repo to add features (such as additional datasets) or fix bugs.
 
 ### Ruby
 
@@ -28,19 +26,19 @@ We use bundler to manage gems. You can install bundler and other required gems l
 
 ### ElasticSearch
 
-We're using [ElasticSearch](http://www.elasticsearch.org/) for fulltext search. On a Mac, it's easy to install with [Homebrew](http://mxcl.github.com/homebrew/):
+We're using [ElasticSearch](http://www.elasticsearch.org/) for fulltext search. On a Mac, it's easy to install with [Homebrew](http://mxcl.github.com/homebrew/).
 
     $ brew install elasticsearch
 
-Otherwise, follow the instructions to download and run it [here](http://www.elasticsearch.org/download/).
+Otherwise, follow the [instructions](http://www.elasticsearch.org/download/) to download and run it.
 
-Once it's running, create the index:
+Once it's running, create the index.
 
     bundle exec rake jobs:recreate_index
 
 ### Seed data
 
-You can use the sample.xml file just to see it working with a few jobs:
+You can use the sample.xml file just to see it working with a few jobs.
 
     bundle exec rake jobs:import_xml[doc/sample.xml]
 
@@ -50,7 +48,7 @@ Federal agencies can also request XML files from USAJobs as described in the SIF
 
 ### Running it
 
-Fire up a server and try it all out:
+Fire up a server and try it all out.
 
     bundle exec rails s
 
@@ -126,9 +124,9 @@ These require an [ElasticSearch](http://www.elasticsearch.org/) server to be run
 
 We track test coverage of the codebase over time, to help identify areas where we could write better tests and to see when poorly tested code got introduced.
 
-After running your tests, view the report by opening `coverage/index.html` in your favorite browser.
+After running your tests, view the report by opening `coverage/index.html`.
 
-You can click around on the files that have < 100% coverage to see what lines weren't exercised.
+Click around on the files that have < 100% coverage to see what lines weren't exercised.
 
 ## Terms of Use
 
