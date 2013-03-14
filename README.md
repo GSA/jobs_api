@@ -58,7 +58,7 @@ Fire up a server and try it all out.
 
 Five parameters are accepted: (1) query, (2) organization_id, (3) hl [highlighting], (4) size, and (5) from. Only query is required.
 
-Full documentation on the parameters is in our [Jobs API documentation](http://usasearch.howto.gov/developer/jobs.html).
+Full documentation on the parameters is in our [Jobs API documentation](http://usasearch.howto.gov/developer/jobs.html#parameters).
 
 ### Results
 
