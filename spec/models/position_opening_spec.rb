@@ -9,25 +9,43 @@ describe PositionOpening do
   describe '.search_for(options)' do
     before do
       position_openings = []
-      position_openings << {id: 1, type: 'position_opening', position_title: 'Deputy Special Assistant to the Chief Nurse Practitioner',
-                            organization_id: 'AF09', organization_name: 'Air Force Personnel Center', position_schedule_type_code: 1,
+      position_openings << {source: 'usajobs', external_id: 1, type: 'position_opening', position_title: 'Deputy Special Assistant to the Chief Nurse Practitioner',
+                            organization_id: 'AF09', organization_name: 'Air Force Personnel Center',
+                            position_schedule_type_code: 1, position_offering_type_code: 15317, tags: %w(federal),
                             start_date: Date.current, end_date: Date.tomorrow, minimum: 80000, maximum: 100000, rate_interval_code: 'PA',
                             locations: [{city: 'Andrews AFB', state: 'MD'},
                                         {city: 'Pentagon Arlington', state: 'VA'},
                                         {city: 'Air Force Academy', state: 'CO'}]}
-      position_openings << {id: 2, type: 'position_opening', position_title: 'Physician Assistant', position_schedule_type_code: 2,
+      position_openings << {source: 'usajobs', external_id: 2, type: 'position_opening', position_title: 'Physician Assistant',
+                            position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
                             organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
                             start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
                             locations: [{city: 'Fulton', state: 'MD'}]}
-      position_openings << {id: 3, type: 'position_opening', position_title: 'Future Person',
-                            organization_id: 'FUTU', organization_name: 'Future Administration', position_schedule_type_code: 2,
+      position_openings << {source: 'usajobs', external_id: 3, type: 'position_opening', position_title: 'Future Person',
+                            organization_id: 'FUTU', organization_name: 'Future Administration',
+                            position_schedule_type_code: 2, position_offering_type_code: 15327, tags: %w(federal),
                             start_date: Date.current + 1, end_date: Date.current + 8, minimum: 17, maximum: 23, rate_interval_code: 'PH',
                             locations: [{city: 'San Francisco', state: 'CA'}]}
-      position_openings << {id: 4, type: 'position_opening', position_title: 'Making No Money',
-                            organization_id: 'FUTU', organization_name: 'Future Administration', position_schedule_type_code: 1,
+      position_openings << {source: 'usajobs', external_id: 4, type: 'position_opening', position_title: 'Making No Money',
+                            organization_id: 'FUTU', organization_name: 'Future Administration',
+                            position_schedule_type_code: 1,  position_offering_type_code: 15328, tags: %w(federal),
                             start_date: Date.current, end_date: Date.current + 8, minimum: 0, maximum: 0, rate_interval_code: 'WC',
                             locations: [{city: 'San Francisco', state: 'CA'}]}
-
+      position_openings << {type: 'position_opening', source: 'ng:michigan', _timestamp: Date.current.weeks_ago(1).iso8601, external_id: 629140,
+                            locations: [{city: 'Lansing', state: 'MI'}], tags: %w(state),
+                            rate_interval_code: 'PH', position_schedule_type_code: 1, position_offering_type_code: 15317,
+                            position_title: 'Supervisor (DOH #28425)',
+                            start_date: Date.current, end_date: Date.current.tomorrow, minimum: 20.7, maximum: 36.8}
+      position_openings << {type: 'position_opening', source: 'ng:michigan', _timestamp: Date.current.yesterday.iso8601, external_id: 616313,
+                            locations: [{city: 'Detroit', state: 'MI'}], tags: %w(state),
+                            rate_interval_code: 'PH', position_schedule_type_code: 1, position_offering_type_code: 15322,
+                            position_title: 'Indoor Lifeguard',
+                            start_date: Date.current, end_date: Date.current + 8, minimum: 15.68, maximum: 27.11}
+      position_openings << {type: 'position_opening', source: 'ng:bloomingtonmn', _timestamp: Date.current.iso8601, external_id: 632865,
+                            locations: [{city: 'Detroit', state: 'MI'}], tags: %w(city),
+                            rate_interval_code: 'PA', position_schedule_type_code: 1, position_offering_type_code: 15317,
+                            position_title: 'Computer Specialist',
+                            start_date: Date.current, end_date: Date.current + 8, minimum: 55000, maximum: 60000}
 
       PositionOpening.import position_openings
     end
@@ -48,8 +66,9 @@ describe PositionOpening do
           @first_synonyms << first_synonym
           remainder.split(',').each_with_index do |synonym, offset|
             id_number = starting_idx + (10 * (batch_number + 1))
-            position_openings << {id: id_number + offset, type: 'position_opening', position_title: "Senior #{synonym}",
-                                  organization_id: 'ABCD', organization_name: 'Sample Org', position_schedule_type_code: 1,
+            position_openings << {source: 'usajobs', external_id: id_number + offset, type: 'position_opening', position_title: "Senior #{synonym}",
+                                  organization_id: 'ABCD', organization_name: 'Sample Org',
+                                  position_schedule_type_code: 1, position_offering_type_code: 15317,
                                   start_date: Date.current, end_date: Date.current + 8, minimum: 100000, maximum: 200000, rate_interval_code: 'PA',
                                   locations: [{city: 'San Francisco', state: 'CA'}]}
 
@@ -77,23 +96,25 @@ describe PositionOpening do
     describe 'result fields' do
       it 'should contain the minimal necessary fields' do
         res = PositionOpening.search_for(query: 'nursing jobs')
-        res.first.should == {id: '1', position_title: 'Deputy Special Assistant to the Chief Nurse Practitioner',
+        res.first.should == {id: 'usajobs:1', source: 'usajobs', external_id: 1,
+                             position_title: 'Deputy Special Assistant to the Chief Nurse Practitioner',
                              organization_name: 'Air Force Personnel Center',
                              start_date: Date.current.to_s(:db), end_date: Date.tomorrow.to_s(:db),
                              minimum: 80000, maximum: 100000, rate_interval_code: 'PA',
-                             locations: ['Andrews AFB, MD', 'Pentagon Arlington, VA', 'Air Force Academy, CO']}
+                             locations: ['Andrews AFB, MD', 'Pentagon Arlington, VA', 'Air Force Academy, CO'],
+                             url: 'https://www.usajobs.gov/GetJob/ViewDetails/1'}
       end
     end
 
     describe 'location searches' do
       it 'should find by state' do
-        res = PositionOpening.search_for(query: 'jobs in maryland')
+        res = PositionOpening.search_for(query: 'jobs in maryland', sort_by: :id)
         res.first[:position_title].should == 'Physician Assistant'
         res.last[:position_title].should == 'Deputy Special Assistant to the Chief Nurse Practitioner'
-        res = PositionOpening.search_for(query: 'jobs md')
+        res = PositionOpening.search_for(query: 'jobs md', sort_by: :id)
         res.first[:position_title].should == 'Physician Assistant'
         res.last[:position_title].should == 'Deputy Special Assistant to the Chief Nurse Practitioner'
-        res = PositionOpening.search_for(query: 'md jobs')
+        res = PositionOpening.search_for(query: 'md jobs', sort_by: :id)
         res.first[:position_title].should == 'Physician Assistant'
         res.last[:position_title].should == 'Deputy Special Assistant to the Chief Nurse Practitioner'
       end
@@ -127,9 +148,18 @@ describe PositionOpening do
     describe 'searches for part-time/full-time jobs' do
       it 'should restrict search to jobs with appropriate remuneration codes' do
         res = PositionOpening.search_for(query: 'part-time jobs')
-        res.first[:id].should == '2'
+        res.first[:id].should == 'usajobs:2'
         res = PositionOpening.search_for(query: 'full-time opportunities in colorado')
-        res.first[:id].should == '1'
+        res.first[:id].should == 'usajobs:1'
+      end
+    end
+
+    describe 'searches for intern jobs' do
+      it 'should restrict search to jobs with appropriate position offering type code' do
+        res = PositionOpening.search_for(query: 'seasonal jobs')
+        res.first[:id].should == 'ng:michigan:616313'
+        res = PositionOpening.search_for(query: 'internship jobs')
+        res.first[:id].should == 'usajobs:4'
       end
     end
 
@@ -162,14 +192,28 @@ describe PositionOpening do
       end
     end
 
+    describe 'tags search' do
+      it 'should find federal job openings' do
+        res = PositionOpening.search_for(tags: 'federal')
+        res.size.should == 3
+        res.map { |p| p[:source] }.uniq.should == %w(usajobs)
+      end
+
+      it 'should find state and city job openings' do
+        res = PositionOpening.search_for(tags: 'state city')
+        res.size.should == 3
+        res.map { |p| p[:source] }.uniq.should == %w(ng:bloomingtonmn ng:michigan)
+      end
+    end
+
     describe 'limiting result set size and starting point' do
       it 'should use the size param' do
         PositionOpening.search_for(query: 'jobs', size: 1).count.should == 1
-        PositionOpening.search_for(query: 'jobs', size: 10).count.should == 3
+        PositionOpening.search_for(query: 'jobs', size: 10).count.should == 6
       end
 
       it 'should use the from param' do
-        PositionOpening.search_for(query: 'jobs', size: 1, from: 1).first[:id].should == '2'
+        PositionOpening.search_for(query: 'jobs', size: 1, from: 1, sort_by: :id).first[:id].should == 'usajobs:2'
       end
     end
 
@@ -182,11 +226,19 @@ describe PositionOpening do
         end
       end
 
-      context 'when keywords not present' do
-        it 'should sort by descending IDs (i.e., newest first)' do
+      context 'when keywords not present and sort_by option is not set' do
+        it 'should sort by descending timestamp (i.e., newest first)' do
           res = PositionOpening.search_for(query: 'jobs')
-          res.first[:id].should == '4'
-          res.last[:id].should == '1'
+          res.first[:id].should == 'usajobs:4'
+          res.last[:id].should == 'ng:michigan:629140'
+        end
+      end
+
+      context 'when keywords not present and sort_by option is set to :id' do
+        it 'should sort by descending IDs' do
+          res = PositionOpening.search_for(query: 'jobs', sort_by: :id)
+          res.first[:id].should == 'usajobs:4'
+          res.last[:id].should == 'ng:bloomingtonmn:632865'
         end
       end
     end
@@ -203,6 +255,55 @@ describe PositionOpening do
         PositionOpening.search_for(query: 'pentagon jobs', organization_id: 'VA').should be_empty
         PositionOpening.search_for(query: 'foobar jobs', organization_id: 'VA').should be_empty
       end
+    end
+
+    describe 'when source is specified' do
+      it 'should find results only from the matching source' do
+        res = PositionOpening.search_for(query: 'jobs', source: 'usajobs')
+        res.size.should == 3
+        res.map { |j| j[:source] }.uniq.should == %w(usajobs)
+
+        res = PositionOpening.search_for(query: 'jobs', source: 'ng:michigan')
+        res.size.should == 2
+        res.map { |j| j[:source] }.uniq.should == %w(ng:michigan)
+
+        PositionOpening.search_for(query: 'jobs', source: 'ng').should be_empty
+      end
+    end
+  end
+
+  describe '.get_external_ids_by_source' do
+    before do
+      position_openings = []
+      position_openings << {source: 'usajobs', external_id: 1, type: 'position_opening', position_title: 'Deputy Special Assistant to the Chief Nurse Practitioner',
+                            organization_id: 'AF09', organization_name: 'Air Force Personnel Center', position_schedule_type_code: 1,
+                            start_date: Date.current, end_date: Date.tomorrow, minimum: 80000, maximum: 100000, rate_interval_code: 'PA',
+                            locations: [{city: 'Andrews AFB', state: 'MD'},
+                                        {city: 'Pentagon Arlington', state: 'VA'},
+                                        {city: 'Air Force Academy', state: 'CO'}]}
+      position_openings << {source: 'usajobs', external_id: 2, type: 'position_opening', position_title: 'Physician Assistant', position_schedule_type_code: 2,
+                            organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                            start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                            locations: [{city: 'Fulton', state: 'MD'}]}
+      position_openings << {source: 'usajobs', external_id: 3, type: 'position_opening', position_title: 'Future Person',
+                            organization_id: 'FUTU', organization_name: 'Future Administration', position_schedule_type_code: 2,
+                            start_date: Date.current + 1, end_date: Date.current + 8, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                            locations: [{city: 'San Francisco', state: 'CA'}]}
+      position_openings << {source: 'usajobs', external_id: 4, type: 'position_opening', position_title: 'Making No Money',
+                            organization_id: 'FUTU', organization_name: 'Future Administration', position_schedule_type_code: 1,
+                            start_date: Date.current, end_date: Date.current + 8, minimum: 0, maximum: 0, rate_interval_code: 'WC',
+                            locations: [{city: 'San Francisco', state: 'CA'}]}
+      position_openings << {source: 'ng:michigan', external_id: 629140, type: 'position_opening', position_title: 'Supervisor (DOH #28425)',
+                            position_schedule_type_code: 1,
+                            start_date: Date.current, end_date: Date.tomorrow, minimum: 20.7, maximum: 36.8, rate_interval_code: 'PH',
+                            locations: [{city: 'Lansing', state: 'MI'}]}
+      PositionOpening.import position_openings
+    end
+
+    it 'should return external_ids' do
+      PositionOpening.get_external_ids_by_source('usajobs').should == [1, 2, 3, 4]
+      PositionOpening.get_external_ids_by_source('ng:michigan').should == [629140]
+      PositionOpening.get_external_ids_by_source('ng').should be_empty
     end
   end
 

@@ -8,57 +8,75 @@ describe UsajobsData do
   describe '#import' do
 
     it 'should load the PositionOpenings from filename' do
-      PositionOpening.should_receive(:import).with(
-        [{type: 'position_opening', id: 305972200, _ttl: ttl, position_title: 'Medical Officer',
-          organization_id: 'AF09', organization_name: 'Air Force Personnel Center',
-          locations: [{city: 'Dyess AFB', state: 'TX'}],
-          start_date: Date.parse('2011-12-28'), end_date: far_away,
-          minimum: 60274, maximum: 155500, rate_interval_code: 'PA', position_schedule_type_code: 1},
-         {type: 'position_opening', id: 325054900, _ttl: ttl, position_title: 'Physician (Surgical Critical Care)',
-          organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
-          locations: [{city: 'Charleston', state: 'SC'}],
-          start_date: Date.parse('27 Aug 2012'), end_date: far_away,
-          minimum: 125000, maximum: 295000, rate_interval_code: 'PA', position_schedule_type_code: 2},
-         {type: 'position_opening', id: 327358300, _ttl: ttl, position_title: 'Student Nurse Technicians',
-          organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
-          locations: [{city: 'Odessa', state: 'TX'},
-                      {city: 'Pentagon, Arlington', state: 'VA'},
-                      {city: 'San Angelo', state: 'TX'},
-                      {city: 'Abilene', state: 'TX'}],
-          start_date: Date.parse('19 Sep 2012'), end_date: far_away,
-          minimum: 17, maximum: 23, rate_interval_code: 'PH', position_schedule_type_code: 2}])
+      PositionOpening.should_receive(:import) do |position_openings|
+        position_openings.length.should == 3
+        position_openings[0].should ==
+          {type: 'position_opening', source: 'usajobs', external_id: 305972200, _ttl: ttl,
+           position_title: 'Medical Officer', tags: %w(federal),
+           organization_id: 'AF09', organization_name: 'Air Force Personnel Center',
+           locations: [{city: 'Dyess AFB', state: 'TX'}],
+           start_date: Date.parse('2011-12-28'), end_date: far_away,
+           minimum: 60274, maximum: 155500, rate_interval_code: 'PA', position_schedule_type_code: 1, position_offering_type_code: 15327}
+        position_openings[1].should ==
+          {type: 'position_opening', source: 'usajobs', external_id: 325054900, _ttl: ttl,
+           position_title: 'Physician (Surgical Critical Care)', tags: %w(federal),
+           organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+           locations: [{city: 'Charleston', state: 'SC'}],
+           start_date: Date.parse('27 Aug 2012'), end_date: far_away,
+           minimum: 125000, maximum: 295000, rate_interval_code: 'PA', position_schedule_type_code: 2, position_offering_type_code: 15317}
+        position_openings[2].should ==
+          {type: 'position_opening', source: 'usajobs', external_id: 327358300, _ttl: ttl,
+           position_title: 'Student Nurse Technicians', tags: %w(federal),
+           organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+           locations: [{city: 'Odessa', state: 'TX'},
+                       {city: 'Pentagon, Arlington', state: 'VA'},
+                       {city: 'San Angelo', state: 'TX'},
+                       {city: 'Abilene', state: 'TX'}],
+           start_date: Date.parse('19 Sep 2012'), end_date: far_away,
+           minimum: 17, maximum: 23, rate_interval_code: 'PH', position_schedule_type_code: 2, position_offering_type_code: 15522}
+      end
       importer.import
     end
 
     context 'when records have been somehow marked as inactive/closed/expired' do
-      let(:anti_importer) { UsajobsData.new('spec/resources/anti_sample.xml') }
+      let(:anti_importer) { UsajobsData.new('spec/resources/usajobs/anti_sample.xml') }
 
       it 'should load the records with a ttl of 1s' do
-        PositionOpening.should_receive(:import).with(
-          [{type: 'position_opening', id: 305972200, _ttl: '1s', :locations => [{:city => "Dyess AFB", :state => "TX"}]},
-           {type: 'position_opening', id: 325054900, _ttl: '1s', :locations => [{:city => "Charleston", :state => "SC"}]},
-           {type: 'position_opening', id: 327358300, _ttl: '1s', :locations => [{:city => "Odessa", :state => "TX"},
-                                                                                {:city => "Pentagon, Arlington", :state => "VA"},
-                                                                                {:city => "San Angelo", :state => "TX"},
-                                                                                {:city => "Abilene", :state => "TX"}]}]
-        )
+        PositionOpening.should_receive(:import) do |position_openings|
+          position_openings.length.should == 3
+          position_openings[0].should ==
+            {type: 'position_opening', source: 'usajobs', external_id: 305972200, _ttl: '1s',
+             tags: %w(federal), locations: [{:city => "Dyess AFB", :state => "TX"}]}
+          position_openings[1].should ==
+            {type: 'position_opening', source: 'usajobs', external_id: 325054900, _ttl: '1s',
+             tags: %w(federal), locations: [{:city => "Charleston", :state => "SC"}]}
+          position_openings[2].should ==
+            {type: 'position_opening', source: 'usajobs', external_id: 327358300, _ttl: '1s',
+             tags: %w(federal), locations: [{:city => "Odessa", :state => "TX"},
+                                            {:city => "Pentagon, Arlington", :state => "VA"},
+                                            {:city => "San Angelo", :state => "TX"},
+                                            {:city => "Abilene", :state => "TX"}]}
+        end
         anti_importer.import
       end
 
     end
 
     context 'when location is invalid/empty' do
-      let(:bad_location_importer) { UsajobsData.new('spec/resources/bad_locations.xml') }
+      let(:bad_location_importer) { UsajobsData.new('spec/resources/usajobs/bad_locations.xml') }
 
       it 'should ignore the location' do
-        PositionOpening.should_receive(:import).with(
-          [{:type => "position_opening", :id => 305972200, :_ttl => ttl, :position_title => "Medical Officer",
-            :organization_id => "AF09", :organization_name => "Air Force Personnel Center",
-            :locations => [{:city => "Fulton", :state => "MD"}],
-            :start_date => Date.parse('28 Dec 2011'), :end_date => far_away,
-            :minimum => 60274, :maximum => 155500, :rate_interval_code => "PA", position_schedule_type_code: 1},
-           {:type => "position_opening", :id => 325054900, :_ttl => "1s", :locations => []}]
-        )
+        PositionOpening.should_receive(:import) do |position_openings|
+          position_openings.length.should == 2
+          position_openings[0].should ==
+            {type: "position_opening", source: 'usajobs', external_id: 305972200, _ttl: ttl, position_title: "Medical Officer",
+             organization_id: "AF09", organization_name: "Air Force Personnel Center", tags: %w(federal),
+             locations: [{:city => "Fulton", :state => "MD"}],
+             start_date: Date.parse('28 Dec 2011'), end_date: far_away,
+             minimum: 60274, maximum: 155500, rate_interval_code: "PA", position_schedule_type_code: 1, position_offering_type_code: 15327}
+          position_openings[1].should ==
+            {type: "position_opening", source: 'usajobs', external_id: 325054900, _ttl: "1s", locations: [], tags: %w(federal)}
+        end
         bad_location_importer.import
       end
     end

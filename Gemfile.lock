@@ -60,6 +60,8 @@ GEM
     highline (1.6.15)
     hike (1.2.1)
     i18n (0.6.1)
+    jbuilder (1.2.0)
+      activesupport (>= 3.0.0)
     journey (1.0.4)
     json (1.7.7)
     mail (2.4.4)
@@ -172,6 +174,7 @@ DEPENDENCIES
   airbrake
   capistrano
   faraday_middleware
+  jbuilder
   net-http-persistent
   newrelic_rpm
   nokogiri

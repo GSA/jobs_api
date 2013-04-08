@@ -1,4 +1,5 @@
 class UsajobsData
+  SOURCE = 'usajobs'.freeze
   XPATHS = {
     opening: '//xmlns:PositionOpening',
     start_date: 'xmlns:PositionProfile/xmlns:PositionPeriod/xmlns:StartDate/xmlns:FormattedDateTime',
@@ -10,6 +11,7 @@ class UsajobsData
     organization_name: 'xmlns:PositionProfile/xmlns:PositionOrganization/xmlns:OrganizationIdentifiers/xmlns:OrganizationName',
     locations: 'xmlns:PositionProfile/xmlns:PositionLocation/xmlns:LocationName',
     position_schedule_type_code: 'xmlns:PositionProfile/xmlns:PositionScheduleTypeCode',
+    position_offering_type_code: 'xmlns:PositionProfile/xmlns:PositionOfferingTypeCode',
     minimum: 'xmlns:PositionProfile/xmlns:OfferedRemunerationPackage/xmlns:RemunerationRange/xmlns:RemunerationMinimumAmount',
     maximum: 'xmlns:PositionProfile/xmlns:OfferedRemunerationPackage/xmlns:RemunerationRange/xmlns:RemunerationMaximumAmount',
     rate_interval_code: 'xmlns:PositionProfile/xmlns:OfferedRemunerationPackage/xmlns:RemunerationRange/xmlns:RemunerationRateIntervalCode'
@@ -31,8 +33,8 @@ class UsajobsData
     days_remaining = (end_date - Date.current).to_i
     inactive = job_xml.xpath(XPATHS[:status_code]).inner_text != 'Active'
     days_remaining = 0 if days_remaining < 0 || start_date > end_date || inactive
-    entry = {type: 'position_opening'}
-    entry[:id] = job_xml.xpath(XPATHS[:id]).inner_text.to_i
+    entry = {type: 'position_opening', source: SOURCE, tags: %w(federal)}
+    entry[:external_id] = job_xml.xpath(XPATHS[:id]).inner_text.to_i
     entry[:locations] = process_locations(job_xml)
     entry[:_ttl] = (days_remaining.zero? || entry[:locations].empty?) ? '1s' : "#{days_remaining}d"
     unless entry[:_ttl] == '1s'
@@ -45,6 +47,7 @@ class UsajobsData
       entry[:maximum] = job_xml.xpath(XPATHS[:maximum]).inner_text.to_i
       entry[:rate_interval_code] = job_xml.xpath(XPATHS[:rate_interval_code]).inner_text.strip.upcase
       entry[:position_schedule_type_code] = job_xml.xpath(XPATHS[:position_schedule_type_code]).inner_text.split('-').first.to_i
+      entry[:position_offering_type_code] = job_xml.xpath(XPATHS[:position_offering_type_code]).inner_text.split('-').first.to_i
     end
     entry
   end

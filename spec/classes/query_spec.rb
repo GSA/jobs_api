@@ -38,6 +38,19 @@ describe Query do
       end
     end
 
+    context 'when seasonal/internship job specified in query' do
+      it 'should set position_offering_type_code' do
+        Query.new('intern jobs', nil).position_offering_type_code.should == 15328
+        Query.new('internship jobs', nil).position_offering_type_code.should == 15328
+        Query.new('park ranger seasonal jobs', nil).position_offering_type_code.should == 15322
+      end
+
+      it 'should remove the phrase from the query' do
+        Query.new('intern jobs', nil).keywords.should be_blank
+        Query.new('park ranger seasonal jobs', nil).keywords.should == 'park ranger'
+      end
+    end
+
     context 'when full/part-time job specified in query' do
       it 'should set position_schedule_type_code' do
         Query.new('part-time jobs', nil).position_schedule_type_code.should == 2

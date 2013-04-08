@@ -1,10 +1,24 @@
 namespace :jobs do
   desc 'Import USAJobs XML file'
-  task :import_xml, [:filename] => :environment do |t, args|
+  task :import_usajobs_xml, [:filename] => :environment do |t, args|
     if args.filename.nil?
-      Rails.logger.error 'usage: rake jobs:position_openings:import_xml[filename.xml]'
+      message = 'usage: rake jobs:import_usajobs_xml[filename.xml]'
+      Rails.logger.error message
+      puts message
     else
       importer = UsajobsData.new(args.filename)
+      importer.import
+    end
+  end
+
+  desc 'Import Neogov RSS file'
+  task :import_neogov_rss, [:agency, :filename, :tags, :organization_id, :organization_name] => :environment do |t, args|
+    if args.agency.blank? or args.filename.blank? or args.tags.blank? or args.organization_id.blank?
+      message = 'usage: rake jobs:import_neogov_rss[agency,filename.xml,tags,organization_id,organization_name]'
+      Rails.logger.error message
+      puts message
+    else
+      importer = NeogovData.new(args.agency, args.filename, args.tags, args.organization_id, args.organization_name)
       importer.import
     end
   end

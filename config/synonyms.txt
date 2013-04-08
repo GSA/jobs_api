@@ -12,7 +12,6 @@ physician, doctor
 linguist, language
 tv, television
 legal, attorney
-intern, internship, volunteer
 counselor, counseling, therapy, therapist
 green, environment, environmental
 forester, forestry

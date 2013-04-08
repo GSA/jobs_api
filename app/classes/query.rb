@@ -4,7 +4,7 @@ class Query
   NON_CAPTURING_JOB_KEYWORD_TOKENS = JOB_KEYWORD_TOKENS.sub('(','(?:')
   STOPWORDS = 'appl(y|ications?)|for|the|a|and|available|gov(ernment)?|usa|current|civilian|fed(eral)?|(usajob|opening|posting|description|announcement|listing)s?|(opportunit|vacanc)(y|ies)|search(es)?'.freeze
 
-  attr_accessor :location, :organization_id, :keywords, :position_schedule_type_code, :rate_interval_code
+  attr_accessor :location, :organization_id, :keywords, :position_offering_type_code, :position_schedule_type_code, :rate_interval_code
 
   def initialize(query, organization_id)
     organization_id.upcase! if organization_id.present?
@@ -21,7 +21,8 @@ class Query
   end
 
   def valid?
-    keywords.present? || location.present? || organization_id.present? || position_schedule_type_code.present? || rate_interval_code.present?
+    keywords.present? || location.present? || organization_id.present? ||
+      position_offering_type_code.present? || position_schedule_type_code.present? || rate_interval_code.present?
   end
 
   def organization_format
@@ -33,6 +34,10 @@ class Query
   def parse(query)
     query.gsub!(/volunteer(ing)? ?/) do
       self.rate_interval_code = 'WC'
+      nil
+    end
+    query.gsub!(/\b(seasonal|intern(ship)?s?)\b/) do
+      self.position_offering_type_code = PositionOfferingType.get_code("#{$1}")
       nil
     end
     query.gsub!(/(full|part)([- ])?time ?/) do
