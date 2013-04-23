@@ -10,3 +10,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/coverage
+.DS_Store
+/.idea
+.*.swp
