@@ -22,6 +22,7 @@ after "deploy:restart", "deploy:cleanup"
 namespace :deploy do
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/airbrake.yml #{release_path}/config/airbrake.yml"
+    run "ln -nfs #{shared_path}/config/elasticsearch.yml #{release_path}/config/elasticsearch.yml"
     run "ln -nfs #{shared_path}/config/newrelic.yml #{release_path}/config/newrelic.yml"
   end
   after 'deploy:finalize_update', 'deploy:symlink_config'

@@ -1,7 +1,7 @@
 class PositionOpening
   include Tire::Model::Search
 
-  index_name("#{Rails.env}:jobs")
+  index_name("#{Elasticsearch::INDEX_NAME}")
 
   MAX_RETURNED_DOCUMENTS = 100
 
