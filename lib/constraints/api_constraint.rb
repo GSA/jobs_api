@@ -5,6 +5,8 @@ class ApiConstraint
   end
 
   def matches?(request)
-    @default || request.headers['Accept'].include?("application/vnd.usagov.position_openings.v#{@version}")
+    @default ||
+      (request.headers['Accept'] &&
+        request.headers['Accept'].include?("application/vnd.usagov.position_openings.v#{@version}"))
   end
 end
