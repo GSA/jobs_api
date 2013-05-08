@@ -113,6 +113,7 @@ describe Query do
           Query.new('jobs and employment', nil).keywords.should_not be_present
           Query.new('career opportunities', nil).keywords.should_not be_present
           Query.new('job openings', nil).keywords.should_not be_present
+          Query.new('puestos', nil).keywords.should_not be_present
         end
       end
 

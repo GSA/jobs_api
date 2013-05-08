@@ -227,10 +227,33 @@ describe PositionOpening do
       end
 
       context 'when keywords not present and sort_by option is not set' do
+        before do
+          position_openings = [{source: 'usajobs', external_id: 1000, type: 'position_opening', position_title: 'Physician Assistant New',
+                                position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                                organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                                start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                                locations: [{city: 'Fulton', state: 'MD'}]}]
+          PositionOpening.import position_openings
+          sleep(0.25)
+          position_openings = [{source: 'usajobs', external_id: 1001, type: 'position_opening', position_title: 'Physician Assistant Newer',
+                                position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                                organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                                start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                                locations: [{city: 'Fulton', state: 'MD'}]}]
+          PositionOpening.import position_openings
+          sleep(0.25)
+          position_openings = [{source: 'usajobs', external_id: 1002, type: 'position_opening', position_title: 'Physician Assistant Newest',
+                                position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                                organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                                start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                                locations: [{city: 'Fulton', state: 'MD'}]}]
+          PositionOpening.import position_openings
+        end
+
         it 'should sort by descending timestamp (i.e., newest first)' do
-          res = PositionOpening.search_for(query: 'jobs')
-          res.first[:id].should == 'usajobs:4'
-          res.last[:id].should == 'ng:michigan:629140'
+          res = PositionOpening.search_for(query: 'jobs', size: 3)
+          res.first[:id].should == 'usajobs:1002'
+          res.last[:id].should == 'usajobs:1000'
         end
       end
 
