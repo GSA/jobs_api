@@ -14,8 +14,15 @@ describe Api::V2::PositionOpeningsController do
     end
 
     it { should respond_with(:success) }
-    it { should respond_with_content_type(/json/) }
-    it { should assign_to(:position_openings).with(search_results) }
+
+    it 'should respond with content type json' do
+      response.content_type.should =~ /json/
+    end
+
+    it 'should assign search results to position openings' do
+      assigns[:position_openings].should == search_results
+    end
+
     it { should render_template(:search) }
   end
 end

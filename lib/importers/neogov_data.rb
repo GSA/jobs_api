@@ -16,21 +16,25 @@ class NeogovData
       salary_interval: './joblisting:salaryInterval'
   }.freeze
 
+  HOST = 'agency.governmentjobs.com'.freeze
+  PATH = '/jobfeed.cfm?agency='.freeze
+  USER_AGENT = 'USASearch Jobs API'.freeze
+
   INVALID_LOCATION_REGEX = /\b(various|locations?)\b/i
 
   ADVERTISE_DATE_FORMAT = '%a, %d %b %Y'.freeze
   ADVERTISE_DATETIME_FORMAT = '%a, %d %b %Y %H:%M:%S'.freeze
 
-  def initialize(agency, filename, tags, organization_id, organization_name = nil)
+  def initialize(agency, tags, organization_id, organization_name = nil)
+    @agency = agency
     @source = "ng:#{agency}"
-    @filename = filename
     @tags = tags.present? ? tags.split : []
     @organization_id = organization_id
     @organization_name = organization_name
   end
 
   def import
-    doc = Nokogiri::XML(File.open(@filename))
+    doc = Nokogiri::XML(fetch_jobs_rss)
     @organization_name = doc.xpath(XPATHS[:organization_name]).inner_text.squish if @organization_name.blank?
     position_openings = doc.xpath(XPATHS[:item]).map { |job_xml| process_job(job_xml) }.compact
     updated_external_ids = position_openings.map { |item| item[:external_id] }
@@ -42,6 +46,13 @@ class NeogovData
     end
     position_openings.push(*expired_openings)
     PositionOpening.import position_openings
+  end
+
+  def fetch_jobs_rss
+    http = Net::HTTP.new(HOST)
+    req = Net::HTTP::Get.new("#{PATH}#{@agency}", {'User-Agent' => USER_AGENT})
+    response = http.request(req)
+    response.body
   end
 
   def process_job(job_xml)
@@ -94,7 +105,7 @@ class NeogovData
   end
 
   def process_location_and_state(city_str, state_str)
-    city = city_str =~ INVALID_LOCATION_REGEX ? nil : city_str.rpartition(',')[2].to_s.squish
+    city = city_str =~ INVALID_LOCATION_REGEX ? nil : remove_trailing_state_zip(strip_prefix(city_str)).rpartition(',')[2].to_s.squish
     state_name = state_str.squish
     state = State.member?(state_name) ? State.normalize(state_name) : nil
 
@@ -119,6 +130,16 @@ class NeogovData
 
   def process_salary(salary_str)
     salary = salary_str.strip
-    salary.to_f if salary =~ /^\d+\.?\d*$/
+    salary.to_f.round(2) if salary =~ /^\d+\.?\d*$/
+  end
+
+  private
+
+  def remove_trailing_state_zip(city_str)
+    city_str.sub(/, ?[A-Z]{2} ?\d{5}?-?(\d{4})?$/,'')
+  end
+
+  def strip_prefix(city_str)
+    city_str.sub(/^[^a-zA-Z]+/,'')
   end
 end

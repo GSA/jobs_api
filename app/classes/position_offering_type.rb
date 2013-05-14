@@ -13,10 +13,15 @@ class PositionOfferingType
   private
 
   def self.normalize_name(name_str)
-    name = name_str.downcase.squish
+    name = name_str.downcase.gsub('- ','').gsub(/(full|part)([- ])?time/,'').squish
     case name
-      when /\b(permanent|seasonal)\b/ then "#{$1}".to_sym
-      when /\bintern(ship)?s?\b/i then :internships
+      when /(?:^|\s)perm(anent)?\b/ then :permanent
+      when /\bseasonal\b/ then :seasonal
+      when /\btemporary promotion\b/ then :temporary_promotion
+      when /\bfte|(career|civil) service\b/ then :permanent
+      when /\btemp(orary)?\b/ then :temporary
+      when /\bintern(ship)?s?\b/ then :internships
+      when /\bterm\b/ then :term
       else name.gsub(/ /, '_').to_sym
     end
   end

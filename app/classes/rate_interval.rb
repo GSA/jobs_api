@@ -17,8 +17,9 @@ class RateInterval
   private
 
   def self.parse(name)
-    name_str = name.downcase.squish.gsub(/ /, '_')
-    case name_str.downcase
+    name_str = name.squish.underscore.gsub(/ /, '_')
+    case name_str
+    when /^day$/ then :per_day
     when /^year$/ then :per_year
     when /^month(ly)?$/ then :per_month
     when /^hour(ly)?$/ then :per_hour

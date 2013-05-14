@@ -2,24 +2,37 @@ namespace :jobs do
   desc 'Import USAJobs XML file'
   task :import_usajobs_xml, [:filename] => :environment do |t, args|
     if args.filename.nil?
-      message = 'usage: rake jobs:import_usajobs_xml[filename.xml]'
-      Rails.logger.error message
-      puts message
+      puts 'usage: rake jobs:import_usajobs_xml[filename.xml]'
     else
       importer = UsajobsData.new(args.filename)
       importer.import
     end
   end
 
-  desc 'Import Neogov RSS file'
-  task :import_neogov_rss, [:agency, :filename, :tags, :organization_id, :organization_name] => :environment do |t, args|
-    if args.agency.blank? or args.filename.blank? or args.tags.blank? or args.organization_id.blank?
-      message = 'usage: rake jobs:import_neogov_rss[agency,filename.xml,tags,organization_id,organization_name]'
-      Rails.logger.error message
-      puts message
-    else
-      importer = NeogovData.new(args.agency, args.filename, args.tags, args.organization_id, args.organization_name)
-      importer.import
+  desc 'Import Neogov YAML file containing agency info'
+  task :import_neogov_rss, [:yaml_filename] => :environment do |t, args|
+    begin
+      YAML.load(File.read(args.yaml_filename)).each do |config|
+        agency, details = config
+        tags, organization_id, organization_name = details['tags'], details['organization_id'], details['organization_name']
+        if agency.blank? or tags.blank? or organization_id.blank?
+          puts 'Agency, tags, and organization ID are required for each record. Skipping record....'
+        else
+          importer = NeogovData.new(agency, tags, organization_id, organization_name)
+          importer.import
+          puts "Imported jobs for #{agency} at #{Time.now}"
+        end
+      end
+    rescue Exception => e
+      puts "usage: rake jobs:import_neogov_rss[yaml_filename]"
+      puts "Example YAML file syntax:"
+      puts "bloomingtonmn:"
+      puts "\ttags: city tag_2"
+      puts "\torganization_id: US-MN:CITY-BLOOMINGTON"
+      puts "\torganization_name: City of Bloomington"
+      puts "ohio:"
+      puts "\ttags: state tag_3"
+      puts "\torganization_id: US-OH"
     end
   end
 

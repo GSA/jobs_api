@@ -1,11 +1,14 @@
 require 'spec_helper'
 
 describe 'Position Openings API V2' do
-  before(:all) do
+  before do
     PositionOpening.delete_search_index if PositionOpening.search_index.exists?
     PositionOpening.create_search_index
-    [UsajobsData.new('doc/sample.xml'),
-     NeogovData.new('michigan', 'doc/neogov_sample.rss', 'state', 'USMI')].each(&:import)
+
+    UsajobsData.new('doc/sample.xml').import
+    neogov = NeogovData.new('michigan', 'state', 'USMI')
+    neogov.stub!(:fetch_jobs_rss).and_return File.open('doc/neogov_sample.rss')
+    neogov.import
   end
 
   describe 'GET /search.json' do
