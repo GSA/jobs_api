@@ -80,7 +80,7 @@ GEM
       net-ssh (>= 2.6.5)
     newrelic_rpm (3.6.2.96)
     nokogiri (1.5.9)
-    oj (2.0.12)
+    oj (2.0.13)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -123,7 +123,7 @@ GEM
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.13.1)
-    rspec-rails (2.13.1)
+    rspec-rails (2.13.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -157,7 +157,7 @@ GEM
       multi_json (~> 1.3)
       rake
       rest-client (~> 1.6)
-    tire-contrib (0.1.1)
+    tire-contrib (0.1.2)
       tire
     treetop (1.4.12)
       polyglot

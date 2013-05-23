@@ -30,7 +30,11 @@ class PositionOpening
                 position_title: {type: 'string', analyzer: 'custom_analyzer', term_vector: 'with_positions_offsets', store: true},
                 organization_id: {type: 'string', analyzer: 'keyword'},
                 organization_name: {type: 'string', index: :not_analyzed},
-                locations: {type: 'nested', properties: {city: {type: 'string', analyzer: 'simple'}, state: {type: 'string', analyzer: 'keyword'}}},
+                locations: {
+                  properties: {
+                    city: {type: 'string', analyzer: 'simple'},
+                    state: {type: 'string', analyzer: 'keyword'},
+                    geo: {type: 'geo_point'}}},
                 start_date: {type: 'date', format: 'YYYY-MM-dd'},
                 end_date: {type: 'date', format: 'YYYY-MM-dd'},
                 minimum: {type: 'float'},
@@ -51,7 +55,9 @@ class PositionOpening
       document_limit = [options[:size].to_i, MAX_RETURNED_DOCUMENTS].min
       source = options[:source]
       tags = options[:tags].present? ? options[:tags].split : nil
+      lat, lon = options[:lat_lon].split(',') rescue [nil, nil]
       query = Query.new(options[:query], options[:organization_id])
+
       search = Tire.search index_name do
         query do
           boolean(minimum_number_should_match: 1) do
@@ -60,23 +66,13 @@ class PositionOpening
             must { match :position_offering_type_code, query.position_offering_type_code } if query.position_offering_type_code.present?
             must { match :position_schedule_type_code, query.position_schedule_type_code } if query.position_schedule_type_code.present?
             should { match :position_title, query.keywords, analyzer: 'custom_analyzer' } if query.keywords.present?
-            should do
-              nested path: 'locations' do
-                query do
-                  match 'locations.city', query.keywords, operator: 'AND'
-                end
-              end
-            end if query.keywords.present? && query.location.nil?
+            should { match 'locations.city', query.keywords, operator: 'AND' } if query.keywords.present? && query.location.nil?
             must { match :rate_interval_code, query.rate_interval_code } if query.rate_interval_code.present?
             must { send(query.organization_format, :organization_id, query.organization_id) } if query.organization_id.present?
             must do
-              nested path: 'locations' do
-                query do
-                  boolean do
-                    must { term 'locations.state', query.location.state } if query.has_state?
-                    must { match 'locations.city', query.location.city, operator: 'AND' } if query.has_city?
-                  end
-                end
+              boolean do
+                must { term 'locations.state', query.location.state } if query.has_state?
+                must { match 'locations.city', query.location.city, operator: 'AND' } if query.has_city?
               end
             end if query.location.present?
           end
@@ -84,7 +80,21 @@ class PositionOpening
 
         filter :range, start_date: {lte: Date.current}
 
-        sort { by options[:sort_by], 'desc' } unless query.keywords.present?
+        if query.keywords.blank?
+          if lat.blank? || lon.blank?
+            sort { by options[:sort_by], 'desc' }
+          else
+            options[:sort_by] = 'geo_distance'
+            sort do
+              by :_geo_distance, {
+                'locations.geo' => {
+                  lat: lat, lon: lon
+                },
+                :order => 'asc'
+              }
+            end
+          end
+        end
         size document_limit
         from options[:from]
         highlight position_title: {number_of_fragments: 0}
@@ -121,12 +131,19 @@ class PositionOpening
     def import(position_openings)
       Tire.index index_name do
         import position_openings do |docs|
-          docs.each { |doc| doc[:id] = "#{doc[:source]}:#{doc[:external_id]}" }
+          docs.each do |doc|
+            doc[:id] = "#{doc[:source]}:#{doc[:external_id]}"
+            doc[:locations].each do |loc|
+              normalized_city = loc[:city].sub(' Metro Area', '').sub(/, .*$/, '')
+              lat_lon_hash = Geoname.geocode(location: normalized_city, state: loc[:state])
+              loc[:geo] = lat_lon_hash if lat_lon_hash.present?
+            end
+          end
         end
         refresh
       end
 
-      Rails.logger.info "Processed #{position_openings.size} position openings"
+      Rails.logger.info "Imported #{position_openings.size} position openings"
     end
 
     def get_external_ids_by_source(source)
@@ -155,7 +172,8 @@ class PositionOpening
         when /^ng:/
           agency = position_opening.source.split(':')[1]
           "http://agency.governmentjobs.com/#{agency}/default.cfm?action=viewjob&jobid=#{position_opening.external_id}"
-        else nil
+        else
+          nil
       end
     end
   end

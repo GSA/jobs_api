@@ -1,0 +1,11 @@
+ft, fort
+st, saint
+afb, air force base
+afs, air force station
+ang, air national guard
+junc, junction
+spgs, springs
+natl, nat, national
+pk, park
+newcastle, new castle
+cavecreek, cave creek

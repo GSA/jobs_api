@@ -28,7 +28,7 @@ describe PositionOpening do
                             locations: [{city: 'San Francisco', state: 'CA'}]}
       position_openings << {source: 'usajobs', external_id: 4, type: 'position_opening', position_title: 'Making No Money',
                             organization_id: 'FUTU', organization_name: 'Future Administration',
-                            position_schedule_type_code: 1,  position_offering_type_code: 15328, tags: %w(federal),
+                            position_schedule_type_code: 1, position_offering_type_code: 15328, tags: %w(federal),
                             start_date: Date.current, end_date: Date.current + 8, minimum: 0, maximum: 0, rate_interval_code: 'WC',
                             locations: [{city: 'San Francisco', state: 'CA'}]}
       position_openings << {type: 'position_opening', source: 'ng:michigan', _timestamp: Date.current.weeks_ago(1).iso8601, external_id: 629140,
@@ -64,8 +64,8 @@ describe PositionOpening do
         open(Rails.root.join('config', 'synonyms.txt')).each_with_index do |batch_str, batch_number|
           first_synonym, remainder = batch_str.gsub(/ ?, ?/, ',').split(',', 2)
           @first_synonyms << first_synonym
+          id_number = starting_idx + (10 * (batch_number + 1))
           remainder.split(',').each_with_index do |synonym, offset|
-            id_number = starting_idx + (10 * (batch_number + 1))
             position_openings << {source: 'usajobs', external_id: id_number + offset, type: 'position_opening', position_title: "Senior #{synonym}",
                                   organization_id: 'ABCD', organization_name: 'Sample Org',
                                   position_schedule_type_code: 1, position_offering_type_code: 15317,
@@ -132,10 +132,6 @@ describe PositionOpening do
         res.first[:position_title].should == 'Deputy Special Assistant to the Chief Nurse Practitioner'
       end
 
-      it 'should not find by one city and another state' do
-        res = PositionOpening.search_for(query: 'jobs in Arlington, md')
-        res.should be_empty
-      end
     end
 
     describe 'searches for volunteer jobs' do
@@ -226,42 +222,83 @@ describe PositionOpening do
         end
       end
 
-      context 'when keywords not present and sort_by option is not set' do
-        before do
-          position_openings = [{source: 'usajobs', external_id: 1000, type: 'position_opening', position_title: 'Physician Assistant New',
-                                position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
-                                organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
-                                start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
-                                locations: [{city: 'Fulton', state: 'MD'}]}]
-          PositionOpening.import position_openings
-          sleep(0.25)
-          position_openings = [{source: 'usajobs', external_id: 1001, type: 'position_opening', position_title: 'Physician Assistant Newer',
-                                position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
-                                organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
-                                start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
-                                locations: [{city: 'Fulton', state: 'MD'}]}]
-          PositionOpening.import position_openings
-          sleep(0.25)
-          position_openings = [{source: 'usajobs', external_id: 1002, type: 'position_opening', position_title: 'Physician Assistant Newest',
-                                position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
-                                organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
-                                start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
-                                locations: [{city: 'Fulton', state: 'MD'}]}]
-          PositionOpening.import position_openings
+      context 'when keywords not present' do
+        context 'when sort_by option is not set' do
+          context 'when location is set' do
+            before do
+              position_openings = []
+              position_openings << {source: 'usajobs', external_id: 4000, type: 'position_opening', position_title: 'Physician Assistant New',
+                                    position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                                    organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                                    start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                                    locations: [
+                                      {city: 'Tempe', state: 'AZ', geo: {lat: 33.429444, lon: -111.943}}
+                                    ]}
+              position_openings << {source: 'usajobs', external_id: 4001, type: 'position_opening', position_title: 'Physician Assistant New',
+                                    position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                                    organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                                    start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                                    locations: [
+                                      {city: 'Las Vegas', state: 'NV', geo: {lat: 36.175, lon: -115.136389}},
+                                      {city: 'Baltimore', state: 'MD', geo: {lat: 39.283333, lon: -76.616667}}
+                                    ]}
+              position_openings << {source: 'usajobs', external_id: 4002, type: 'position_opening', position_title: 'Physician Assistant New',
+                                    position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                                    organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                                    start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                                    locations: [
+                                      {city: 'Flagstaff', state: 'AZ', geo: {lat: 35.199167, lon: -111.631111}}
+                                    ]}
+              PositionOpening.import position_openings
+            end
+
+            it 'should sort by closest minimum distance from user to job locations' do
+              res = PositionOpening.search_for(query: 'jobs', size: 1, lat_lon: '35.115556,-114.588611') # Bullhead City, AZ
+              res.first[:id].should == 'usajobs:4001'
+
+              res = PositionOpening.search_for(query: 'jobs in arizona', size: 1, lat_lon: '35.199167,-115.136389') # close to Vegas
+              res.first[:id].should == 'usajobs:4002'
+            end
+          end
+
+          context 'when location is not set' do
+            before do
+              position_openings = [{source: 'usajobs', external_id: 1000, type: 'position_opening', position_title: 'Physician Assistant New',
+                                    position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                                    organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                                    start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                                    locations: [{city: 'Fulton', state: 'MD'}]}]
+              PositionOpening.import position_openings
+              sleep(0.25)
+              position_openings = [{source: 'usajobs', external_id: 1001, type: 'position_opening', position_title: 'Physician Assistant Newer',
+                                    position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                                    organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                                    start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                                    locations: [{city: 'Fulton', state: 'MD'}]}]
+              PositionOpening.import position_openings
+              sleep(0.25)
+              position_openings = [{source: 'usajobs', external_id: 1002, type: 'position_opening', position_title: 'Physician Assistant Newest',
+                                    position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                                    organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                                    start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                                    locations: [{city: 'Fulton', state: 'MD'}]}]
+              PositionOpening.import position_openings
+            end
+
+            it 'should sort by descending timestamp (i.e., newest first)' do
+              res = PositionOpening.search_for(query: 'jobs', size: 3)
+              res.first[:id].should == 'usajobs:1002'
+              res.last[:id].should == 'usajobs:1000'
+            end
+          end
         end
 
-        it 'should sort by descending timestamp (i.e., newest first)' do
-          res = PositionOpening.search_for(query: 'jobs', size: 3)
-          res.first[:id].should == 'usajobs:1002'
-          res.last[:id].should == 'usajobs:1000'
-        end
-      end
-
-      context 'when keywords not present and sort_by option is set to :id' do
-        it 'should sort by descending IDs' do
-          res = PositionOpening.search_for(query: 'jobs', sort_by: :id)
-          res.first[:id].should == 'usajobs:4'
-          res.last[:id].should == 'ng:bloomingtonmn:632865'
+        context 'when sort_by option is set to :id' do
+          it 'should sort by descending IDs' do
+            res = PositionOpening.search_for(query: 'jobs', sort_by: :id)
+            res.first[:id].should == 'usajobs:4'
+            res.last[:id].should == 'ng:bloomingtonmn:632865'
+          end
         end
       end
     end
@@ -327,6 +364,31 @@ describe PositionOpening do
       PositionOpening.get_external_ids_by_source('usajobs').should == [1, 2, 3, 4]
       PositionOpening.get_external_ids_by_source('ng:michigan').should == [629140]
       PositionOpening.get_external_ids_by_source('ng').should be_empty
+    end
+  end
+
+  describe '.import(position_openings)' do
+    let(:position_opening) do
+      {source: 'usajobs', external_id: 1, type: 'position_opening', position_title: 'Some job',
+       organization_id: 'AF09', organization_name: 'Air Force Personnel Center',
+       position_schedule_type_code: 1, position_offering_type_code: 15317, tags: %w(federal),
+       start_date: Date.current, end_date: Date.tomorrow, minimum: 80000, maximum: 100000, rate_interval_code: 'PA',
+       locations: [{city: 'Andrews AFB', state: 'MD'},
+                   {city: 'Washington Metro Area', state: 'DC'},
+                   {city: 'Maui Island, Hawaii', state: 'HI'}]}
+    end
+
+    it 'should geocode each normalized job location' do
+      Geoname.should_receive(:geocode).with(location: 'Andrews AFB', state: 'MD').and_return({lat: 12.34, lon: -23.45})
+      Geoname.should_receive(:geocode).with(location: 'Washington', state: 'DC').and_return({lat: 23.45, lon: -12.34})
+      Geoname.should_receive(:geocode).with(location: 'Maui Island', state: 'HI').and_return({lat: 45.67, lon: -13.31})
+      PositionOpening.import([position_opening])
+      position_openings = Tire.search 'test:jobs' do
+        query { all }
+      end
+      position_openings.results.first[:locations][0][:geo].to_hash.should == {lat: 12.34, lon: -23.45}
+      position_openings.results.first[:locations][1][:geo].to_hash.should == {lat: 23.45, lon: -12.34}
+      position_openings.results.first[:locations][2][:geo].to_hash.should == {lat: 45.67, lon: -13.31}
     end
   end
 
