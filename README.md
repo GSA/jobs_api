@@ -85,8 +85,6 @@ These parameters are accepted:
 6. tags
 7. lat_lon
 
-Only query is required.
-
 Full documentation on the parameters is in our [Jobs API documentation](http://usasearch.howto.gov/developer/jobs.html#parameters).
 
 ### Results
