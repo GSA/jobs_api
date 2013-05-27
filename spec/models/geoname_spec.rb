@@ -42,4 +42,15 @@ describe Geoname do
     end
   end
 
+  describe '.import(geonames)' do
+    it 'should set the document ID' do
+      Geoname.import [{type: 'geoname', location: "Someplace", state: 'XY', geo: {lat: 12.34, lon: -123.45}}]
+      Geoname.import [{type: 'geoname', location: "Someplace", state: 'XY', geo: {lat: 92.34, lon: 23.45}}]
+      search = Geoname.search_for(location: 'Someplace', state: 'XY', size: 2)
+      search.results.total.should == 1
+      search.results.first.id.should == 'Someplace:XY'
+      search.results.first.geo.lat.should == 92.34
+    end
+  end
+
 end

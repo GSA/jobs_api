@@ -390,6 +390,24 @@ describe PositionOpening do
       position_openings.results.first[:locations][1][:geo].to_hash.should == {lat: 23.45, lon: -12.34}
       position_openings.results.first[:locations][2][:geo].to_hash.should == {lat: 45.67, lon: -13.31}
     end
+
+    context 'when no location information is present for job' do
+      let(:position_opening_no_locations) do
+        {source: 'usajobs', external_id: 1999, type: 'position_opening', position_title: 'Some job no locations',
+         organization_id: 'AF09', organization_name: 'Air Force Personnel Center',
+         position_schedule_type_code: 1, position_offering_type_code: 15317, tags: %w(federal),
+         start_date: Date.current, end_date: Date.tomorrow, minimum: 80000, maximum: 100000, rate_interval_code: 'PA'}
+      end
+
+      it 'should leave locations empty' do
+        PositionOpening.import([position_opening_no_locations])
+        position_openings = Tire.search 'test:jobs' do
+          query { all }
+        end
+        position_openings.results.first[:locations].should be_nil
+      end
+
+    end
   end
 
   after(:all) do

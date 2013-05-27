@@ -30,25 +30,40 @@ We use bundler to manage gems. You can install bundler and other required gems l
 
 ### ElasticSearch
 
-We're using [ElasticSearch](http://www.elasticsearch.org/) for fulltext search. On a Mac, it's easy to install with [Homebrew](http://mxcl.github.com/homebrew/).
+We're using [ElasticSearch](http://www.elasticsearch.org/) (>= 0.90) for fulltext search. On a Mac, it's easy to install with [Homebrew](http://mxcl.github.com/homebrew/).
 
     $ brew install elasticsearch
 
 Otherwise, follow the [instructions](http://www.elasticsearch.org/download/) to download and run it.
 
-Once it's running, create the index.
+### Geonames
 
-    bundle exec rake jobs:recreate_index
+We use the United States location data from [Geonames.org](http://www.geonames.org) to help geocode the locations of each job position. By assigning latitude and longitude coordinates to each position location, we can sort job results based on proximity to the user's location, provided that information is sent in with the request.
 
-### Seed data
+Download and extract the 'US.txt' file from [the Geonames archive](http://download.geonames.org/export/dump/US.zip), and import it into ElasticSearch.
 
-You can use the sample.xml file just to see it working with a few jobs.
+    bundle exec rake geonames:import[/path/to/US.txt]
+
+The file contains goecoding information for many entities that we aren't interested in for the purpose of government jobs (e.g., canals, churches), so we pick out just what we need in order to keep the index small with this AWK script:
+
+    awk -F $'\\t' '$8 ~ /PPL|ADM\d?|PRK|BLDG|AIR|INSM/' US.txt > filtered_US.txt
+
+This includes populated places, administrative areas, parks, buildings, airports, and military bases.
+
+### Seed jobs data
+
+You can use the sample.xml file just to load a few jobs and see the system working.
 
     bundle exec rake jobs:import_usajobs_xml[doc/sample.xml]
 
-The importer adds to or updates any existing entries, so you can run it multiple times if you have multiple XML files.
+The importer adds to or updates any existing entries, so you can run it multiple times if you have multiple XML files. You can also start over with an index if you want to erase what's there or load a different dataset:
 
-Federal agencies can also request XML files from USAJobs as described in the SIF Guide at [https://schemas.usajobs.gov/](https://schemas.usajobs.gov).
+    bundle exec rake jobs:recreate_index
+    bundle exec rake geonames:recreate_index
+
+### Production data
+
+Federal agencies can request XML files from USAJobs as described in the SIF Guide at [https://schemas.usajobs.gov/](https://schemas.usajobs.gov).
 
 ### Running it
 
@@ -60,7 +75,17 @@ Fire up a server and try it all out.
 
 ### Parameters
 
-Six parameters are accepted: (1) query, (2) organization_id, (3) hl [highlighting], (4) size, (5) from, and (6) tags. Only query is required.
+These parameters are accepted:
+
+1. query
+2. organization_id
+3. hl [highlighting]
+4. size
+5. from
+6. tags
+7. lat_lon
+
+Only query is required.
 
 Full documentation on the parameters is in our [Jobs API documentation](http://usasearch.howto.gov/developer/jobs.html#parameters).
 

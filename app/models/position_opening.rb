@@ -137,7 +137,7 @@ class PositionOpening
               normalized_city = loc[:city].sub(' Metro Area', '').sub(/, .*$/, '')
               lat_lon_hash = Geoname.geocode(location: normalized_city, state: loc[:state])
               loc[:geo] = lat_lon_hash if lat_lon_hash.present?
-            end
+            end if doc[:locations].present?
           end
         end
         refresh

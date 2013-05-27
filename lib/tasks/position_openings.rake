@@ -24,6 +24,9 @@ namespace :jobs do
         end
       end
     rescue Exception => e
+      puts "Trouble running import script: #{e}"
+      puts e.backtrace
+      puts '-'*80
       puts "usage: rake jobs:import_neogov_rss[yaml_filename]"
       puts "Example YAML file syntax:"
       puts "bloomingtonmn:"

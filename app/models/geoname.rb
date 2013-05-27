@@ -32,16 +32,19 @@ class Geoname
     end
 
     def geocode(options = {})
-      search = Tire.search index_name do
+      search_for(options.merge(size: 1)).results.first.geo.to_hash rescue nil
+    end
+
+    def search_for(options)
+      Tire.search index_name do
         query do
           boolean do
             must { match :location, options[:location], operator: 'AND' }
             must { term :state, options[:state] }
           end
         end
-        size 1
+        size options[:size]
       end
-      search.results.first.geo.to_hash rescue nil
     end
 
     def delete_search_index
@@ -53,11 +56,16 @@ class Geoname
     end
 
     def import(geonames)
-      Tire.index index_name do
-        import geonames
+      Tire.index index_name  do
+        import geonames do |docs|
+          docs.each do |doc|
+            doc[:id] = "#{doc[:location]}:#{doc[:state]}"
+          end
+        end
         refresh
       end
 
+      #Tire.index index_name
       Rails.logger.info "Imported #{geonames.size} Geonames to #{index_name}"
     end
 
