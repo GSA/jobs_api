@@ -408,28 +408,6 @@ describe PositionOpening do
       end
 
     end
-
-    context 'when too many locations are present for job' do
-      let(:position_opening_crazy_locations) do
-        locations = (1..20).collect do |x|
-          {city: "Location #{x}", state: 'MD'}
-        end
-        {source: 'usajobs', external_id: 1999, type: 'position_opening', position_title: 'Some job no locations',
-         organization_id: 'AF09', organization_name: 'Air Force Personnel Center',
-         position_schedule_type_code: 1, position_offering_type_code: 15317, tags: %w(federal),
-         start_date: Date.current, end_date: Date.tomorrow, minimum: 80000, maximum: 100000, rate_interval_code: 'PA',
-         locations: locations}
-      end
-
-      it 'should leave locations empty' do
-        PositionOpening.import([position_opening_crazy_locations])
-        position_openings = Tire.search 'test:jobs' do
-          query { all }
-        end
-        position_openings.results.first[:locations].should be_nil
-      end
-
-    end
   end
 
   after(:all) do

@@ -1,4 +1,5 @@
 class UsajobsData
+  CATCHALL_THRESHOLD = 20
   SOURCE = 'usajobs'.freeze
   XPATHS = {
     opening: '//xmlns:PositionOpening',
@@ -36,7 +37,7 @@ class UsajobsData
     entry = {type: 'position_opening', source: SOURCE, tags: %w(federal)}
     entry[:external_id] = job_xml.xpath(XPATHS[:id]).inner_text.to_i
     entry[:locations] = process_locations(job_xml)
-    entry[:_ttl] = (days_remaining.zero? || entry[:locations].empty?) ? '1s' : "#{days_remaining}d"
+    entry[:_ttl] = (days_remaining.zero? || entry[:locations].empty? || entry[:locations].size > CATCHALL_THRESHOLD) ? '1s' : "#{days_remaining}d"
     unless entry[:_ttl] == '1s'
       entry[:position_title] = job_xml.xpath(XPATHS[:position_title]).inner_text.strip
       entry[:organization_id] = job_xml.xpath(XPATHS[:organization_id]).inner_text.strip.upcase
