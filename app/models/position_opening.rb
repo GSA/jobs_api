@@ -4,6 +4,7 @@ class PositionOpening
   index_name("#{Elasticsearch::INDEX_NAME}")
 
   MAX_RETURNED_DOCUMENTS = 100
+  CATCHALL_THRESHOLD = 20
 
   class << self
 
@@ -133,11 +134,17 @@ class PositionOpening
         import position_openings do |docs|
           docs.each do |doc|
             doc[:id] = "#{doc[:source]}:#{doc[:external_id]}"
-            doc[:locations].each do |loc|
-              normalized_city = loc[:city].sub(' Metro Area', '').sub(/, .*$/, '')
-              lat_lon_hash = Geoname.geocode(location: normalized_city, state: loc[:state])
-              loc[:geo] = lat_lon_hash if lat_lon_hash.present?
-            end if doc[:locations].present?
+            if doc[:locations].present?
+              if doc[:locations].size < CATCHALL_THRESHOLD
+                doc[:locations].each do |loc|
+                  normalized_city = loc[:city].sub(' Metro Area', '').sub(/, .*$/, '')
+                  lat_lon_hash = Geoname.geocode(location: normalized_city, state: loc[:state])
+                  loc[:geo] = lat_lon_hash if lat_lon_hash.present?
+                end
+              else
+                doc[:locations] = nil
+              end
+            end
           end
         end
         refresh
