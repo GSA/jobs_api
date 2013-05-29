@@ -142,7 +142,8 @@ describe UsajobsData do
                          'Washington, DC, Dist of Columbia',
                          'Washington DC',
                          'Washington D.C.',
-                         'Washington DC, US']
+                         'Washington DC, US',
+                         'District Of Columbia, US']
         location_strs.each { |location_str| importer.normalize_location(location_str).should == 'Washington, DC' }
       end
     end
