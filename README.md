@@ -19,7 +19,7 @@ The server code that runs our [Jobs API](http://usasearch.howto.gov/developer/jo
 
 ### Ruby
 
-You'll need [Ruby 1.9.3](http://www.ruby-lang.org/en/downloads/).
+You'll need [Ruby 2.0](http://www.ruby-lang.org/en/downloads/).
 
 ### Gems
 
