@@ -31,6 +31,7 @@ class PositionOpening
                 organization_id: {type: 'string', analyzer: 'keyword'},
                 organization_name: {type: 'string', index: :not_analyzed},
                 locations: {
+                  type: 'nested',
                   properties: {
                     city: {type: 'string', analyzer: 'simple'},
                     state: {type: 'string', analyzer: 'keyword'},
@@ -66,13 +67,23 @@ class PositionOpening
             must { match :position_offering_type_code, query.position_offering_type_code } if query.position_offering_type_code.present?
             must { match :position_schedule_type_code, query.position_schedule_type_code } if query.position_schedule_type_code.present?
             should { match :position_title, query.keywords, analyzer: 'custom_analyzer' } if query.keywords.present?
-            should { match 'locations.city', query.keywords, operator: 'AND' } if query.keywords.present? && query.location.nil?
+            should do
+              nested path: 'locations' do
+                query do
+                  match 'locations.city', query.keywords, operator: 'AND'
+                end
+              end
+            end if query.keywords.present? && query.location.nil?
             must { match :rate_interval_code, query.rate_interval_code } if query.rate_interval_code.present?
             must { send(query.organization_format, :organization_id, query.organization_id) } if query.organization_id.present?
             must do
-              boolean do
-                must { term 'locations.state', query.location.state } if query.has_state?
-                must { match 'locations.city', query.location.city, operator: 'AND' } if query.has_city?
+              nested path: 'locations' do
+                query do
+                  boolean do
+                    must { term 'locations.state', query.location.state } if query.has_state?
+                    must { match 'locations.city', query.location.city, operator: 'AND' } if query.has_city?
+                  end
+                end
               end
             end if query.location.present?
           end

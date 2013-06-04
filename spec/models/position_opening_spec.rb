@@ -132,6 +132,10 @@ describe PositionOpening do
         res.first[:position_title].should == 'Deputy Special Assistant to the Chief Nurse Practitioner'
       end
 
+      it 'should not find by one city and another state' do
+        res = PositionOpening.search_for(query: 'jobs in Arlington, md')
+        res.should be_empty
+      end
     end
 
     describe 'searches for volunteer jobs' do
