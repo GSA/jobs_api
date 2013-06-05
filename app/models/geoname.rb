@@ -3,6 +3,8 @@ class Geoname
 
   index_name("#{Rails.env}:geonames".freeze)
 
+  SYNONYMS = ["ft, fort", "st, saint", "afb, air force base", "afs, air force station", "ang, air national guard", "junc, junction", "spgs, springs", "natl, nat, national", "pk, park", "newcastle, new castle", "cavecreek, cave creek"]
+
   class << self
 
     def create_search_index
@@ -12,7 +14,7 @@ class Geoname
             index: {
               analysis: {
                 analyzer: {custom_analyzer: {type: 'custom', tokenizer: 'whitespace', filter: %w(standard lowercase synonym)}},
-                filter: {synonym: {type: 'synonym', synonyms_path: "#{Rails.root.join('config', 'geonames_synonyms.txt')}"}}
+                filter: {synonym: {type: 'synonym', synonyms: SYNONYMS}}
               }
             }
           },

@@ -61,7 +61,7 @@ describe PositionOpening do
       before do
         position_openings, starting_idx = [], 10
         @first_synonyms = []
-        open(Rails.root.join('config', 'synonyms.txt')).each_with_index do |batch_str, batch_number|
+        PositionOpening::SYNONYMS.each_with_index do |batch_str, batch_number|
           first_synonym, remainder = batch_str.gsub(/ ?, ?/, ',').split(',', 2)
           @first_synonyms << first_synonym
           id_number = starting_idx + (10 * (batch_number + 1))

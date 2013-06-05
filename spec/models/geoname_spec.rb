@@ -22,7 +22,7 @@ describe Geoname do
     context 'when query terms contain a synonym match with terms in location field' do
       before do
         geonames, @first_synonyms = [], []
-        open(Rails.root.join('config', 'geonames_synonyms.txt')).each do |batch_str|
+        Geoname::SYNONYMS.each do |batch_str|
           first_synonym, remainder = batch_str.strip.gsub(/ ?, ?/, ',').split(',', 2)
           @first_synonyms << first_synonym
           remainder.split(',').each do |synonym|

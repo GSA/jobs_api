@@ -4,6 +4,7 @@ class PositionOpening
   index_name("#{Elasticsearch::INDEX_NAME}")
 
   MAX_RETURNED_DOCUMENTS = 100
+  SYNONYMS = ["information technology, it, tech, computer", "teacher, teaching", "certified nursing assistant, cna", "rn, registered nurse", "lpn, licensed practical nurse", "lvn, licensed vocational nurse", "pa, physician assistant", "custodial, janitor, custodian", "cys, child youth services", "clerk, clerical", "physician, doctor", "linguist, language", "tv, television", "legal, attorney", "counselor, counseling, therapy, therapist", "green, environment, environmental", "forester, forestry", "technical, technician", "technology, technologist", "electronic, electrical", "architect, architecture", "cypa, child and youth program assistant, childcare", "tso, transportation security officer"].freeze
 
   class << self
 
@@ -14,7 +15,7 @@ class PositionOpening
             index: {
               analysis: {
                 analyzer: {custom_analyzer: {type: 'custom', tokenizer: 'whitespace', filter: %w(standard lowercase synonym snowball)}},
-                filter: {synonym: {type: 'synonym', synonyms_path: "#{Rails.root.join('config', 'synonyms.txt')}"}}
+                filter: {synonym: {type: 'synonym', synonyms: SYNONYMS}}
               }
             }
           },
