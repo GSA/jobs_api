@@ -84,21 +84,12 @@ describe UsajobsData do
     context 'when too many locations are present for job (typical of recruiting announcements)' do
       let(:recruiting_importer) { UsajobsData.new('spec/resources/usajobs/recruiting_sample.xml') }
 
-      it 'should load the records with a ttl of 1s' do
+      it 'should load the records with a ttl of 1s and empty locations array' do
         PositionOpening.should_receive(:import) do |position_openings|
           position_openings.length.should == 1
           position_openings[0].should ==
             {type: 'position_opening', source: 'usajobs', external_id: 327358300, _ttl: '1s',
-             tags: %w(federal), locations: [{:city => "One", :state => "TX"}, {:city => "Two", :state => "TX"},
-                                            {:city => "Three", :state => "TX"}, {:city => "Four", :state => "TX"},
-                                            {:city => "Five", :state => "TX"}, {:city => "Six", :state => "TX"},
-                                            {:city => "Seven", :state => "TX"}, {:city => "Eight", :state => "TX"},
-                                            {:city => "Nine", :state => "TX"}, {:city => "Ten", :state => "TX"},
-                                            {:city => "Eleven", :state => "TX"}, {:city => "Twelve", :state => "TX"},
-                                            {:city => "Thirteen", :state => "TX"}, {:city => "Fourteen", :state => "TX"},
-                                            {:city => "Fifteen", :state => "TX"}, {:city => "Sixteen", :state => "TX"},
-                                            {:city => "Seventeen", :state => "TX"}, {:city => "Eighteen", :state => "TX"},
-                                            {:city => "Nineteen", :state => "TX"}, {:city => "Twenty", :state => "TX"}]}
+             tags: %w(federal), locations: []}
         end
         recruiting_importer.import
       end
