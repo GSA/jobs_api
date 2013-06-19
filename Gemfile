@@ -24,6 +24,7 @@ group :development, :test do
 end
 
 gem 'capistrano', group: :development
+gem 'coveralls', require: false
 
 group :test do
   gem 'shoulda-matchers'
