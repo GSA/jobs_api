@@ -184,6 +184,11 @@ describe NeogovData do
         [{city: 'Seattle', state: 'WA'}]
     end
 
+    it 'should handle extra whitespace' do
+      importer.process_location_and_state('516 Third Ave, Room W-1033, Seattle,  WA  98104', 'Washington').should ==
+        [{city: 'Seattle', state: 'WA'}]
+    end
+
     it 'should strip trailing state and zip+4 from city' do
       importer.process_location_and_state('516 Third Ave, Room W-1033, Seattle,WA 98104-1234', 'Washington').should ==
         [{city: 'Seattle', state: 'WA'}]

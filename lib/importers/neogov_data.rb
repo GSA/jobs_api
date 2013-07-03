@@ -105,7 +105,7 @@ class NeogovData
   end
 
   def process_location_and_state(city_str, state_str)
-    city = city_str =~ INVALID_LOCATION_REGEX ? nil : remove_trailing_state_zip(strip_prefix(city_str)).rpartition(',')[2].to_s.squish
+    city = city_str =~ INVALID_LOCATION_REGEX ? nil : remove_trailing_state_zip(strip_prefix(city_str.squish)).rpartition(',')[2].to_s.squish
     state_name = state_str.squish
     state = State.member?(state_name) ? State.normalize(state_name) : nil
 
