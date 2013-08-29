@@ -2,7 +2,7 @@ class NeogovData
   XPATHS = {
       organization_name: '/rss/channel/title',
       item: '//item',
-      pubdate: './pubdate',
+      pubdate: './pubDate',
       start_date: './joblisting:advertiseFromDate',
       end_date: './joblisting:advertiseToDateTime',
       end_date_utc: './joblisting:advertiseToDateTimeUTC',
