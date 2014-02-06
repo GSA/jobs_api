@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/GSA-OCSIT/us_states.git
+  remote: git://github.com/GSA/us_states.git
   revision: 7a9728471aabf6df0a1521e2dbeadc09a1df4979
   specs:
     us_states (0.1.1)
