@@ -12,7 +12,7 @@ gem 'airbrake'
 gem 'rack-contrib'
 gem 'jbuilder'
 
-gem 'us_states', :git => 'git://github.com/GSA-OCSIT/us_states.git'
+gem 'us_states', :git => 'git://github.com/GSA/us_states.git'
 
 gem 'rspec'
 

@@ -1,14 +1,14 @@
 Jobs API Server
 ==============
 
-[![Build Status](https://travis-ci.org/GSA-OCSIT/jobs_api.png)](https://travis-ci.org/GSA-OCSIT/jobs_api)
-[![Coverage Status](https://coveralls.io/repos/GSA-OCSIT/jobs_api/badge.png?branch=master)](https://coveralls.io/r/GSA-OCSIT/jobs_api?branch=master)
+[![Build Status](https://travis-ci.org/GSA/jobs_api.png)](https://travis-ci.org/GSA/jobs_api)
+[![Coverage Status](https://coveralls.io/repos/GSA/jobs_api/badge.png?branch=master)](https://coveralls.io/r/GSA/jobs_api?branch=master)
 
 The unemployment rate has hovered around 8 percent since early 2012. So, not surprisingly, many people are hitting the web to search for jobs. Federal, state, and local government agencies are hiring and have thousands of job openings across the country.
 
 ## Current Version
 
-You are reading documentation for Jobs API v2. Documentation for v1 is available [here](https://github.com/GSA-OCSIT/jobs_api/tree/v1).
+You are reading documentation for Jobs API v2. Documentation for v1 is available [here](https://github.com/GSA/jobs_api/tree/v1).
 
 ## Access the Data
 
@@ -166,8 +166,8 @@ By accessing this Jobs API server, you agree to our [Terms of Service](http://ww
 Feedback
 --------
 
-You can send feedback via [Github Issues](https://github.com/GSA-OCSIT/jobs_api/issues).
+You can send feedback via [Github Issues](https://github.com/GSA/jobs_api/issues).
 
 -----
 
-[Loren Siebert](https://github.com/loren) and [contributors](http://github.com/GSA-OCSIT/jobs_api/contributors).
+[Loren Siebert](https://github.com/loren) and [contributors](http://github.com/GSA/jobs_api/contributors).
