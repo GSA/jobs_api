@@ -174,7 +174,7 @@ class PositionOpening
         from_index += search.results.count
         total = search.results.total
       end while external_ids.count < total
-      external_ids
+      external_ids.flatten
     end
 
     def url_for_position_opening(position_opening)
