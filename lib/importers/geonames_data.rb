@@ -12,13 +12,19 @@ class GeonamesData
       state = fields[STATE]
       lat = fields[LAT].to_f
       lon = fields[LON].to_f
-      {type: 'geoname', location: geoname_normalized_city(location), state: state, geo: {lat: lat, lon: lon}}
+      { type: 'geoname', location: geoname_normalized_city(location), state: state, geo: { lat: lat, lon: lon } }
     end
-    Geoname.import geonames
+    puts "Importing #{geonames.size} geonames ..."
+    running_total = 0
+    geonames.in_groups_of(1000, false) do |group|
+      Geoname.import group
+      running_total += group.count
+      puts "#{running_total}..."
+    end
   end
 
   def geoname_normalized_city(location)
-    location.sub(/,? ?D\.? ?C\.?/,'')
+    location.sub(/,? ?D\.? ?C\.?/, '')
   end
 
 end

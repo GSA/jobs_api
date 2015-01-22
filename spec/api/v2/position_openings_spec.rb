@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe 'Position Openings API V2' do
+  let(:v2_headers) { { 'Accept' => 'application/vnd.usagov.position_openings.v2' } }
+
   before do
     PositionOpening.delete_search_index if PositionOpening.search_index.exists?
     PositionOpening.create_search_index
@@ -14,7 +16,7 @@ describe 'Position Openings API V2' do
   describe 'GET /search.json' do
     context 'when format is JSON' do
       context 'when searching for existing jobs in a particular organization' do
-        before { get '/search.json', { query: 'nursing jobs', hl: 1 } }
+        before { get '/search.json', { query: 'nursing jobs', hl: 1 }, v2_headers }
 
         it 'should respond with status code 200' do
           response.status.should == 200
@@ -44,7 +46,7 @@ describe 'Position Openings API V2' do
       end
 
       context 'when searching for non-existing jobs' do
-        before { get '/search.json', { query: 'astronaut jobs', hl: 1 } }
+        before { get '/search.json', { query: 'astronaut jobs', hl: 1 }, v2_headers }
 
         it 'should respond with status code 200' do
           response.status.should == 200

@@ -14,37 +14,37 @@ class PositionOpening
           settings: {
             index: {
               analysis: {
-                analyzer: {custom_analyzer: {type: 'custom', tokenizer: 'whitespace', filter: %w(standard lowercase synonym snowball)}},
-                filter: {synonym: {type: 'synonym', synonyms: SYNONYMS}}
+                analyzer: { custom_analyzer: { type: 'custom', tokenizer: 'whitespace', filter: %w(standard lowercase synonym snowball) } },
+                filter: { synonym: { type: 'synonym', synonyms: SYNONYMS } }
               }
             }
           },
           mappings: {
             position_opening: {
-              _timestamp: {enabled: true},
-              _ttl: {enabled: true},
+              _timestamp: { enabled: true },
+              _ttl: { enabled: true },
               properties: {
-                type: {type: 'string'},
-                source: {type: 'string', index: :not_analyzed},
-                tags: {type: 'string', analyzer: 'keyword'},
-                external_id: {type: 'integer'},
-                position_title: {type: 'string', analyzer: 'custom_analyzer', term_vector: 'with_positions_offsets', store: true},
-                organization_id: {type: 'string', analyzer: 'keyword'},
-                organization_name: {type: 'string', index: :not_analyzed},
+                type: { type: 'string' },
+                source: { type: 'string', index: :not_analyzed },
+                tags: { type: 'string', analyzer: 'keyword' },
+                external_id: { type: 'integer' },
+                position_title: { type: 'string', analyzer: 'custom_analyzer', term_vector: 'with_positions_offsets', store: true },
+                organization_id: { type: 'string', analyzer: 'keyword' },
+                organization_name: { type: 'string', index: :not_analyzed },
                 locations: {
                   type: 'nested',
                   properties: {
-                    city: {type: 'string', analyzer: 'simple'},
-                    state: {type: 'string', analyzer: 'keyword'},
-                    geo: {type: 'geo_point'}}},
-                start_date: {type: 'date', format: 'YYYY-MM-dd'},
-                end_date: {type: 'date', format: 'YYYY-MM-dd'},
-                minimum: {type: 'float'},
-                maximum: {type: 'float'},
-                position_offering_type_code: {type: 'integer'},
-                position_schedule_type_code: {type: 'integer'},
-                rate_interval_code: {type: 'string', analyzer: 'keyword'},
-                id: {type: 'string', index: :not_analyzed, include_in_all: false}
+                    city: { type: 'string', analyzer: 'simple' },
+                    state: { type: 'string', analyzer: 'keyword' },
+                    geo: { type: 'geo_point' } } },
+                start_date: { type: 'date', format: 'YYYY-MM-dd' },
+                end_date: { type: 'date', format: 'YYYY-MM-dd' },
+                minimum: { type: 'float' },
+                maximum: { type: 'float' },
+                position_offering_type_code: { type: 'integer' },
+                position_schedule_type_code: { type: 'integer' },
+                rate_interval_code: { type: 'string', analyzer: 'keyword' },
+                id: { type: 'string', index: :not_analyzed, include_in_all: false }
               }
             }
           }
@@ -56,9 +56,10 @@ class PositionOpening
       options.reverse_merge!(size: 10, from: 0, sort_by: :_timestamp)
       document_limit = [options[:size].to_i, MAX_RETURNED_DOCUMENTS].min
       source = options[:source]
-      tags = options[:tags].present? ? options[:tags].split : nil
+      tags = options[:tags].present? ? options[:tags].split(/[ ,]/) : nil
       lat, lon = options[:lat_lon].split(',') rescue [nil, nil]
-      query = Query.new(options[:query], options[:organization_id])
+      organization_ids = organization_ids_from_options(options)
+      query = Query.new(options[:query], organization_ids)
 
       search = Tire.search index_name do
         query do
@@ -76,7 +77,14 @@ class PositionOpening
               end
             end if query.keywords.present? && query.location.nil?
             must { match :rate_interval_code, query.rate_interval_code } if query.rate_interval_code.present?
-            must { send(query.organization_format, :organization_id, query.organization_id) } if query.organization_id.present?
+            must do
+              boolean do
+                should { terms :organization_id, query.organization_terms } if query.organization_terms.present?
+                query.organization_prefixes.each do |organization_prefix|
+                  should { prefix :organization_id, organization_prefix }
+                end if query.organization_prefixes.present?
+              end
+            end if query.organization_ids.present?
             must do
               nested path: 'locations' do
                 query do
@@ -90,7 +98,7 @@ class PositionOpening
           end
         end if source.present? || tags || query.valid?
 
-        filter :range, start_date: {lte: Date.current}
+        filter :range, start_date: { lte: Date.current }
 
         if query.keywords.blank?
           if lat.blank? || lon.blank?
@@ -109,7 +117,7 @@ class PositionOpening
         end
         size document_limit
         from options[:from]
-        highlight position_title: {number_of_fragments: 0}
+        highlight position_title: { number_of_fragments: 0 }
       end
 
       Rails.logger.info("[Query] #{options.merge(result_count: search.results.total).to_json}")
@@ -188,5 +196,13 @@ class PositionOpening
           nil
       end
     end
+
+    def organization_ids_from_options(options)
+      organization_ids = []
+      organization_ids << options[:organization_id] if options[:organization_id].present?
+      organization_ids.concat options[:organization_ids].split(',') if options[:organization_ids].present?
+      organization_ids
+    end
+
   end
 end

@@ -2,14 +2,14 @@ require 'spec_helper'
 
 describe Agencies do
 
-  describe '.find_organization_id(org)' do
+  describe '.find_organization_ids(org)' do
     context 'when Agency API finds the agency' do
       before do
-        JSON.stub!(:parse).and_return({'organization_code' => 'FOOO' })
+        JSON.stub!(:parse).and_return({'organization_codes' => ['FOOO','BAR'] })
       end
 
-      it 'should return the organization ID code' do
-        Agencies.find_organization_id('foo').should == 'FOOO'
+      it 'should return the organization ID codes' do
+        Agencies.find_organization_ids('foo').should == ['FOOO','BAR']
       end
     end
 
@@ -19,7 +19,7 @@ describe Agencies do
       end
 
       it 'should return nil' do
-        Agencies.find_organization_id('foo').should be_nil
+        Agencies.find_organization_ids('foo').should be_nil
       end
     end
 
@@ -29,7 +29,7 @@ describe Agencies do
       end
 
       it 'should return nil' do
-        Agencies.find_organization_id('foo').should be_nil
+        Agencies.find_organization_ids('foo').should be_nil
       end
     end
   end

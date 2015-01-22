@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe Query do
-  describe '.new(query, organization_id)' do
+  describe '.new(query, organization_ids)' do
     context 'when query phrase contains the year or irrelevant words/characters' do
       before do
-        Agencies.stub!(:find_organization_id)
+        Agencies.stub!(:find_organization_ids)
       end
 
       let(:query) { Query.new("  FUN, summer #{Date.current.year} i.t. job opportunity descriptions    available in miami,, fl", nil) }
@@ -58,7 +58,7 @@ describe Query do
       end
 
       it 'should remove the phrase from the query' do
-        Agencies.should_receive(:find_organization_id).with('tsa').and_return 'HSBC'
+        Agencies.should_receive(:find_organization_ids).with('tsa').and_return ['HSBC']
         Query.new('part-time tsa jobs', nil).keywords.should be_blank
       end
     end
@@ -74,10 +74,10 @@ describe Query do
       end
     end
 
-    context 'when organization_id param is not passed in' do
+    context 'when organization_ids param is not passed in' do
       context "when query has both organization and location specified in query" do
         before do
-          Agencies.stub!(:find_organization_id).with('cia').and_return 'CI00'
+          Agencies.stub!(:find_organization_ids).with('cia').and_return ['CI00']
         end
 
         let(:queries) { ['jobs at the cia in miami fl', 'jobs with the cia in miami fl', 'jobs in miami fl at the cia', 'jobs in miami fl with the cia'] }
@@ -86,7 +86,7 @@ describe Query do
             query = Query.new(query_str, nil)
             query.location.city.should == 'miami'
             query.location.state.should == 'FL'
-            query.organization_id.should == 'CI00'
+            query.organization_ids.should == ['CI00']
             query.keywords.should be_blank
           end
         end
@@ -94,14 +94,14 @@ describe Query do
 
       context "when query is of form 'jobs (at|with) (.*)'" do
         before do
-          Agencies.stub!(:find_organization_id).with('cia').and_return 'CI00'
+          Agencies.stub!(:find_organization_ids).with('cia').and_return ['CI00']
         end
 
         let(:queries) { ['jobs at the cia', 'jobs with the cia'] }
         it 'should create an Organization' do
           queries.each do |query_str|
             query = Query.new(query_str, nil)
-            query.organization_id.should == 'CI00'
+            query.organization_ids.should == ['CI00']
             query.location.should be_nil
             query.keywords.should be_blank
           end
@@ -119,7 +119,7 @@ describe Query do
 
       context 'when some job-related keyword is preceeded/followed by some non-location, non-organization text' do
         before do
-          Agencies.stub!(:find_organization_id)
+          Agencies.stub!(:find_organization_ids)
         end
 
         it 'should strip the keyword from the resulting query keyword text' do
@@ -133,15 +133,15 @@ describe Query do
 
         context 'when the preceeding/following text is a valid organization' do
           before do
-            Agencies.stub!(:find_organization_id).with('tsa').and_return 'ABCD'
+            Agencies.stub!(:find_organization_ids).with('tsa').and_return ['ABCD']
           end
 
           it 'should extract an organization out of it' do
             query = Query.new('tsa job openings', nil)
-            query.organization_id.should == 'ABCD'
+            query.organization_ids.should == ['ABCD']
             query.keywords.should be_blank
             query = Query.new('jobs tsa', nil)
-            query.organization_id.should == 'ABCD'
+            query.organization_ids.should == ['ABCD']
             query.keywords.should be_blank
           end
         end
@@ -149,51 +149,51 @@ describe Query do
         context 'when the preceeding/following text is neither an organization nor a location' do
           it 'should use that text for fulltext search' do
             query = Query.new('fun summer jobs', nil)
-            query.organization_id.should be_nil
+            query.organization_ids.should be_nil
             query.keywords.should == 'fun summer'
             query = Query.new('jobs data', nil)
-            query.organization_id.should be_nil
+            query.organization_ids.should be_nil
             query.keywords.should == 'data'
           end
         end
       end
     end
 
-    context 'when organization_id param passed in' do
+    context 'when organization_ids param passed in' do
       context 'when different organization specified in query' do
         before do
-          Agencies.should_receive(:find_organization_id).with('tsa').and_return 'ABCD'
+          Agencies.should_receive(:find_organization_ids).with('tsa').and_return ['ABCD']
         end
 
-        let(:query) { Query.new('tsa jobs', 'DD00') }
+        let(:query) { Query.new('tsa jobs', ['DD00']) }
 
-        it 'should override organization_id param' do
-          query.organization_id.should == 'ABCD'
+        it 'should override organization_ids param' do
+          query.organization_ids.should == ['ABCD']
         end
       end
 
       context 'when no organization specified in query' do
         before do
-          Agencies.stub!(:find_organization_id)
+          Agencies.stub!(:find_organization_ids)
         end
 
-        let(:query) { Query.new('fun jobs', 'dd00') }
+        let(:query) { Query.new('fun jobs', ['dd00', 'abcd']) }
 
-        it 'should set capitalized organization_id from param' do
-          query.organization_id.should == 'DD00'
+        it 'should set capitalized organization_ids from param' do
+          query.organization_ids.should == ['DD00', 'ABCD']
         end
       end
 
       context 'when query is not present' do
-        let(:query) { Query.new(nil, 'DD00') }
+        let(:query) { Query.new(nil, ['DD00']) }
 
-        it 'should set capitalized organization_id from param' do
-          query.organization_id.should == 'DD00'
+        it 'should set capitalized organization_ids from param' do
+          query.organization_ids.should == ['DD00']
         end
       end
     end
 
-    context "when query and organization_id aren't present" do
+    context "when query and organization_ids aren't present" do
       let(:query) { Query.new(nil, nil) }
 
       it 'should not be valid' do
@@ -202,13 +202,15 @@ describe Query do
     end
   end
 
-  describe '#organization_format' do
-    it 'should return :prefix when org code is 2 chars long' do
-      Query.new('jobs', 'AB').organization_format.should == :prefix
+  describe '#organization_prefixes' do
+    it 'should return org codes that are 2 chars long' do
+      Query.new('jobs', ['AB', 'CDEF', 'AF', 'A123']).organization_prefixes.should == %w(AB AF)
     end
+  end
 
-    it 'should return :term when org code is 4 chars long' do
-      Query.new('jobs', 'ABCD').organization_format.should == :term
+  describe '#organization_terms' do
+    it 'should return org codes that are > 2 chars long' do
+      Query.new('jobs', ['AB', 'CDEF', 'AF', 'A123']).organization_terms.should == %w(CDEF A123)
     end
   end
 end
