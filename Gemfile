@@ -11,6 +11,7 @@ gem 'net-http-persistent'
 gem 'airbrake'
 gem 'rack-contrib'
 gem 'jbuilder'
+gem 'rack-cors'
 
 gem 'us_states', :git => 'git://github.com/GSA/us_states.git'
 
