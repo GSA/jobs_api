@@ -236,6 +236,8 @@ describe NeogovData do
 
     before do
       Net::HTTP.stub!(:new).with(NeogovData::HOST).and_return http
+      http.stub!(:use_ssl=).with(true).and_return true
+      http.stub!(:verify_mode=).with(OpenSSL::SSL::VERIFY_NONE).and_return OpenSSL::SSL::VERIFY_NONE
     end
 
     it 'should fetch the RSS for the agency' do

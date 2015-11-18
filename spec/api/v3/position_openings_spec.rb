@@ -39,7 +39,7 @@ describe 'Position Openings API V3' do
                                         'rate_interval_code'=>'PH', 'minimum'=>28.37, 'maximum'=>38.87,
                                         'start_date'=>'2010-06-08', 'end_date'=>'2022-01-31',
                                         'locations'=>['Munising, MI'],
-                                        'url' => 'http://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&jobid=234175'}
+                                        'url' => 'https://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&jobid=234175'}
         end
       end
 

@@ -50,6 +50,8 @@ class NeogovData
 
   def fetch_jobs_rss
     http = Net::HTTP.new(HOST)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     req = Net::HTTP::Get.new("#{PATH}#{@agency}", {'User-Agent' => USER_AGENT})
     response = http.request(req)
     response.body

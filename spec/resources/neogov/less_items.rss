@@ -3,8 +3,8 @@
     <channel xmlns:joblisting="http://www.neogov.com/namespaces/JobListing" xmlns:atom="http://www.w3.org/2005/Atom">
       
       <title>State of Michigan, MI</title>
-      <atom:link href="http://agency.governmentjobs.com/michigan/default.cfm?format=xml&amp;promotionaljobs=0&amp;transfer=0" rel="self" type="application/rss+xml"/>
-      <link>http://agency.governmentjobs.com/michigan</link>
+      <atom:link href="https://agency.governmentjobs.com/michigan/default.cfm?format=xml&amp;promotionaljobs=0&amp;transfer=0" rel="self" type="application/rss+xml"/>
+      <link>https://agency.governmentjobs.com/michigan</link>
       <description>Latest Employment Information</description>
       <language>en-us</language>
       <ttl>360</ttl>
@@ -14,7 +14,7 @@
   
         <item xmlns:joblisting="http://www.neogov.com/namespaces/JobListing" xmlns:atom="http://www.w3.org/2005/Atom">
           <title>Professional Development and Training Intern-DHS</title>
-          <link>http://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=634789</link>
+          <link>https://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=634789</link>
           <pubDate>2013-04-12 15:52:34.19</pubDate>
           <description>The Department of Human Services Office of Workforce Development and Training - Professional Development is looking for an intern for the following projects and responsibilities.&amp;nbsp;&lt;ul&gt;    &lt;li&gt;Assist in creating the new Supervisor Institute Training Program.&lt;/li&gt;    &lt;li&gt;Assist in developing an innovative management support program.&lt;/li&gt;    &lt;li&gt;Assist in constructing a leadership development program.&lt;/li&gt;    &lt;li&gt;Formulate analysis plans.&lt;/li&gt;    &lt;li&gt;Design or assist in the development of questionnaires/surveys/research techniques.&lt;/li&gt;&lt;/ul&gt;</description>
           <joblisting:jobNumberSingle>1903-13-DHS Prof Dvl</joblisting:jobNumberSingle>
@@ -31,7 +31,7 @@
           <joblisting:location>Lansing</joblisting:location>
           <joblisting:state>Michigan</joblisting:state>
           <joblisting:department>State of Michigan Internship Program – Statewide</joblisting:department>
-          <guid isPermaLink="true">http://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=634789</guid>
+          <guid isPermaLink="true">https://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=634789</guid>
           <categories>
                 <category xmlns:joblisting="http://www.neogov.com/namespaces/JobListing" xmlns:atom="http://www.w3.org/2005/Atom">
                   <CategoryCode>Internship</CategoryCode>
@@ -42,7 +42,7 @@
 
         <item xmlns:joblisting="http://www.neogov.com/namespaces/JobListing" xmlns:atom="http://www.w3.org/2005/Atom">
           <title>MEDC Corporate - Business Attraction Manager</title>
-          <link>http://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=631517</link>
+          <link>https://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=631517</link>
           <pubDate>2013-04-08 15:15:21.773</pubDate>
           <description>&lt;div&gt;&lt;span style=&quot;font-size: smaller&quot;&gt;&lt;span style=&quot;letter-spacing: -0.1pt&quot;&gt;The Michigan Economic Development Corporation (MEDC) is recruiting for a Business Attraction Manager to work for the corporation. &lt;span style=&quot;color: rgb(0,0,255)&quot;&gt;THIS IS NOT A CLASSIFIED, STATE OF MICHIGAN POSITION.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 11pt&quot;&gt;&lt;br /&gt;&lt;br /&gt;This position will identify and encourage national/international companies to invest and create jobs in the state. The Business Attraction Manager will accomplish this by developing a proactive attraction strategy in select industry(ies) and/or country(ies) to identify and market Michigan&amp;rsquo;s assets to targeted companies to encourage investment, promoting state and local economic development assets including financial and service-based resources available through state, local and federal resources to national/international companies, analyzing national/international business trends and managing and leading business attraction strategies and initiatives directed toward national/international business development.&amp;nbsp;Additionally, the incumbent will build and maintain relationships with prospective investors, key external business influencers, internal business clients and local economic development partners to facilitate new investment and job creation in Michigan.&lt;br /&gt;&lt;br /&gt;&lt;a href=&quot;http://web1mdcs.state.mi.us/AgencyPDFs/Business Attraction Manager.pdf&quot;&gt;Please click here to view the position description&lt;/a&gt;.&lt;/span&gt;&lt;/div&gt;</description>
           <joblisting:jobNumberSingle>0740-13-BCD009</joblisting:jobNumberSingle>
@@ -59,7 +59,7 @@
           <joblisting:location>Lansing</joblisting:location>
           <joblisting:state>Michigan</joblisting:state>
           <joblisting:department>Michigan Strategic Fund (MSF)</joblisting:department>
-          <guid isPermaLink="true">http://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=631517</guid>
+          <guid isPermaLink="true">https://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=631517</guid>
           <categories>
                 <category xmlns:joblisting="http://www.neogov.com/namespaces/JobListing" xmlns:atom="http://www.w3.org/2005/Atom">
                   <CategoryCode>Marketing</CategoryCode>

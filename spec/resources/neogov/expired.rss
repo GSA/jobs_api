@@ -3,8 +3,8 @@
     <channel xmlns:joblisting="http://www.neogov.com/namespaces/JobListing" xmlns:atom="http://www.w3.org/2005/Atom">
 
       <title>State of Michigan, MI</title>
-      <atom:link href="http://agency.governmentjobs.com/michigan/default.cfm?format=xml&amp;promotionaljobs=0&amp;transfer=0" rel="self" type="application/rss+xml"/>
-      <link>http://agency.governmentjobs.com/michigan</link>
+      <atom:link href="https://agency.governmentjobs.com/michigan/default.cfm?format=xml&amp;promotionaljobs=0&amp;transfer=0" rel="self" type="application/rss+xml"/>
+      <link>https://agency.governmentjobs.com/michigan</link>
       <description>Latest Employment Information</description>
       <language>en-us</language>
       <ttl>360</ttl>
@@ -14,7 +14,7 @@
 
         <item xmlns:joblisting="http://www.neogov.com/namespaces/JobListing" xmlns:atom="http://www.w3.org/2005/Atom">
           <title>Dentist-A</title>
-          <link>http://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=282662</link>
+          <link>https://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=282662</link>
           <pubDate>2012-03-12 10:16:56.14</pubDate>
           <description>&lt;span style=&quot;font-family: arial&quot;&gt;&lt;span style=&quot;font-size: 10pt; mso-fareast-font-family: &apos;times new roman&apos;; mso-ansi-language: en-us; mso-fareast-language: en-us; mso-bidi-language: ar-sa&quot;&gt;Provide Dental Services to prisoners at assigned Correctional Facility and other Northern Region Dental Clinics, as assigned.&lt;span style=&quot;mso-spacerun: yes&quot;&gt;&amp;nbsp; &lt;/span&gt;These Dental Services include, but are not limited to: diagnosis, operative, surgical, periodontic, endodontic, and prosthetic treatment. To document and record patient treatment information, as required by the Northern Region Dental Program guidelines, to ensure performance compliance of supervised Dental Staff, to provide patient care in accordance with established and perceived &amp;ldquo;standard of care guidelines&amp;rdquo; and to maintain the facility Dental Clinic operational modalities at MDOC Northern Region Dental Program standards.&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;&lt;span style=&quot;font-size: 13px&quot;&gt;This position is part-time and works 40 hours bi-weekly.&lt;/span&gt;&lt;/span&gt;&amp;nbsp;</description>
           <joblisting:jobNumberSingle>4742-11-03</joblisting:jobNumberSingle>
@@ -31,7 +31,7 @@
           <joblisting:location>Freeland</joblisting:location>
           <joblisting:state>Michigan</joblisting:state>
           <joblisting:department>Corrections - Saginaw Correctional Facility</joblisting:department>
-          <guid isPermaLink="true">http://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=282662</guid>
+          <guid isPermaLink="true">https://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=282662</guid>
           <categories>
                 <category xmlns:joblisting="http://www.neogov.com/namespaces/JobListing" xmlns:atom="http://www.w3.org/2005/Atom">
                   <CategoryCode>Corrections</CategoryCode>

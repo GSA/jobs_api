@@ -191,7 +191,7 @@ class PositionOpening
           "https://www.usajobs.gov/GetJob/ViewDetails/#{position_opening.external_id}"
         when /^ng:/
           agency = position_opening.source.split(':')[1]
-          "http://agency.governmentjobs.com/#{agency}/default.cfm?action=viewjob&jobid=#{position_opening.external_id}"
+          "https://agency.governmentjobs.com/#{agency}/default.cfm?action=viewjob&jobid=#{position_opening.external_id}"
         else
           nil
       end
