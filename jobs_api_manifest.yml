@@ -1,0 +1,7 @@
+---
+applications:
+- name: jobs_api
+  memory: 512M
+  instances: 1
+  host: jobs-api
+  domain: apps.cloud.gov
