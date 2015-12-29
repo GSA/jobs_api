@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.6'
 
 gem 'rails', '3.2.13'
 gem 'rails-api'
