@@ -13,6 +13,7 @@ gem 'airbrake'
 gem 'rack-contrib'
 gem 'jbuilder'
 gem 'rack-cors'
+gem 'thin'
 
 gem 'us_states', :git => 'git://github.com/GSA/us_states.git'
 
@@ -22,7 +23,6 @@ gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'thin'
 end
 
 gem 'capistrano', group: :development
