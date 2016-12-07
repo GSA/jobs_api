@@ -1,0 +1,13 @@
+name: 'Jobs API'
+description: 'An API for searching the DigitalGov Search index of USAJobs postings. Included in the index are jobs located in the U.S., and open to all public applicants.'
+license: 'https://creativecommons.org/publicdomain/zero/1.0'
+openSourceProject: 1
+governmentWideReuseProject: 1
+tags:
+    - GSA
+    - DigitalGovSearch
+    - search
+    - indexing
+    - jobs
+contact:
+    email: dawn.mccleskey@gsa.gov
