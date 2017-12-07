@@ -20,7 +20,7 @@ gem 'newrelic_rpm', '~> 3.6.3.104'
 gem 'rake', '~> 10.0'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.99.0'
+  gem 'rspec-rails', '~> 3.7'
   gem 'thin', '~> 1.7.1'
 end
 
