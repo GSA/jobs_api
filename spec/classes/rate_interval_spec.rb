@@ -3,16 +3,16 @@ require 'spec_helper'
 describe RateInterval do
   describe '.get_code' do
     it 'should lookup rate interval code' do
-      RateInterval.get_code('Hour').should == 'PH'
-      RateInterval.get_code('Hourly').should == 'PH'
-      RateInterval.get_code('Monthly').should == 'PM'
-      RateInterval.get_code('Fee basis').should == 'FB'
-      RateInterval.get_code('Day').should == 'PD'
-      RateInterval.get_code('BiWeekly').should == 'BW'
+      expect(RateInterval.get_code('Hour')).to eq('PH')
+      expect(RateInterval.get_code('Hourly')).to eq('PH')
+      expect(RateInterval.get_code('Monthly')).to eq('PM')
+      expect(RateInterval.get_code('Fee basis')).to eq('FB')
+      expect(RateInterval.get_code('Day')).to eq('PD')
+      expect(RateInterval.get_code('BiWeekly')).to eq('BW')
     end
 
     it 'should return nil for lookup failures' do
-      RateInterval.get_code('weekly').should be_nil
+      expect(RateInterval.get_code('weekly')).to be_nil
     end
   end
 end

@@ -14,7 +14,7 @@ describe Geoname do
       end
 
       it 'should return the lat/lon hash of the place' do
-        Geoname.geocode(location: "Someplace", state: 'XY').should == {lat: 12.34, lon: -123.45}
+        expect(Geoname.geocode(location: "Someplace", state: 'XY')).to eq({lat: 12.34, lon: -123.45})
       end
     end
 
@@ -35,8 +35,8 @@ describe Geoname do
       it 'should find the matches' do
         @first_synonyms.each do |synonym|
           geo_hash = Geoname.geocode(location: "#{synonym} City", state: 'CA')
-          geo_hash[:lat].should be_kind_of(Numeric)
-          geo_hash[:lon].should be_kind_of(Numeric)
+          expect(geo_hash[:lat]).to be_kind_of(Numeric)
+          expect(geo_hash[:lon]).to be_kind_of(Numeric)
         end
       end
     end
@@ -47,9 +47,9 @@ describe Geoname do
       Geoname.import [{type: 'geoname', location: "Someplace", state: 'XY', geo: {lat: 12.34, lon: -123.45}}]
       Geoname.import [{type: 'geoname', location: "Someplace", state: 'XY', geo: {lat: 92.34, lon: 23.45}}]
       search = Geoname.search_for(location: 'Someplace', state: 'XY', size: 2)
-      search.results.total.should == 1
-      search.results.first.id.should == 'Someplace:XY'
-      search.results.first.geo.lat.should == 92.34
+      expect(search.results.total).to eq(1)
+      expect(search.results.first.id).to eq('Someplace:XY')
+      expect(search.results.first.geo.lat).to eq(92.34)
     end
   end
 
