@@ -14,13 +14,10 @@ gem 'jbuilder', '~> 1.4.1'
 gem 'rack-cors', '~> 0.3.1'
 gem 'us_states', '~> 0.1.1', git: 'https://github.com/GSA/us_states.git'
 gem 'newrelic_rpm', '~> 3.6.3.104'
-
-# Temporarily limiting rake version:
-# #http://stackoverflow.com/questions/35893584/nomethoderror-undefined-method-last-comment-after-upgrading-to-rake-11
-gem 'rake', '~> 10.0'
+gem 'rake', '~> 11.0'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.99.0'
+  gem 'rspec-rails', '~> 3.7'
   gem 'thin', '~> 1.7.1'
 end
 
