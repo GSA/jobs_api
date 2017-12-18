@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Position Openings API V3' do
   before do
@@ -14,14 +14,14 @@ describe 'Position Openings API V3' do
   describe 'GET /search.json' do
     context 'when format is JSON' do
       context 'when searching for existing jobs in a particular organization' do
-        before { get '/search.json', { query: 'nursing jobs', hl: 1 } }
+        before { get '/search.json', params: { query: 'nursing jobs', hl: 1 } }
 
         it 'should respond with status code 200' do
           expect(response.status).to eq(200)
         end
 
         it 'should respond with content type json' do
-          expect(response.content_type).to eq(:json)
+          expect(response.content_type).to eq('application/json')
         end
 
         it 'should return with jobs data' do
@@ -44,14 +44,14 @@ describe 'Position Openings API V3' do
       end
 
       context 'when searching for non-existing jobs' do
-        before { get '/search.json', { query: 'astronaut jobs', hl: 1 } }
+        before { get '/search.json', params: { query: 'astronaut jobs', hl: 1 } }
 
         it 'should respond with status code 200' do
           expect(response.status).to eq(200)
         end
 
         it 'should respond with content type json' do
-          expect(response.content_type).to eq(:json)
+          expect(response.content_type).to eq('application/json')
         end
 
         it 'should return with empty array' do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe NeogovData do
   let(:importer) { NeogovData.new('michigan', 'state', 'USMI') }

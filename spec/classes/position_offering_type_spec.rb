@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PositionOfferingType do
   describe '.get_code' do
