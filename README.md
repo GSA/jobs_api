@@ -10,7 +10,7 @@ The documentation on request parameters and response format is on the [API devel
 
 ### Ruby
 
-This code is currently tested against [Ruby 2.1](http://www.ruby-lang.org/en/downloads/).
+This code is currently tested against [Ruby 2.3](http://www.ruby-lang.org/en/downloads/).
 
 ### Gems
 
@@ -27,6 +27,30 @@ We're using [Elasticsearch](http://www.elasticsearch.org/) (>= 1.4.0) for fullte
 
 Otherwise, follow the [instructions](http://www.elasticsearch.org/download/) to download and run it.
 
+### Elasticsearch with Docker
+
+Install Docker if you haven't done so yet. Follow the instruction [here](https://www.docker.com/community-edition)
+Once you have Docker installed on your machine, run the following command in your terminal
+
+    $ docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:1.4.5
+
+This will download an docker image containing elasticsearch=1.4.5 from docker hub, run it, and expose port 9200 & 9300 to your machine. You can verify your setup with the following command.
+
+    $ curl localhost:9200
+    {
+      "status" : 200,
+      "name" : "Aegis",
+      "cluster_name" : "elasticsearch",
+      "version" : {
+        "number" : "1.4.5",
+        "build_hash" : "2aaf797f2a571dcb779a3b61180afe8390ab61f9",
+        "build_timestamp" : "2015-04-27T08:06:06Z",
+        "build_snapshot" : false,
+        "lucene_version" : "4.10.4"
+      },
+      "tagline" : "You Know, for Search"
+    }
+
 ### Geonames
 
 We use the United States location data from [Geonames.org](http://www.geonames.org) to help geocode the locations of each job position. By assigning latitude and longitude coordinates to each position location, we can sort job results based on proximity to the searcher's location, provided that information is sent in with the request.
@@ -40,8 +64,8 @@ This includes populated places, administrative areas, parks, buildings, airports
 You can download, unzip, and filter a more recent version of the file if you like, or you can import the one in this repo to get started:
 
     bundle exec rake geonames:import[doc/filtered_US.txt]
-    
-If you are running Elasticsearch with the default 1g JVM heap, this import process will be pretty slow. 
+
+If you are running Elasticsearch with the default 1g JVM heap, this import process will be pretty slow.
 You may want to consider [allocating more memory](http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/heap-sizing.html) to Elasticsearch.
 
 ### Seed jobs data

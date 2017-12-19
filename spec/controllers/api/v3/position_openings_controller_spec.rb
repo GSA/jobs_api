@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Api::V3::PositionOpeningsController do
   describe '#search' do
@@ -11,8 +11,10 @@ describe Api::V3::PositionOpeningsController do
 
     before do
       expect(PositionOpening).to receive(:search_for).with(search_params).and_return(search_results)
-      get 'search', query: 'tsa jobs', organization_ids: 'ABCD,EFGH,VA,AF', tags: 'state city', from: '2', size: '3', hl: '1',
-          lat_lon: '37.41919999999,-122.0574', format: :json
+      get 'search', params: {
+        query: 'tsa jobs', organization_ids: 'ABCD,EFGH,VA,AF', tags: 'state city', from: '2', size: '3', hl: '1',
+        lat_lon: '37.41919999999,-122.0574', format: :json
+      }
     end
 
     it { is_expected.to respond_with(:success) }

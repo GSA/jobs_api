@@ -1,4 +1,4 @@
-JobsApi::Application.routes.draw do
+Rails.application.routes.draw do
   scope module: 'api/v2',
         constraints: ApiConstraint.new(version: 2),
         defaults: {format: :json} do
@@ -10,4 +10,6 @@ JobsApi::Application.routes.draw do
         defaults: {format: :json} do
     get '/search(.json)' => 'position_openings#search', format: false
   end
+
+  root to: proc { [404, {}, ['Not Found']] }
 end

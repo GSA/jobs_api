@@ -1,1 +1,6 @@
-api_key: ''
+development:
+  project_id: ''
+  project_key: ''
+test:
+  project_id: ''
+  project_key: ''

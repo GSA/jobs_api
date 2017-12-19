@@ -1,3 +1,5 @@
+require 'agencies'
+
 class Query
 
   JOB_KEYWORD_TOKENS = '(position|job|employment|career|trabajo|puesto|empleo|vacante)s?'.freeze
@@ -49,12 +51,12 @@ class Query
       nil
     end
     query.gsub!(/ ?(at|with) (.*) in (.*)/) do
-      self.organization_ids = Agencies.find_organization_ids($2)
+      self.organization_ids = ::Agencies.find_organization_ids($2)
       self.location = Location.new($3)
       nil
     end
     query.gsub!(/ ?(at|with) (.*)/) do
-      self.organization_ids = Agencies.find_organization_ids($2)
+      self.organization_ids = ::Agencies.find_organization_ids($2)
       nil
     end
     query.gsub!(/ ?in (.*)/) do
@@ -66,7 +68,7 @@ class Query
       query.gsub!(location_str, '')
     end
     if self.organization_ids.nil? && (possible_org = extract_possible_org(query))
-      if (self.organization_ids = Agencies.find_organization_ids(possible_org))
+      if (self.organization_ids = ::Agencies.find_organization_ids(possible_org))
         query.gsub!(possible_org, '')
       end
     end

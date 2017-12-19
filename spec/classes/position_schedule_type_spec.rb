@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PositionScheduleType, '.get_code(name)' do
   it 'should lookup position codes' do

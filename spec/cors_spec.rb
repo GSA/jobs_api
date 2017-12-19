@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 class DummyController < ApplicationController
   def show
-    render text: 'text'
+    render plain: 'text'
   end
 end
 
@@ -10,10 +10,10 @@ describe DummyController, type: :request do
   describe '#show' do
     before do
       Rails.application.routes.draw do
-        match '/show' => 'dummy#show'
+        get '/show', to: 'dummy#show'
       end
 
-      get 'show', nil, { 'HTTP_ORIGIN' => 'http://www.example.com' }
+      get '/show', params: nil, headers: { 'HTTP_ORIGIN' => 'http://www.example.com' }
     end
 
     after do

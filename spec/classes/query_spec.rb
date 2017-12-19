@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Query do
   describe '.new(query, organization_ids)' do
