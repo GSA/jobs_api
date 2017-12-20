@@ -1,6 +1,6 @@
 module Agencies
-  HOST = 'http://search.usa.gov'.freeze
   ENDPOINT = '/api/v2/agencies/search'.freeze
+  HOST = 'https://search.usa.gov'.freeze
 
   ONE_DAY = 86400
 
