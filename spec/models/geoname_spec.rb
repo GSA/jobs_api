@@ -18,7 +18,6 @@ describe Geoname do
       end
     end
 
-
     context 'when query terms contain a synonym match with terms in location field' do
       before do
         geonames, @first_synonyms = [], []

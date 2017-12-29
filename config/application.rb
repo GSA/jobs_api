@@ -14,6 +14,8 @@ module JobsApi
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = 'utf-8'
 
+    config.elasticsearch_config = (YAML.load_file("#{Rails.root}/config/elasticsearch.yml") || {})[Rails.env]
+
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{Rails.root}/lib #{Rails.root}/lib/constraints #{Rails.root}/lib/importers)
 

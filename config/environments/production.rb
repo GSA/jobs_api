@@ -49,4 +49,8 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
+
+  config.elasticsearch_client = Elasticsearch::Client.new(
+    url: Rails.application.config.elasticsearch_config['url']
+  )
 end
