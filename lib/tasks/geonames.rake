@@ -11,7 +11,7 @@ namespace :geonames do
 
   desc 'Recreate geonames index'
   task recreate_index: :environment do
-    Geoname.delete_search_index if Geoname.search_index.exists?
+    Geoname.delete_search_index if Geoname.search_index_exists?
     Geoname.create_search_index
   end
 end

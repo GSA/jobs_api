@@ -1,125 +1,229 @@
+require 'active_model'
+
 class PositionOpening
-  include Tire::Model::Search
+  include ActiveModel::Model
+  include Elasticsearch::Model
 
-  index_name("#{Elasticsearch::INDEX_NAME}")
+  INDEX_NAME = "#{Elasticsearch::INDEX_NAME}".freeze
 
-  MAX_RETURNED_DOCUMENTS = 100
-  SYNONYMS = ["information technology, it, tech, computer", "teacher, teaching", "certified nursing assistant, cna", "rn, registered nurse", "lpn, licensed practical nurse", "lvn, licensed vocational nurse", "pa, physician assistant", "custodial, janitor, custodian", "cys, child youth services", "clerk, clerical", "physician, doctor", "linguist, language", "tv, television", "legal, attorney", "counselor, counseling, therapy, therapist", "green, environment, environmental", "forester, forestry", "technical, technician", "technology, technologist", "electronic, electrical", "architect, architecture", "cypa, child and youth program assistant, childcare", "tso, transportation security officer"].freeze
+  MAX_RETURNED_DOCUMENTS = 100.freeze
+
+  SYNONYMS = [
+    "architect, architecture",
+    "certified nursing assistant, cna",
+    "clerk, clerical",
+    "counselor, counseling, therapy, therapist",
+    "custodial, janitor, custodian",
+    "cypa, child and youth program assistant, childcare",
+    "cys, child youth services",
+    "electronic, electrical",
+    "forester, forestry",
+    "green, environment, environmental",
+    "information technology, it, tech, computer",
+    "linguist, language",
+    "legal, attorney",
+    "lpn, licensed practical nurse",
+    "lvn, licensed vocational nurse",
+    "pa, physician assistant",
+    "physician, doctor",
+    "rn, registered nurse",
+    "teacher, teaching",
+    "technical, technician",
+    "technology, technologist",
+    "tso, transportation security officer",
+    "tv, television"
+  ].freeze
+
+  SETTINGS = {
+    analysis: {
+      filter: {
+        synonym: {
+          type: 'synonym',
+          synonyms: SYNONYMS
+        }
+      },
+      analyzer: {
+        custom_analyzer: {
+          type: 'custom',
+          tokenizer: 'whitespace',
+          filter: %w(standard lowercase synonym snowball)
+        }
+      }
+    }
+  }
+
+  settings index: SETTINGS do
+    mappings dynamic: 'false' do
+      indexes :type, type: 'keyword'
+      indexes :source, type: 'keyword'
+      indexes :tags, type: 'text', analyzer: 'keyword'
+      indexes :external_id, type: 'integer', store: true
+      indexes :position_title, type: 'text', analyzer: 'custom_analyzer', term_vector: 'with_positions_offsets', store: true
+      indexes :organization_id, type: 'text', analyzer: 'keyword'
+      indexes :organization_name, type: 'keyword', index: false
+
+      indexes :locations, type: 'nested' do
+        indexes :city, type: 'text', analyzer: 'simple'
+        indexes :state, type: 'text', analyzer: 'keyword'
+        indexes :geo, type: 'geo_point'
+      end
+
+      indexes :start_date, type: 'date', format: 'YYYY-MM-dd'
+      indexes :end_date, type: 'date', format: 'YYYY-MM-dd'
+      indexes :minimum, type: 'float'
+      indexes :maximum, type: 'float'
+      indexes :position_offering_type_code, type: 'integer'
+      indexes :position_schedule_type_code, type: 'integer'
+      indexes :rate_interval_code, type: 'text', analyzer: 'keyword'
+      indexes :id, type: 'keyword', index: false
+      indexes :timestamp, type: 'date'
+      indexes :ttl, type: 'date'
+    end
+  end
 
   class << self
 
+    def client
+      @client ||= PositionOpening.__elasticsearch__.client
+    end
+
     def create_search_index
-      Tire.index index_name do
-        create(
-          settings: {
-            index: {
-              analysis: {
-                analyzer: { custom_analyzer: { type: 'custom', tokenizer: 'whitespace', filter: %w(standard lowercase synonym snowball) } },
-                filter: { synonym: { type: 'synonym', synonyms: SYNONYMS } }
-              }
-            }
-          },
-          mappings: {
-            position_opening: {
-              _timestamp: { enabled: true },
-              _ttl: { enabled: true },
-              properties: {
-                type: { type: 'string' },
-                source: { type: 'string', index: :not_analyzed },
-                tags: { type: 'string', analyzer: 'keyword' },
-                external_id: { type: 'integer' },
-                position_title: { type: 'string', analyzer: 'custom_analyzer', term_vector: 'with_positions_offsets', store: true },
-                organization_id: { type: 'string', analyzer: 'keyword' },
-                organization_name: { type: 'string', index: :not_analyzed },
-                locations: {
-                  type: 'nested',
-                  properties: {
-                    city: { type: 'string', analyzer: 'simple' },
-                    state: { type: 'string', analyzer: 'keyword' },
-                    geo: { type: 'geo_point' } } },
-                start_date: { type: 'date', format: 'YYYY-MM-dd' },
-                end_date: { type: 'date', format: 'YYYY-MM-dd' },
-                minimum: { type: 'float' },
-                maximum: { type: 'float' },
-                position_offering_type_code: { type: 'integer' },
-                position_schedule_type_code: { type: 'integer' },
-                rate_interval_code: { type: 'string', analyzer: 'keyword' },
-                id: { type: 'string', index: :not_analyzed, include_in_all: false }
-              }
-            }
-          }
-        )
-      end
+      client.indices.create(
+        index: INDEX_NAME,
+        body: { settings: settings.to_hash, mappings: mappings.to_hash }
+      )
     end
 
     def search_for(options = {})
-      options.reverse_merge!(size: 10, from: 0, sort_by: :_timestamp)
+      options.reverse_merge!(size: 10, from: 0)
       document_limit = [options[:size].to_i, MAX_RETURNED_DOCUMENTS].min
       source = options[:source]
+      sort_by = options[:sort_by] || :timestamp
       tags = options[:tags].present? ? options[:tags].split(/[ ,]/) : nil
       lat, lon = options[:lat_lon].split(',') rescue [nil, nil]
       organization_ids = organization_ids_from_options(options)
       query = Query.new(options[:query], organization_ids)
 
-      search = Tire.search index_name do
-        query do
-          boolean(minimum_number_should_match: 1) do
-            must { term :source, source } if source.present?
-            must { terms :tags, tags } if tags
-            must { match :position_offering_type_code, query.position_offering_type_code } if query.position_offering_type_code.present?
-            must { match :position_schedule_type_code, query.position_schedule_type_code } if query.position_schedule_type_code.present?
-            should { match :position_title, query.keywords, analyzer: 'custom_analyzer' } if query.keywords.present?
-            should do
-              nested path: 'locations' do
-                query do
-                  match 'locations.city', query.keywords, operator: 'AND'
-                end
-              end
-            end if query.keywords.present? && query.location.nil?
-            must { match :rate_interval_code, query.rate_interval_code } if query.rate_interval_code.present?
-            must do
-              boolean do
-                should { terms :organization_id, query.organization_terms } if query.organization_terms.present?
-                query.organization_prefixes.each do |organization_prefix|
-                  should { prefix :organization_id, organization_prefix }
-                end if query.organization_prefixes.present?
-              end
-            end if query.organization_ids.present?
-            must do
-              nested path: 'locations' do
-                query do
-                  boolean do
-                    must { term 'locations.state', query.location.state } if query.has_state?
-                    must { match 'locations.city', query.location.city, operator: 'AND' } if query.has_city?
-                  end
-                end
-              end
-            end if query.location.present?
-          end
-        end if source.present? || tags || query.valid?
+      search_definition = {
+        query: {
+          bool: {
+            must: [],
+            should: [],
+            filter: [
+              { range: { start_date: { lte: Date.current } }}
+            ],
+            minimum_should_match: '0<1'
+          }
+        },
+        highlight: {
+          fields: {
+            position_title: { number_of_fragments: 0 }
+          }
+        },
+        size: document_limit,
+        from: options[:from]
+      }
 
-        filter :range, start_date: { lte: Date.current }
+      if source.present? || tags || query.valid?
+        if source.present?
+          search_definition[:query][:bool][:must] << { term: { source: source } }
+        end
 
-        if query.keywords.blank?
-          if lat.blank? || lon.blank?
-            sort { by options[:sort_by], 'desc' }
-          else
-            options[:sort_by] = 'geo_distance'
-            sort do
-              by :_geo_distance, {
-                'locations.geo' => {
-                  lat: lat, lon: lon
-                },
-                :order => 'asc'
+        if tags
+          search_definition[:query][:bool][:must] << { terms: { tags: tags } }
+        end
+
+        if query.position_offering_type_code.present?
+          search_definition[:query][:bool][:must] << { match: { position_offering_type_code: { query: query.position_offering_type_code } } }
+        end
+
+        if query.position_schedule_type_code.present?
+          search_definition[:query][:bool][:must] << { match: { position_schedule_type_code: { query: query.position_schedule_type_code } } }
+        end
+
+        if query.keywords.present?
+          search_definition[:query][:bool][:should] << { match: { position_title: { query: query.keywords, analyzer: 'custom_analyzer' } } }
+        end
+
+        if query.keywords.present? && query.location.nil?
+          search_definition[:query][:bool][:should] << {
+            nested: {
+              path: 'locations',
+              query: {
+                match: { 'locations.city': { query: query.keywords, operator: 'AND' }}
               }
+            }
+          }
+        end
+
+        if query.rate_interval_code.present?
+          search_definition[:query][:bool][:must] << { match: { rate_interval_code: query.rate_interval_code }}
+        end
+
+        if query.organization_ids.present?
+          definition = {
+            bool: {
+              should: []
+            }
+          }
+
+          if query.organization_terms.present?
+            definition[:bool][:should] << { terms: { organization_id: query.organization_terms } }
+          end
+          if query.organization_prefixes.present?
+            query.organization_prefixes.each do |prefix|
+              definition[:bool][:should] << { prefix: { organization_id: prefix } }
             end
           end
+
+          search_definition[:query][:bool][:must] << definition
         end
-        size document_limit
-        from options[:from]
-        highlight position_title: { number_of_fragments: 0 }
+
+        if query.location.present?
+          locations = {
+            nested: {
+              path: 'locations',
+              query: {
+                bool: {
+                  must: []
+                }
+              }
+            }
+          }
+
+          if query.has_state?
+            locations[:nested][:query][:bool][:must] << { term: { 'locations.state': { term: query.location.state } }}
+          end
+
+          if query.has_city?
+            locations[:nested][:query][:bool][:must] << { match: { 'locations.city': { query: query.location.city, operator: 'AND' }}}
+          end
+
+          search_definition[:query][:bool][:must] << locations
+        end
       end
 
+      if query.keywords.blank?
+        if lat.blank? || lon.blank?
+          search_definition[:sort] = [{ "#{sort_by}": 'desc' }]
+        else
+          search_definition[:sort] = [{
+            _geo_distance: {
+              'locations.geo': { lat: lat.to_f, lon: lon.to_f },
+              order: 'asc',
+              nested_path: 'locations'
+            }
+          }]
+        end
+      else
+        search_definition[:sort] = { "#{sort_by}": 'desc' }
+      end
+
+      if search_definition[:query][:bool][:must].empty? && search_definition[:query][:bool][:should].empty?
+        search_definition[:query] =  { match_all: {} }
+      end
+
+      search = __elasticsearch__.search(search_definition, index: INDEX_NAME)
       Rails.logger.info("[Query] #{options.merge(result_count: search.results.total).to_json}")
 
       search.results.collect do |item|
@@ -127,8 +231,8 @@ class PositionOpening
           id: item.id,
           source: item.source,
           external_id: item.external_id,
-          position_title: (options[:hl] == '1' && item.highlight.present?) ? item.highlight[:position_title][0] : item.position_title,
-          organization_name: item.organization_name,
+          position_title: (options[:hl] == '1' && item.try(:highlight).present?) ? item.highlight[:position_title][0] : item.position_title,
+          organization_name: item.try(:organization_name),
           rate_interval_code: item.rate_interval_code,
           minimum: item.minimum,
           maximum: item.maximum,
@@ -141,27 +245,39 @@ class PositionOpening
     end
 
     def delete_search_index
-      search_index.delete
+      client.indices.delete index: INDEX_NAME rescue nil
     end
 
-    def search_index
-      Tire.index(index_name)
+    def search_index_exists?
+      client.indices.exists? index: INDEX_NAME
     end
 
     def import(position_openings)
-      Tire.index index_name do
-        import position_openings do |docs|
-          docs.each do |doc|
-            doc[:id] = "#{doc[:source]}:#{doc[:external_id]}"
-            doc[:locations].each do |loc|
-              normalized_city = loc[:city].sub(' Metro Area', '').sub(/, .*$/, '')
-              lat_lon_hash = Geoname.geocode(location: normalized_city, state: loc[:state])
-              loc[:geo] = lat_lon_hash if lat_lon_hash.present?
-            end if doc[:locations].present?
+      position_openings.each do |opening|
+        data = opening.except(:_timestamp, :_ttl).each_with_object({}) do |(key, value), data|
+          if key == :locations
+            data[:locations] = value.map do |v|
+              {city: normalized_city(v[:city]),
+              state: v[:state],
+              geo: v[:geo] || find_geoname(v[:city], v[:state])}
+            end
+          else
+            data[key] = value
           end
         end
-        refresh
+
+        client.index(
+          index: INDEX_NAME,
+          type: 'position_opening',
+          id: "#{opening[:source]}:#{opening[:external_id]}",
+          body: data.merge!({
+            timestamp: opening[:_timestamp].blank? ? DateTime.current : opening[:_timestamp],
+            id: "#{opening[:source]}:#{opening[:external_id]}"
+          })
+        )
       end
+
+      __elasticsearch__.refresh_index! index: INDEX_NAME
 
       Rails.logger.info "Imported #{position_openings.size} position openings"
     end
@@ -171,13 +287,17 @@ class PositionOpening
       total = 0
       external_ids = []
       begin
-        search = Tire.search index_name do
-          query { match :source, source }
-          fields %w(external_id)
-          sort { by :id }
-          from from_index
-          size MAX_RETURNED_DOCUMENTS
-        end
+        search_definition = {
+          query: { match: { source: { query: source }}},
+          stored_fields: %w(external_id),
+          _source: true
+        }
+
+        search_definition[:size] = MAX_RETURNED_DOCUMENTS
+        search_definition[:from] = from_index
+        search_definition[:sort] = ['external_id']
+
+        search = __elasticsearch__.search(search_definition, index: INDEX_NAME)
         external_ids.push(*search.results.map(&:external_id))
         from_index += search.results.count
         total = search.results.total
@@ -204,5 +324,12 @@ class PositionOpening
       organization_ids
     end
 
+    def find_geoname(location, state)
+      Geoname.geocode(location: normalized_city(location), state: state)
+    end
+
+    def normalized_city(city)
+      city.sub(' Metro Area', '').sub(/, .*$/, '')
+    end
   end
 end

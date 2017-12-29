@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Position Openings API V3' do
   before do
-    PositionOpening.delete_search_index if PositionOpening.search_index.exists?
+    PositionOpening.delete_search_index if PositionOpening.search_index_exists?
     PositionOpening.create_search_index
 
     UsajobsData.new('doc/sample.xml').import
@@ -31,7 +31,7 @@ describe 'Position Openings API V3' do
                                          'organization_name'=>'Veterans Affairs, Veterans Health Administration',
                                          'rate_interval_code'=>'PH', 'minimum'=>17, 'maximum'=>23,
                                          'start_date'=>'2012-09-19', 'end_date'=>'2022-01-31',
-                                         'locations'=>['Odessa, TX', 'Pentagon, Arlington, VA', 'San Angelo, TX', 'Abilene, TX'],
+                                         'locations'=>['Odessa, TX', 'Pentagon, VA', 'San Angelo, TX', 'Abilene, TX'],
                                          'url' => 'https://www.usajobs.gov/GetJob/ViewDetails/327358300'})
 
           expect(results_array.last).to eq({'id'=>'ng:michigan:234175', 'position_title'=>'Registered <em>Nurse</em> Non-Career',

@@ -8,8 +8,6 @@ end
 gem 'rails', '5.1.4'
 gem 'rails-controller-testing', '~> 1.0'
 gem 'nokogiri', '~> 1.8.0'
-# gem 'tire', '~> 0.6.2' #deprecated in 2013
-# gem 'tire-contrib', '~> 0.1.2'
 gem 'oj', '~> 3.1.3' # Unused?
 gem 'faraday_middleware', '~> 0.12.2'
 gem 'net-http-persistent', '~> 2.8'

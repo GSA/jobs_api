@@ -4,7 +4,7 @@ describe 'Position Openings API V2' do
   let(:v2_headers) { { 'Accept' => 'application/vnd.usagov.position_openings.v2' } }
 
   before do
-    PositionOpening.delete_search_index if PositionOpening.search_index.exists?
+    PositionOpening.delete_search_index if PositionOpening.search_index_exists?
     PositionOpening.create_search_index
 
     UsajobsData.new('doc/sample.xml').import
@@ -29,11 +29,12 @@ describe 'Position Openings API V2' do
         it 'should return with jobs data' do
           results_array = JSON.parse(response.body)
           expect(results_array.size).to eq(2)
+          # binding.pry
           expect(results_array.first).to eq({'id'=>'usajobs:327358300', 'position_title'=>'Student <em>Nurse</em> Technicians',
                                          'organization_name'=>'Veterans Affairs, Veterans Health Administration',
                                          'rate_interval_code'=>'PH', 'minimum'=>17, 'maximum'=>23,
                                          'start_date'=>'2012-09-19', 'end_date'=>'2022-01-31',
-                                         'locations'=>['Odessa, TX', 'Pentagon, Arlington, VA', 'San Angelo, TX', 'Abilene, TX'],
+                                         'locations'=>['Odessa, TX', 'Pentagon, VA', 'San Angelo, TX', 'Abilene, TX'],
                                          'url' => 'https://www.usajobs.gov/GetJob/ViewDetails/327358300'})
 
           expect(results_array.last).to eq({'id'=>'ng:michigan:234175', 'position_title'=>'Registered <em>Nurse</em> Non-Career',

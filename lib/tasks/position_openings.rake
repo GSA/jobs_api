@@ -41,7 +41,7 @@ namespace :jobs do
 
   desc 'Recreate position openings index'
   task recreate_index: :environment do
-    PositionOpening.delete_search_index if PositionOpening.search_index.exists?
+    PositionOpening.delete_search_index if PositionOpening.search_index_exists?
     PositionOpening.create_search_index
   end
 end

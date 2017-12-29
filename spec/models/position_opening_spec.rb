@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe PositionOpening do
   before do
-    PositionOpening.delete_search_index if PositionOpening.search_index.exists?
+    PositionOpening.delete_search_index if PositionOpening.search_index_exists?
     PositionOpening.create_search_index
   end
 
@@ -218,11 +218,11 @@ describe PositionOpening do
     describe 'limiting result set size and starting point' do
       it 'should use the size param' do
         expect(PositionOpening.search_for(query: 'jobs', size: 1).count).to eq(1)
-        expect(PositionOpening.search_for(query: 'jobs', size: 10).count).to eq(6)
+        expect(PositionOpening.search_for(query: 'jobs', size: 10).count).to eq(7)
       end
 
       it 'should use the from param' do
-        expect(PositionOpening.search_for(query: 'jobs', size: 1, from: 1, sort_by: :id).first[:id]).to eq('usajobs:2')
+        expect(PositionOpening.search_for(query: 'jobs', size: 1, from: 1, sort_by: :id).first[:id]).to eq('usajobs:3')
       end
     end
 
@@ -230,8 +230,8 @@ describe PositionOpening do
       context 'when keywords present' do
         it 'should sort by relevance' do
           res = PositionOpening.search_for(query: 'physician nursing Practitioner')
-          expect(res.first[:position_title]).to eq('Deputy Special Assistant to the Chief Nurse Practitioner')
-          expect(res.last[:position_title]).to eq('Physician Assistant')
+          expect(res.first[:position_title]).to eq('Physician Assistant')
+          expect(res.last[:position_title]).to eq('Deputy Special Assistant to the Chief Nurse Practitioner')
         end
       end
 
@@ -282,14 +282,12 @@ describe PositionOpening do
                                      start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
                                      locations: [{ city: 'Fulton', state: 'MD' }] }]
               PositionOpening.import position_openings
-              sleep(0.25)
               position_openings = [{ source: 'usajobs', external_id: 1001, type: 'position_opening', position_title: 'Physician Assistant Newer',
                                      position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
                                      organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
                                      start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
                                      locations: [{ city: 'Fulton', state: 'MD' }] }]
               PositionOpening.import position_openings
-              sleep(0.25)
               position_openings = [{ source: 'usajobs', external_id: 1002, type: 'position_opening', position_title: 'Physician Assistant Newest',
                                      position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
                                      organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
@@ -396,12 +394,10 @@ describe PositionOpening do
       expect(Geoname).to receive(:geocode).with(location: 'Washington', state: 'DC').and_return({ lat: 23.45, lon: -12.34 })
       expect(Geoname).to receive(:geocode).with(location: 'Maui Island', state: 'HI').and_return({ lat: 45.67, lon: -13.31 })
       PositionOpening.import([position_opening])
-      position_openings = Tire.search 'test:jobs' do
-        query { all }
-      end
-      expect(position_openings.results.first[:locations][0][:geo].to_hash).to eq({ lat: 12.34, lon: -23.45 })
-      expect(position_openings.results.first[:locations][1][:geo].to_hash).to eq({ lat: 23.45, lon: -12.34 })
-      expect(position_openings.results.first[:locations][2][:geo].to_hash).to eq({ lat: 45.67, lon: -13.31 })
+      position_openings = PositionOpening.search('*', index: 'test:jobs')
+      expect(position_openings.results.first.locations[0][:geo].to_json).to eq({ lat: 12.34, lon: -23.45 }.to_json)
+      expect(position_openings.results.first.locations[1][:geo].to_json).to eq({ lat: 23.45, lon: -12.34 }.to_json)
+      expect(position_openings.results.first.locations[2][:geo].to_json).to eq({ lat: 45.67, lon: -13.31 }.to_json)
     end
 
     context 'when no location information is present for job' do
@@ -414,9 +410,7 @@ describe PositionOpening do
 
       it 'should leave locations empty' do
         PositionOpening.import([position_opening_no_locations])
-        position_openings = Tire.search 'test:jobs' do
-          query { all }
-        end
+        position_openings = PositionOpening.search('*', index: 'test:jobs')
         expect(position_openings.results.first[:locations]).to be_nil
       end
 
