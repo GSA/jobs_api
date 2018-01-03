@@ -20,6 +20,8 @@ gem 'newrelic_rpm', '~> 4.6.0'
 gem 'rake', '~> 11.0'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'elasticsearch-dsl'
+gem 'pry'
 
 group :development, :test do
   gem 'puma', '~> 3.7'

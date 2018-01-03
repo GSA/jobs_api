@@ -29,7 +29,6 @@ describe 'Position Openings API V2' do
         it 'should return with jobs data' do
           results_array = JSON.parse(response.body)
           expect(results_array.size).to eq(2)
-          # binding.pry
           expect(results_array.first).to eq({'id'=>'usajobs:327358300', 'position_title'=>'Student <em>Nurse</em> Technicians',
                                          'organization_name'=>'Veterans Affairs, Veterans Health Administration',
                                          'rate_interval_code'=>'PH', 'minimum'=>17, 'maximum'=>23,

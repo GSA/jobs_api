@@ -218,11 +218,11 @@ describe PositionOpening do
     describe 'limiting result set size and starting point' do
       it 'should use the size param' do
         expect(PositionOpening.search_for(query: 'jobs', size: 1).count).to eq(1)
-        expect(PositionOpening.search_for(query: 'jobs', size: 10).count).to eq(7)
+        expect(PositionOpening.search_for(query: 'jobs', size: 10).count).to eq(6)
       end
 
       it 'should use the from param' do
-        expect(PositionOpening.search_for(query: 'jobs', size: 1, from: 1, sort_by: :id).first[:id]).to eq('usajobs:3')
+        expect(PositionOpening.search_for(query: 'jobs', size: 1, from: 1, sort_by: :id).first[:id]).to eq('usajobs:2')
       end
     end
 

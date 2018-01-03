@@ -5,7 +5,6 @@ class Geoname
   include Elasticsearch::Model
 
   INDEX_NAME = "#{Rails.env}:geonames".freeze
-  index_name = INDEX_NAME
 
   SYNONYMS = [
     "afb, air force base",
