@@ -6,7 +6,6 @@ Elasticsearch::INDEX_NAME = config && config['index_name'].present? ? config['in
 
 Rails.application.config.elasticsearch_client = Elasticsearch::Client.new(
   url: config['url'],
-  host: config['host'],
   user: config['username'],
   password: config['password']
 )
