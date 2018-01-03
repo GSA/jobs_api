@@ -1,2 +1,0 @@
-PositionOpening.create_search_index unless PositionOpening.search_index_exists?
-Geoname.create_search_index unless Geoname.search_index_exists?

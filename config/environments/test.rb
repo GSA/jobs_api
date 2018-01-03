@@ -30,9 +30,4 @@ Rails.application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
-
-  config.elasticsearch_client = Elasticsearch::Client.new(
-    host: 'localhost:9200',
-    log: false
-  )
 end
