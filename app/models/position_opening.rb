@@ -104,129 +104,81 @@ class PositionOpening
       organization_ids = organization_ids_from_options(options)
       query = Query.new(options[:query], organization_ids)
 
-      search_definition = {
-        query: {
-          bool: {
-            must: [],
-            should: [],
-            filter: [
-              { range: { start_date: { lte: Date.current } }}
-            ],
-            minimum_should_match: '0<1'
-          }
-        },
-        highlight: {
-          fields: {
-            position_title: { number_of_fragments: 0 }
-          }
-        },
-        size: document_limit,
-        from: options[:from]
-      }
-
-      if source.present? || tags || query.valid?
-        if source.present?
-          search_definition[:query][:bool][:must] << { term: { source: source } }
-        end
-
-        if tags
-          search_definition[:query][:bool][:must] << { terms: { tags: tags } }
-        end
-
-        if query.position_offering_type_code.present?
-          search_definition[:query][:bool][:must] << { match: { position_offering_type_code: { query: query.position_offering_type_code } } }
-        end
-
-        if query.position_schedule_type_code.present?
-          search_definition[:query][:bool][:must] << { match: { position_schedule_type_code: { query: query.position_schedule_type_code } } }
-        end
-
-        if query.keywords.present?
-          search_definition[:query][:bool][:should] << { match: { position_title: { query: query.keywords, analyzer: 'custom_analyzer' } } }
-        end
-
-        if query.keywords.present? && query.location.nil?
-          search_definition[:query][:bool][:should] << {
+      search = SearchDefinition.new do |s|
+        s.definition = {
+          query: {
+            bool: {
+              must: [],
+              should: [],
+              filter: [
+                { range: { start_date: { lte: Date.current } }}
+              ],
+              minimum_should_match: '0<1'
+            }
+          },
+          highlight: {
+            fields: {
+              position_title: { number_of_fragments: 0 }
+            }
+          },
+          size: document_limit,
+          from: options[:from],
+          sort: []
+        }
+        if source.present? || tags || query.valid?
+          s.must({ term: { source: source } }) if source.present?
+          s.must({ terms: { tags: tags } }) if tags
+          s.must({ match: { position_offering_type_code: { query: query.position_offering_type_code } } }) if query.position_offering_type_code.present?
+          s.must({ match: { position_schedule_type_code: { query: query.position_schedule_type_code } } }) if query.position_schedule_type_code.present?
+          s.should({ match: { position_title: { query: query.keywords, analyzer: 'custom_analyzer' } } }) if query.keywords.present?
+          s.should({
             nested: {
               path: 'locations',
               query: {
                 match: { 'locations.city': { query: query.keywords, operator: 'AND' }}
               }
             }
-          }
-        end
+          }) if query.keywords.present? && query.location.nil?
 
-        if query.rate_interval_code.present?
-          search_definition[:query][:bool][:must] << { match: { rate_interval_code: query.rate_interval_code }}
-        end
+          s.must({ match: { rate_interval_code: query.rate_interval_code } }) if query.rate_interval_code.present?
 
-        if query.organization_ids.present?
-          definition = {
-            bool: {
-              should: []
-            }
-          }
-
-          if query.organization_terms.present?
-            definition[:bool][:should] << { terms: { organization_id: query.organization_terms } }
-          end
-          if query.organization_prefixes.present?
-            query.organization_prefixes.each do |prefix|
-              definition[:bool][:should] << { prefix: { organization_id: prefix } }
-            end
+          if query.organization_ids.present?
+            organization_ids = build_organization_id_definition(query)
+            s.must(organization_ids.definition)
           end
 
-          search_definition[:query][:bool][:must] << definition
+          if query.location.present?
+            location = build_location_definition(query)
+            s.must({ nested: { path: 'locations', query: location.definition } })
+          end
         end
 
-        if query.location.present?
-          locations = {
-            nested: {
-              path: 'locations',
-              query: {
-                bool: {
-                  must: []
-                }
+        if query.keywords.blank?
+          if lat.blank? || lon.blank?
+            s.sort({ "#{sort_by}": 'desc' })
+          else
+            s.sort([{
+              _geo_distance: {
+                'locations.geo': { lat: lat.to_f, lon: lon.to_f },
+                order: 'asc',
+                nested_path: 'locations'
               }
-            }
-          }
-
-          if query.has_state?
-            locations[:nested][:query][:bool][:must] << { term: { 'locations.state': { term: query.location.state } }}
+            }])
           end
-
-          if query.has_city?
-            locations[:nested][:query][:bool][:must] << { match: { 'locations.city': { query: query.location.city, operator: 'AND' }}}
-          end
-
-          search_definition[:query][:bool][:must] << locations
-        end
-      end
-
-      if query.keywords.blank?
-        if lat.blank? || lon.blank?
-          search_definition[:sort] = [{ "#{sort_by}": 'desc' }]
         else
-          search_definition[:sort] = [{
-            _geo_distance: {
-              'locations.geo': { lat: lat.to_f, lon: lon.to_f },
-              order: 'asc',
-              nested_path: 'locations'
-            }
-          }]
+          s.sort({ "#{sort_by}": 'desc' })
         end
-      else
-        search_definition[:sort] = { "#{sort_by}": 'desc' }
+
+        if s.definition[:query][:bool][:must].empty? && s.definition[:query][:bool][:should].empty?
+          s.definition[:query] =  { match_all: {} }
+        end
       end
 
-      if search_definition[:query][:bool][:must].empty? && search_definition[:query][:bool][:should].empty?
-        search_definition[:query] =  { match_all: {} }
-      end
+      search_results = __elasticsearch__.search(search.definition, index: INDEX_NAME)
 
-      search = __elasticsearch__.search(search_definition, index: INDEX_NAME)
-      Rails.logger.info("[Query] #{options.merge(result_count: search.results.total).to_json}")
+      Rails.logger.info("[Query] #{options.merge(result_count: search_results.results.total).to_json}")
 
-      search.results.collect do |item|
+      search_results.results.collect do |item|
         {
           id: item.id,
           source: item.source,
@@ -330,6 +282,26 @@ class PositionOpening
 
     def normalized_city(city)
       city.sub(' Metro Area', '').sub(/, .*$/, '')
+    end
+
+    def build_location_definition(query)
+      SearchDefinition.new do |s|
+        s.definition = { bool: { must: [] } }
+        s.must({ term: { 'locations.state': { term: query.location.state } }}) if query.has_state?
+        s.must({ match: { 'locations.city': { query: query.location.city, operator: 'AND' }}}) if query.has_city?
+      end
+    end
+
+    def build_organization_id_definition(query)
+      SearchDefinition.new do |s1|
+        s1.definition = { bool: { should: [] } }
+        s1.should({ terms: { organization_id: query.organization_terms } }) if query.organization_terms.present?
+        if query.organization_prefixes.present?
+          query.organization_prefixes.each do |prefix|
+            s1.should({ prefix: { organization_id: prefix } })
+          end
+        end
+      end
     end
   end
 end
