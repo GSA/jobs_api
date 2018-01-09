@@ -1,8 +1,10 @@
 require 'active_model'
+require 'elasticsearch/dsl'
 
 class Geoname
   include ActiveModel::Model
   include Elasticsearch::Model
+  include Elasticsearch::DSL
 
   INDEX_NAME = "#{Rails.env}:geonames".freeze
 
@@ -66,24 +68,28 @@ class Geoname
     end
 
     def search_for(options)
-      search_definition = {
-        query: {
-          bool: {
-            must: [
-              { match: { location: { query: options[:location], operator: 'AND' } } },
-              { term: { state: options[:state] } }
-            ]
-          }
-        }
-      }
+      search_definition = Elasticsearch::DSL::Search.search do
+        query do
+          bool do
+            must do
+              match :location do
+                query options[:location]
+                operator 'and'
+              end
+            end
 
-      search_definition[:size] = options[:size]
+            must { term state: options[:state] }
+          end
+        end
+
+        size options[:size]
+      end.to_hash
 
       Geoname.search(search_definition, index: INDEX_NAME)
     end
 
     def delete_search_index
-      client.indices.delete index: INDEX_NAME rescue nil
+      client.indices.delete index: INDEX_NAME if search_index_exists?
     end
 
     def search_index_exists?

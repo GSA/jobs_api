@@ -9,7 +9,7 @@ describe Geoname do
   describe '.geocode(options)' do
 
     describe 'basic location/state lookup' do
-      before(:each) do
+      before do
         Geoname.import [{type: 'geoname', location: "Someplace", state: 'XY', geo: {lat: 12.34, lon: -123.45}}]
       end
 
