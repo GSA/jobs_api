@@ -62,6 +62,7 @@ class NeogovData
     now = DateTime.current.freeze
 
     is_continuous = end_date_str =~ /^continuous$/i
+
     if is_continuous
       end_datetime_utc = now + 7
       end_date = end_datetime_utc.to_date

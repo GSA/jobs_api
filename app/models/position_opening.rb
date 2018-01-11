@@ -78,8 +78,7 @@ class PositionOpening
       indexes :position_schedule_type_code, type: 'integer'
       indexes :rate_interval_code, type: 'text', analyzer: 'keyword'
       indexes :id, type: 'keyword', index: false
-      indexes :timestamp, type: 'date'
-      indexes :ttl, type: 'date'
+      indexes :timestamp, type: 'date', null_value: 'NULL'
     end
   end
 
@@ -289,6 +288,45 @@ class PositionOpening
         total = search.results.total
       end while external_ids.count < total
       external_ids.flatten
+    end
+
+    def delete_expired_docs
+      query = Elasticsearch::DSL::Search.search do
+        query do
+          bool do
+            filter do
+              range :end_date do
+                lte Date.current
+              end
+            end
+          end
+        end
+      end
+
+      client.delete_by_query(body: query.to_hash, index: INDEX_NAME)
+      __elasticsearch__.refresh_index! index: INDEX_NAME
+    end
+
+    def delete_invalid_docs
+      definition = Elasticsearch::DSL::Search.search do
+        query do
+          bool do
+            must_not do
+              bool do
+                must do
+                  exists { field 'end_date' }
+                end
+                must do
+                  exists { field 'start_date' }
+                end
+              end
+            end
+          end
+        end
+      end
+
+      client.delete_by_query(body: definition.to_hash, index: INDEX_NAME)
+      __elasticsearch__.refresh_index! index: INDEX_NAME
     end
 
     def url_for_position_opening(position_opening)

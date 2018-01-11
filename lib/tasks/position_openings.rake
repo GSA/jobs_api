@@ -44,4 +44,9 @@ namespace :jobs do
     PositionOpening.delete_search_index if PositionOpening.search_index_exists?
     PositionOpening.create_search_index
   end
+
+  desc 'Delete expired position openings'
+  task delete_expired_position_openings: :environment do
+    
+  end
 end

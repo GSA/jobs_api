@@ -6,6 +6,78 @@ describe PositionOpening do
     PositionOpening.create_search_index
   end
 
+  describe '.delete_expired_docs' do
+    before do
+      position_openings = []
+      # deleted : end date is now
+      position_openings << { source: 'usajobs', external_id: 8801, type: 'position_opening', position_title: 'Deputy Special Assistant to the Chief Nurse Practitioner',
+                               organization_id: 'AF09', organization_name: 'Air Force Personnel Center',
+                               position_schedule_type_code: 1, position_offering_type_code: 15317, tags: %w(federal),
+                               start_date: Date.current, end_date: Date.current, minimum: 80000, maximum: 100000, rate_interval_code: 'PA',
+                               locations: [{ city: 'Andrews AFB', state: 'MD' },
+                                           { city: 'Pentagon Arlington', state: 'VA' },
+                                           { city: 'Air Force Academy', state: 'CO' }] }
+        # # deleted: end_date is nil
+        # position_openings << { source: 'usajobs', external_id: 8802, type: 'position_opening', position_title: 'Physician Assistant',
+        #                        position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+        #                        organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+        #                        start_date: Date.current, end_date: nil, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+        #                        locations: [{ city: 'Fulton', state: 'MD' }] }
+        # not deleted
+        position_openings << { source: 'usajobs', external_id: 8803, type: 'position_opening', position_title: 'Future Person',
+                               organization_id: 'FUTU', organization_name: 'Future Administration',
+                               position_schedule_type_code: 2, position_offering_type_code: 15327, tags: %w(federal),
+                               start_date: Date.current + 1, end_date: Date.current + 8, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                               locations: [{ city: 'San Francisco', state: 'CA' }] }
+        # deleted: end_date is less than start date
+        position_openings << { source: 'usajobs', external_id: 8804, type: 'position_opening', position_title: 'Making No Money',
+                               organization_id: 'FUTU', organization_name: 'Future Administration',
+                               position_schedule_type_code: 1, position_offering_type_code: 15328, tags: %w(federal),
+                               start_date: Date.current + 10, end_date: Date.current, minimum: 0, maximum: 0, rate_interval_code: 'WC',
+                               locations: [{ city: 'San Francisco', state: 'CA' }] }
+      PositionOpening.import position_openings
+    end
+
+    it 'should delete the position openings that are expired (less than today)' do
+      PositionOpening.delete_expired_docs
+      res = PositionOpening.search('*', index: 'test:jobs')
+      expect(res.size).to eq 1
+      expect(res.results.first.id).to eq('usajobs:8803')
+    end
+  end
+
+  describe '.delete_invalid_docs' do
+    before do
+      position_openings = []
+        # deleted: end_date is nil
+        position_openings << { source: 'usajobs', external_id: 8805, type: 'position_opening', position_title: 'Physician Assistant',
+                               position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                               organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                               start_date: Date.current, end_date: nil, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                               locations: [{ city: 'Fulton', state: 'MD' }] }
+        #not deleted
+        position_openings << { source: 'usajobs', external_id: 8806, type: 'position_opening', position_title: 'Future Person',
+                               organization_id: 'FUTU', organization_name: 'Future Administration',
+                               position_schedule_type_code: 2, position_offering_type_code: 15327, tags: %w(federal),
+                               start_date: Date.current + 1, end_date: Date.current + 8, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                               locations: [{ city: 'San Francisco', state: 'CA' }] }
+        # deleted: start_date is nil
+        position_openings << { source: 'usajobs', external_id: 8807, type: 'position_opening', position_title: 'Making No Money',
+                               organization_id: 'FUTU', organization_name: 'Future Administration',
+                               position_schedule_type_code: 1, position_offering_type_code: 15328, tags: %w(federal),
+                               start_date: nil, end_date: Date.current, minimum: 0, maximum: 0, rate_interval_code: 'WC',
+                               locations: [{ city: 'San Francisco', state: 'CA' }] }
+      PositionOpening.import position_openings
+    end
+
+    it 'should delete the position openings that are expired (less than today)' do
+      PositionOpening.delete_invalid_docs
+      res = PositionOpening.search('*', index: 'test:jobs')
+      expect(res.size).to eq 1
+      expect(res.results.first.id).to eq('usajobs:8806')
+    end
+  end
+
   describe '.search_for(options)' do
     before do
       position_openings = []
