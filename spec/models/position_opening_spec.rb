@@ -17,18 +17,29 @@ describe PositionOpening do
                                locations: [{ city: 'Andrews AFB', state: 'MD' },
                                            { city: 'Pentagon Arlington', state: 'VA' },
                                            { city: 'Air Force Academy', state: 'CO' }] }
-        # not deleted
-        position_openings << { source: 'usajobs', external_id: 8803, type: 'position_opening', position_title: 'Future Person',
-                               organization_id: 'FUTU', organization_name: 'Future Administration',
-                               position_schedule_type_code: 2, position_offering_type_code: 15327, tags: %w(federal),
-                               start_date: Date.current + 1, end_date: Date.current + 8, minimum: 17, maximum: 23, rate_interval_code: 'PH',
-                               locations: [{ city: 'San Francisco', state: 'CA' }] }
-        # deleted: end_date is less than start date
-        position_openings << { source: 'usajobs', external_id: 8804, type: 'position_opening', position_title: 'Making No Money',
-                               organization_id: 'FUTU', organization_name: 'Future Administration',
-                               position_schedule_type_code: 1, position_offering_type_code: 15328, tags: %w(federal),
-                               start_date: Date.current + 10, end_date: Date.current, minimum: 0, maximum: 0, rate_interval_code: 'WC',
-                               locations: [{ city: 'San Francisco', state: 'CA' }] }
+      # not deleted
+      position_openings << { source: 'usajobs', external_id: 8803, type: 'position_opening', position_title: 'Future Person',
+                             organization_id: 'FUTU', organization_name: 'Future Administration',
+                             position_schedule_type_code: 2, position_offering_type_code: 15327, tags: %w(federal),
+                             start_date: Date.current + 1, end_date: Date.current + 8, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                             locations: [{ city: 'San Francisco', state: 'CA' }] }
+      # deleted: end_date is less than start date
+      position_openings << { source: 'usajobs', external_id: 8804, type: 'position_opening', position_title: 'Making No Money',
+                             organization_id: 'FUTU', organization_name: 'Future Administration',
+                             position_schedule_type_code: 1, position_offering_type_code: 15328, tags: %w(federal),
+                             start_date: Date.current + 10, end_date: Date.current, minimum: 0, maximum: 0, rate_interval_code: 'WC',
+                             locations: [{ city: 'San Francisco', state: 'CA' }] }
+      position_openings << { source: 'usajobs', external_id: 8807, type: 'position_opening', position_title: 'Making No Money',
+                            organization_id: 'FUTU', organization_name: 'Future Administration',
+                            position_schedule_type_code: 1, position_offering_type_code: 15328, tags: %w(federal),
+                            start_date: nil, end_date: Date.current + 8, minimum: 0, maximum: 0, rate_interval_code: 'WC',
+                            locations: [{ city: 'San Francisco', state: 'CA' }] }
+      # deleted: end_date is nil
+      position_openings << { source: 'usajobs', external_id: 8805, type: 'position_opening', position_title: 'Physician Assistant',
+                             position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                             organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                             start_date: Date.current, end_date: nil, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                             locations: [{ city: 'Fulton', state: 'MD' }] }
       PositionOpening.import position_openings
     end
 
@@ -37,38 +48,6 @@ describe PositionOpening do
       res = PositionOpening.search('*', index: 'test:jobs')
       expect(res.size).to eq 1
       expect(res.results.first.id).to eq('usajobs:8803')
-    end
-  end
-
-  describe '.delete_invalid_docs' do
-    before do
-      position_openings = []
-        # deleted: end_date is nil
-        position_openings << { source: 'usajobs', external_id: 8805, type: 'position_opening', position_title: 'Physician Assistant',
-                               position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
-                               organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
-                               start_date: Date.current, end_date: nil, minimum: 17, maximum: 23, rate_interval_code: 'PH',
-                               locations: [{ city: 'Fulton', state: 'MD' }] }
-        # not deleted
-        position_openings << { source: 'usajobs', external_id: 8806, type: 'position_opening', position_title: 'Future Person',
-                               organization_id: 'FUTU', organization_name: 'Future Administration',
-                               position_schedule_type_code: 2, position_offering_type_code: 15327, tags: %w(federal),
-                               start_date: Date.current + 1, end_date: Date.current + 8, minimum: 17, maximum: 23, rate_interval_code: 'PH',
-                               locations: [{ city: 'San Francisco', state: 'CA' }] }
-        # deleted: start_date is nil
-        position_openings << { source: 'usajobs', external_id: 8807, type: 'position_opening', position_title: 'Making No Money',
-                               organization_id: 'FUTU', organization_name: 'Future Administration',
-                               position_schedule_type_code: 1, position_offering_type_code: 15328, tags: %w(federal),
-                               start_date: nil, end_date: Date.current, minimum: 0, maximum: 0, rate_interval_code: 'WC',
-                               locations: [{ city: 'San Francisco', state: 'CA' }] }
-      PositionOpening.import position_openings
-    end
-
-    it 'should delete the position openings that are expired (less than today)' do
-      PositionOpening.delete_invalid_docs
-      res = PositionOpening.search('*', index: 'test:jobs')
-      expect(res.size).to eq 1
-      expect(res.results.first.id).to eq('usajobs:8806')
     end
   end
 

@@ -295,8 +295,28 @@ class PositionOpening
         query do
           bool do
             filter do
-              range :end_date do
-                lte Date.current
+              bool do
+                should do
+                  range :end_date do
+                    lte Date.current
+                  end
+                end
+
+                should do
+                  bool do
+                    must_not do
+                      bool do
+                        must do
+                          exists { field 'end_date' }
+                        end
+                        must do
+                          exists { field 'start_date' }
+                        end
+                      end
+                    end
+                  end
+                end
+
               end
             end
           end
@@ -304,28 +324,6 @@ class PositionOpening
       end
 
       client.delete_by_query(body: query.to_hash, index: INDEX_NAME)
-      __elasticsearch__.refresh_index! index: INDEX_NAME
-    end
-
-    def delete_invalid_docs
-      definition = Elasticsearch::DSL::Search.search do
-        query do
-          bool do
-            must_not do
-              bool do
-                must do
-                  exists { field 'end_date' }
-                end
-                must do
-                  exists { field 'start_date' }
-                end
-              end
-            end
-          end
-        end
-      end
-
-      client.delete_by_query(body: definition.to_hash, index: INDEX_NAME)
       __elasticsearch__.refresh_index! index: INDEX_NAME
     end
 
