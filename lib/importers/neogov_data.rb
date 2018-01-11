@@ -87,14 +87,8 @@ class NeogovData
     entry[:locations] = process_location_and_state(job_xml.xpath(XPATHS[:location]).inner_text,
                                                    job_xml.xpath(XPATHS[:state]).inner_text)
 
-    # if
-    #   entry[:_ttl] = '1s'
-    #   return entry
-    # end
-
     unless seconds_remaining.zero? || entry[:locations].blank?
       entry[:timestamp] = pubdate.iso8601
-      # entry[:_ttl] = "#{seconds_remaining}s"
       entry[:position_title] = job_xml.xpath(XPATHS[:position_title]).inner_text.squish
       entry[:start_date] = start_date
       entry[:end_date] = is_continuous ? nil : end_date
