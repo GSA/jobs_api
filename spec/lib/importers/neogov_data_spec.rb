@@ -7,7 +7,7 @@ describe NeogovData do
     let!(:current_datetime) { DateTime.current.freeze }
     let!(:current) { current_datetime.to_date.freeze }
     let(:far_away) { Date.parse('2022-01-31') }
-    let(:continuous_ttl) { "#{(current_datetime + 7).to_i - DateTime.parse('2012-03-12 10:16:56.14').to_datetime.to_i}s" }
+    # let(:continuous_ttl) { "#{(current_datetime + 7).to_i - DateTime.parse('2012-03-12 10:16:56.14').to_datetime.to_i}s" }
 
     before { allow(DateTime).to receive(:current).and_return(current_datetime) }
 
@@ -25,8 +25,8 @@ describe NeogovData do
           expect(position_openings[0]).to eq(
             {type: 'position_opening', source: 'ng:michigan',
              organization_id: 'USMI', organization_name: 'State of Michigan, MI', tags: %w(state),
-             _timestamp: '2013-04-12T15:52:34+00:00', external_id: 634789,
-             locations: [{city: 'Lansing', state: 'MI'}], _ttl: '277909586s',
+             timestamp: '2013-04-12T15:52:34+00:00', external_id: 634789,
+             locations: [{city: 'Lansing', state: 'MI'}],
              position_title: 'Professional Development and Training Intern-DHS',
              start_date: Date.parse('2013-04-12'), end_date: far_away, minimum: nil, maximum: nil,
              rate_interval_code: 'PH', position_offering_type_code: 15328, position_schedule_type_code: nil}
@@ -35,8 +35,8 @@ describe NeogovData do
           expect(position_openings[1]).to eq(
             {type: 'position_opening', source: 'ng:michigan',
              organization_id: 'USMI', organization_name: 'State of Michigan, MI', tags: %w(state),
-             _timestamp: '2013-04-08T15:15:21+00:00', external_id: 631517,
-             locations: [{city: 'Lansing', state: 'MI'}], _ttl: '278257419s',
+             timestamp: '2013-04-08T15:15:21+00:00', external_id: 631517,
+             locations: [{city: 'Lansing', state: 'MI'}],
              position_title: 'MEDC Corporate - Business Attraction Manager',
              start_date: Date.parse('2013-04-08'), end_date: far_away, minimum: 59334.0, maximum: 77066.0,
              rate_interval_code: 'PA', position_offering_type_code: 15317, position_schedule_type_code: 1}
@@ -45,9 +45,8 @@ describe NeogovData do
           expect(position_openings[2]).to eq(
             {type: 'position_opening', source: 'ng:michigan',
              organization_id: 'USMI', organization_name: 'State of Michigan, MI', tags: %w(state),
-             _timestamp: '2012-03-12T10:16:56+00:00', external_id: 282662,
-             locations: [{city: 'Freeland', state: 'MI'}],
-             _ttl: continuous_ttl, position_title: 'Dentist-A',
+             timestamp: '2012-03-12T10:16:56+00:00', external_id: 282662,
+             locations: [{city: 'Freeland', state: 'MI'}], position_title: 'Dentist-A',
              start_date: Date.parse('2011-09-23'), end_date: nil, minimum: 37.33, maximum: 51.66,
              rate_interval_code: 'PH', position_offering_type_code: 15317, position_schedule_type_code: 2}
           )
@@ -55,9 +54,8 @@ describe NeogovData do
           expect(position_openings[3]).to eq(
             {type: 'position_opening', source: 'ng:michigan',
              organization_id: 'USMI', organization_name: 'State of Michigan, MI', tags: %w(state),
-             _timestamp: '2010-08-10T16:07:30+00:00', external_id: 234175,
-             locations: [{city: 'Munising', state: 'MI'}],
-             _ttl: '362235090s', position_title: 'Registered Nurse Non-Career',
+             timestamp: '2010-08-10T16:07:30+00:00', external_id: 234175,
+             locations: [{city: 'Munising', state: 'MI'}], position_title: 'Registered Nurse Non-Career',
              start_date: Date.parse('2010-06-08'), end_date: far_away, minimum: 28.37, maximum: 38.87,
              rate_interval_code: 'PH', position_offering_type_code: nil, position_schedule_type_code: nil}
           )
@@ -81,8 +79,8 @@ describe NeogovData do
           expect(position_openings[0]).to eq(
             {type: 'position_opening', source: 'ng:michigan',
              organization_id: 'USMI', organization_name: 'State of Michigan, MI', tags: %w(state),
-             _timestamp: '2013-04-12T15:52:34+00:00', external_id: 634789,
-             locations: [{city: 'Lansing', state: 'MI'}], _ttl: '277909586s',
+             timestamp: '2013-04-12T15:52:34+00:00', external_id: 634789,
+             locations: [{city: 'Lansing', state: 'MI'}],
              position_title: 'Professional Development and Training Intern-DHS',
              start_date: Date.parse('2013-04-12'), end_date: far_away, minimum: nil, maximum: nil,
              rate_interval_code: 'PH', position_offering_type_code: 15328, position_schedule_type_code: nil}
@@ -91,15 +89,15 @@ describe NeogovData do
           expect(position_openings[1]).to eq(
             {type: 'position_opening', source: 'ng:michigan',
              organization_id: 'USMI', organization_name: 'State of Michigan, MI', tags: %w(state),
-             _timestamp: '2013-04-08T15:15:21+00:00', external_id: 631517,
-             locations: [{city: 'Lansing', state: 'MI'}], _ttl: '278257419s',
+             timestamp: '2013-04-08T15:15:21+00:00', external_id: 631517,
+             locations: [{city: 'Lansing', state: 'MI'}],
              position_title: 'MEDC Corporate - Business Attraction Manager',
              start_date: Date.parse('2013-04-08'), end_date: far_away, minimum: 59334.0, maximum: 77066.0,
              rate_interval_code: 'PA', position_offering_type_code: 15317, position_schedule_type_code: 1}
           )
 
           expect(position_openings[2]).to eq(
-            {type: 'position_opening', source: 'ng:michigan', external_id: 282662, _ttl: '1s'}
+            {type: 'position_opening', source: 'ng:michigan', external_id: 282662}
           )
         end
         less_entries_importer.import
@@ -113,19 +111,19 @@ describe NeogovData do
         allow(expired_importer).to receive(:fetch_jobs_rss).and_return File.open('spec/resources/neogov/expired.rss')
       end
 
-      it 'should set their _ttl to 1s' do
-        expect(PositionOpening).to receive(:get_external_ids_by_source).with('ng:michigan').and_return([])
-        expect(PositionOpening).to receive(:import) do |position_openings|
-          expect(position_openings.length).to eq(1)
-
-          expect(position_openings[0]).to eq(
-            {type: 'position_opening', source: 'ng:michigan',
-             organization_id: 'USMI', organization_name: 'State of Michigan, MI', tags: %w(state),
-             external_id: 282662, locations: [{city: 'Freeland', state: 'MI'}], _ttl: '1s'}
-          )
-        end
-        expired_importer.import
-      end
+      # it 'should set their _ttl to 1s' do
+      #   expect(PositionOpening).to receive(:get_external_ids_by_source).with('ng:michigan').and_return([])
+      #   expect(PositionOpening).to receive(:import) do |position_openings|
+      #     expect(position_openings.length).to eq(1)
+      #
+      #     expect(position_openings[0]).to eq(
+      #       {type: 'position_opening', source: 'ng:michigan',
+      #        organization_id: 'USMI', organization_name: 'State of Michigan, MI', tags: %w(state),
+      #        external_id: 282662, locations: [{city: 'Freeland', state: 'MI'}], _ttl: '1s'}
+      #     )
+      #   end
+      #   expired_importer.import
+      # end
     end
 
     context 'when the city or state is invalid' do
@@ -143,7 +141,7 @@ describe NeogovData do
           expect(position_openings[0]).to eq(
             {type: 'position_opening', source: 'ng:michigan',
              organization_id: 'USMI', organization_name: 'State of Michigan, MI', tags: %w(state),
-             external_id: 386302, locations: [], _ttl: '1s'}
+             external_id: 386302, locations: []}
           )
         end
         bad_location_importer.import

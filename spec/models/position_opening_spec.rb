@@ -31,17 +31,17 @@ describe PositionOpening do
                              position_schedule_type_code: 1, position_offering_type_code: 15328, tags: %w(federal),
                              start_date: Date.current, end_date: Date.current + 8, minimum: 0, maximum: 0, rate_interval_code: 'WC',
                              locations: [{ city: 'San Francisco', state: 'CA' }] }
-      position_openings << { type: 'position_opening', source: 'ng:michigan', _timestamp: Date.current.weeks_ago(1).iso8601, external_id: 629140,
+      position_openings << { type: 'position_opening', source: 'ng:michigan', timestamp: Date.current.weeks_ago(1).iso8601, external_id: 629140,
                              locations: [{ city: 'Lansing', state: 'MI' }], tags: %w(state),
                              rate_interval_code: 'PH', position_schedule_type_code: 1, position_offering_type_code: 15317,
                              position_title: 'Supervisor (DOH #28425)',
                              start_date: Date.current, end_date: Date.current.tomorrow, minimum: 20.7, maximum: 36.8 }
-      position_openings << { type: 'position_opening', source: 'ng:michigan', _timestamp: Date.current.yesterday.iso8601, external_id: 616313,
+      position_openings << { type: 'position_opening', source: 'ng:michigan', timestamp: Date.current.yesterday.iso8601, external_id: 616313,
                              locations: [{ city: 'Detroit', state: 'MI' }], tags: %w(state),
                              rate_interval_code: 'PH', position_schedule_type_code: 1, position_offering_type_code: 15322,
                              position_title: 'Indoor Lifeguard',
                              start_date: Date.current, end_date: Date.current + 8, minimum: 15.68, maximum: 27.11 }
-      position_openings << { type: 'position_opening', source: 'ng:bloomingtonmn', _timestamp: Date.current.iso8601, external_id: 632865,
+      position_openings << { type: 'position_opening', source: 'ng:bloomingtonmn', timestamp: Date.current.iso8601, external_id: 632865,
                              locations: [{ city: 'Detroit', state: 'MI' }], tags: %w(city),
                              rate_interval_code: 'PA', position_schedule_type_code: 1, position_offering_type_code: 15317,
                              position_title: 'Computer Specialist',

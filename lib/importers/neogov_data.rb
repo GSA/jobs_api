@@ -42,7 +42,7 @@ class NeogovData
     existing_external_ids = PositionOpening.get_external_ids_by_source(@source)
     expired_ids = existing_external_ids - updated_external_ids
     expired_openings = expired_ids.collect do |expired_id|
-      {type: 'position_opening', source: @source, external_id: expired_id, _ttl: '1s'}
+      {type: 'position_opening', source: @source, external_id: expired_id}
     end
     position_openings.push(*expired_openings)
     PositionOpening.import position_openings
@@ -86,20 +86,22 @@ class NeogovData
     entry[:locations] = process_location_and_state(job_xml.xpath(XPATHS[:location]).inner_text,
                                                    job_xml.xpath(XPATHS[:state]).inner_text)
 
-    if seconds_remaining.zero? || entry[:locations].blank?
-      entry[:_ttl] = '1s'
-      return entry
-    end
+    # if
+    #   entry[:_ttl] = '1s'
+    #   return entry
+    # end
 
-    entry[:_timestamp] = pubdate.iso8601
-    entry[:_ttl] = "#{seconds_remaining}s"
-    entry[:position_title] = job_xml.xpath(XPATHS[:position_title]).inner_text.squish
-    entry[:start_date] = start_date
-    entry[:end_date] = is_continuous ? nil : end_date
-    entry[:minimum] = process_salary(job_xml.xpath(XPATHS[:minimum]).inner_text)
-    entry[:maximum] = process_salary(job_xml.xpath(XPATHS[:maximum]).inner_text)
-    entry[:rate_interval_code] = process_salary_interval(job_xml.xpath(XPATHS[:salary_interval]).inner_text)
-    entry.merge!(process_job_type(job_xml.xpath(XPATHS[:job_type]).inner_text))
+    unless seconds_remaining.zero? || entry[:locations].blank?
+      entry[:timestamp] = pubdate.iso8601
+      # entry[:_ttl] = "#{seconds_remaining}s"
+      entry[:position_title] = job_xml.xpath(XPATHS[:position_title]).inner_text.squish
+      entry[:start_date] = start_date
+      entry[:end_date] = is_continuous ? nil : end_date
+      entry[:minimum] = process_salary(job_xml.xpath(XPATHS[:minimum]).inner_text)
+      entry[:maximum] = process_salary(job_xml.xpath(XPATHS[:maximum]).inner_text)
+      entry[:rate_interval_code] = process_salary_interval(job_xml.xpath(XPATHS[:salary_interval]).inner_text)
+      entry.merge!(process_job_type(job_xml.xpath(XPATHS[:job_type]).inner_text))
+    end
 
     entry
   end
