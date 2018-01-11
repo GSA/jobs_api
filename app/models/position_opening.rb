@@ -240,7 +240,7 @@ class PositionOpening
 
     def import(position_openings)
       position_openings.each do |opening|
-        data = opening.except(:_timestamp, :_ttl).each_with_object({}) do |(key, value), data|
+        data = opening.except(:timestamp, :ttl).each_with_object({}) do |(key, value), data|
           if key == :locations
             data[:locations] = value.map do |v|
               {city: normalized_city(v[:city]),
@@ -252,12 +252,15 @@ class PositionOpening
           end
         end
 
+        ts = opening[:timestamp].blank? ? DateTime.current : opening[:timestamp]
+
         client.index(
           index: INDEX_NAME,
           type: 'position_opening',
           id: "#{opening[:source]}:#{opening[:external_id]}",
           body: data.merge!({
-            timestamp: opening[:_timestamp].blank? ? DateTime.current : opening[:_timestamp],
+            timestamp: ts,
+            ttl: opening[:ttl].blank? ? opening[:end_date] : (ts + convert_ttl_to_datetime_duration(opening[:ttl]),
             id: "#{opening[:source]}:#{opening[:external_id]}"
           })
         )

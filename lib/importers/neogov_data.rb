@@ -42,7 +42,7 @@ class NeogovData
     existing_external_ids = PositionOpening.get_external_ids_by_source(@source)
     expired_ids = existing_external_ids - updated_external_ids
     expired_openings = expired_ids.collect do |expired_id|
-      {type: 'position_opening', source: @source, external_id: expired_id, _ttl: '1s'}
+      {type: 'position_opening', source: @source, external_id: expired_id, ttl: '1s'}
     end
     position_openings.push(*expired_openings)
     PositionOpening.import position_openings
@@ -87,12 +87,12 @@ class NeogovData
                                                    job_xml.xpath(XPATHS[:state]).inner_text)
 
     if seconds_remaining.zero? || entry[:locations].blank?
-      entry[:_ttl] = '1s'
+      entry[:ttl] = '1s'
       return entry
     end
 
-    entry[:_timestamp] = pubdate.iso8601
-    entry[:_ttl] = "#{seconds_remaining}s"
+    entry[:timestamp] = pubdate.iso8601
+    entry[:ttl] = "#{seconds_remaining}s"
     entry[:position_title] = job_xml.xpath(XPATHS[:position_title]).inner_text.squish
     entry[:start_date] = start_date
     entry[:end_date] = is_continuous ? nil : end_date
