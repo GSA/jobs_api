@@ -239,26 +239,28 @@ class PositionOpening
 
     def import(position_openings)
       position_openings.each do |opening|
-        data = opening.each_with_object({}) do |(key, value), data|
-          if key == :locations
-            data[:locations] = value.map do |v|
-              {city: normalized_city(v[:city]),
-              state: v[:state],
-              geo: v[:geo] || find_geoname(v[:city], v[:state])}
+        data = opening.each_with_object({timestamp: DateTime.current}) do |(key, value), data|
+          data[key] =
+            case key
+            when :locations
+              value.map do |v|
+                {
+                  city: normalized_city(v[:city]),
+                  state: v[:state],
+                  geo: v[:geo] || find_geoname(v[:city], v[:state])
+                }
+              end
+            else
+              value
             end
-          else
-            data[key] = value
-          end
         end
 
+        id = "#{opening[:source]}:#{opening[:external_id]}"
         client.index(
           index: INDEX_NAME,
           type: 'position_opening',
-          id: "#{opening[:source]}:#{opening[:external_id]}",
-          body: data.merge!({
-            timestamp: opening[:timestamp] || DateTime.current,
-            id: "#{opening[:source]}:#{opening[:external_id]}"
-          })
+          id: id,
+          body: data.merge!(id: id)
         )
       end
 
