@@ -47,7 +47,6 @@ GEM
     airbrake (7.1.0)
       airbrake-ruby (~> 2.5)
     airbrake-ruby (2.6.2)
-    ansi (1.5.0)
     arel (8.0.0)
     builder (3.2.3)
     capistrano (2.15.4)
@@ -56,6 +55,7 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    chronic (0.10.2)
     concurrent-ruby (1.0.5)
     coveralls (0.7.0)
       multi_json (~> 1.3)
@@ -68,6 +68,20 @@ GEM
     docile (1.1.3)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
+    elasticsearch (5.0.4)
+      elasticsearch-api (= 5.0.4)
+      elasticsearch-transport (= 5.0.4)
+    elasticsearch-api (5.0.4)
+      multi_json
+    elasticsearch-dsl (0.1.5)
+    elasticsearch-model (5.0.2)
+      activesupport (> 3)
+      elasticsearch (~> 5)
+      hashie
+    elasticsearch-rails (5.0.2)
+    elasticsearch-transport (5.0.4)
+      faraday
+      multi_json
     erubi (1.7.0)
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
@@ -76,7 +90,7 @@ GEM
     ffi (1.9.18)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    hashr (0.0.22)
+    hashie (3.5.7)
     highline (1.6.19)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -204,16 +218,6 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tins (0.13.2)
-    tire (0.6.2)
-      activemodel (>= 3.0)
-      activesupport
-      ansi
-      hashr (~> 0.0.19)
-      multi_json (~> 1.3)
-      rake
-      rest-client (~> 1.6)
-    tire-contrib (0.1.2)
-      tire
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
     unf (0.1.4)
@@ -222,6 +226,8 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
+    whenever (0.10.0)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -230,6 +236,9 @@ DEPENDENCIES
   airbrake (~> 7.1)
   capistrano (~> 2.15.4)
   coveralls (~> 0.7.0)
+  elasticsearch-dsl
+  elasticsearch-model
+  elasticsearch-rails
   faraday_middleware (~> 0.12.2)
   jbuilder (~> 2.7.0)
   listen (>= 3.0.5, < 3.2)
@@ -250,9 +259,8 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   test-unit (~> 3.0)
-  tire (~> 0.6.2)
-  tire-contrib (~> 0.1.2)
   us_states (~> 0.1.1)!
+  whenever
 
 BUNDLED WITH
    1.16.0

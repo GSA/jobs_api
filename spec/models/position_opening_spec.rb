@@ -2,8 +2,53 @@ require 'rails_helper'
 
 describe PositionOpening do
   before do
-    PositionOpening.delete_search_index if PositionOpening.search_index.exists?
+    PositionOpening.delete_search_index if PositionOpening.search_index_exists?
     PositionOpening.create_search_index
+  end
+
+  describe '.delete_expired_docs' do
+    before do
+      position_openings = []
+      # deleted : end date is now
+      position_openings << { source: 'usajobs', external_id: 8801, type: 'position_opening', position_title: 'Deputy Special Assistant to the Chief Nurse Practitioner',
+                               organization_id: 'AF09', organization_name: 'Air Force Personnel Center',
+                               position_schedule_type_code: 1, position_offering_type_code: 15317, tags: %w(federal),
+                               start_date: Date.current, end_date: Date.current, minimum: 80000, maximum: 100000, rate_interval_code: 'PA',
+                               locations: [{ city: 'Andrews AFB', state: 'MD' },
+                                           { city: 'Pentagon Arlington', state: 'VA' },
+                                           { city: 'Air Force Academy', state: 'CO' }] }
+      # not deleted
+      position_openings << { source: 'usajobs', external_id: 8803, type: 'position_opening', position_title: 'Future Person',
+                             organization_id: 'FUTU', organization_name: 'Future Administration',
+                             position_schedule_type_code: 2, position_offering_type_code: 15327, tags: %w(federal),
+                             start_date: Date.current + 1, end_date: Date.current + 8, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                             locations: [{ city: 'San Francisco', state: 'CA' }] }
+      # deleted: end_date is less than start date
+      position_openings << { source: 'usajobs', external_id: 8804, type: 'position_opening', position_title: 'Making No Money',
+                             organization_id: 'FUTU', organization_name: 'Future Administration',
+                             position_schedule_type_code: 1, position_offering_type_code: 15328, tags: %w(federal),
+                             start_date: Date.current + 10, end_date: Date.current, minimum: 0, maximum: 0, rate_interval_code: 'WC',
+                             locations: [{ city: 'San Francisco', state: 'CA' }] }
+      position_openings << { source: 'usajobs', external_id: 8807, type: 'position_opening', position_title: 'Making No Money',
+                            organization_id: 'FUTU', organization_name: 'Future Administration',
+                            position_schedule_type_code: 1, position_offering_type_code: 15328, tags: %w(federal),
+                            start_date: nil, end_date: Date.current + 8, minimum: 0, maximum: 0, rate_interval_code: 'WC',
+                            locations: [{ city: 'San Francisco', state: 'CA' }] }
+      # deleted: end_date is nil
+      position_openings << { source: 'usajobs', external_id: 8805, type: 'position_opening', position_title: 'Physician Assistant',
+                             position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                             organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                             start_date: Date.current, end_date: nil, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                             locations: [{ city: 'Fulton', state: 'MD' }] }
+      PositionOpening.import position_openings
+    end
+
+    it 'should delete the position openings that are expired (less than today)' do
+      PositionOpening.delete_expired_docs
+      res = PositionOpening.search('*', index: 'test:jobs')
+      expect(res.size).to eq 1
+      expect(res.results.first.id).to eq('usajobs:8803')
+    end
   end
 
   describe '.search_for(options)' do
@@ -31,17 +76,17 @@ describe PositionOpening do
                              position_schedule_type_code: 1, position_offering_type_code: 15328, tags: %w(federal),
                              start_date: Date.current, end_date: Date.current + 8, minimum: 0, maximum: 0, rate_interval_code: 'WC',
                              locations: [{ city: 'San Francisco', state: 'CA' }] }
-      position_openings << { type: 'position_opening', source: 'ng:michigan', _timestamp: Date.current.weeks_ago(1).iso8601, external_id: 629140,
+      position_openings << { type: 'position_opening', source: 'ng:michigan', timestamp: Date.current.weeks_ago(1).iso8601, external_id: 629140,
                              locations: [{ city: 'Lansing', state: 'MI' }], tags: %w(state),
                              rate_interval_code: 'PH', position_schedule_type_code: 1, position_offering_type_code: 15317,
                              position_title: 'Supervisor (DOH #28425)',
                              start_date: Date.current, end_date: Date.current.tomorrow, minimum: 20.7, maximum: 36.8 }
-      position_openings << { type: 'position_opening', source: 'ng:michigan', _timestamp: Date.current.yesterday.iso8601, external_id: 616313,
+      position_openings << { type: 'position_opening', source: 'ng:michigan', timestamp: Date.current.yesterday.iso8601, external_id: 616313,
                              locations: [{ city: 'Detroit', state: 'MI' }], tags: %w(state),
                              rate_interval_code: 'PH', position_schedule_type_code: 1, position_offering_type_code: 15322,
                              position_title: 'Indoor Lifeguard',
                              start_date: Date.current, end_date: Date.current + 8, minimum: 15.68, maximum: 27.11 }
-      position_openings << { type: 'position_opening', source: 'ng:bloomingtonmn', _timestamp: Date.current.iso8601, external_id: 632865,
+      position_openings << { type: 'position_opening', source: 'ng:bloomingtonmn', timestamp: Date.current.iso8601, external_id: 632865,
                              locations: [{ city: 'Detroit', state: 'MI' }], tags: %w(city),
                              rate_interval_code: 'PA', position_schedule_type_code: 1, position_offering_type_code: 15317,
                              position_title: 'Computer Specialist',
@@ -230,8 +275,8 @@ describe PositionOpening do
       context 'when keywords present' do
         it 'should sort by relevance' do
           res = PositionOpening.search_for(query: 'physician nursing Practitioner')
-          expect(res.first[:position_title]).to eq('Deputy Special Assistant to the Chief Nurse Practitioner')
-          expect(res.last[:position_title]).to eq('Physician Assistant')
+          expect(res.first[:position_title]).to eq('Physician Assistant')
+          expect(res.last[:position_title]).to eq('Deputy Special Assistant to the Chief Nurse Practitioner')
         end
       end
 
@@ -282,14 +327,12 @@ describe PositionOpening do
                                      start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
                                      locations: [{ city: 'Fulton', state: 'MD' }] }]
               PositionOpening.import position_openings
-              sleep(0.25)
               position_openings = [{ source: 'usajobs', external_id: 1001, type: 'position_opening', position_title: 'Physician Assistant Newer',
                                      position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
                                      organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
                                      start_date: Date.current, end_date: Date.tomorrow, minimum: 17, maximum: 23, rate_interval_code: 'PH',
                                      locations: [{ city: 'Fulton', state: 'MD' }] }]
               PositionOpening.import position_openings
-              sleep(0.25)
               position_openings = [{ source: 'usajobs', external_id: 1002, type: 'position_opening', position_title: 'Physician Assistant Newest',
                                      position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
                                      organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
@@ -396,12 +439,10 @@ describe PositionOpening do
       expect(Geoname).to receive(:geocode).with(location: 'Washington', state: 'DC').and_return({ lat: 23.45, lon: -12.34 })
       expect(Geoname).to receive(:geocode).with(location: 'Maui Island', state: 'HI').and_return({ lat: 45.67, lon: -13.31 })
       PositionOpening.import([position_opening])
-      position_openings = Tire.search 'test:jobs' do
-        query { all }
-      end
-      expect(position_openings.results.first[:locations][0][:geo].to_hash).to eq({ lat: 12.34, lon: -23.45 })
-      expect(position_openings.results.first[:locations][1][:geo].to_hash).to eq({ lat: 23.45, lon: -12.34 })
-      expect(position_openings.results.first[:locations][2][:geo].to_hash).to eq({ lat: 45.67, lon: -13.31 })
+      position_openings = PositionOpening.search('*', index: 'test:jobs')
+      expect(position_openings.results.first.locations[0][:geo].to_json).to eq({ lat: 12.34, lon: -23.45 }.to_json)
+      expect(position_openings.results.first.locations[1][:geo].to_json).to eq({ lat: 23.45, lon: -12.34 }.to_json)
+      expect(position_openings.results.first.locations[2][:geo].to_json).to eq({ lat: 45.67, lon: -13.31 }.to_json)
     end
 
     context 'when no location information is present for job' do
@@ -414,9 +455,7 @@ describe PositionOpening do
 
       it 'should leave locations empty' do
         PositionOpening.import([position_opening_no_locations])
-        position_openings = Tire.search 'test:jobs' do
-          query { all }
-        end
+        position_openings = PositionOpening.search('*', index: 'test:jobs')
         expect(position_openings.results.first[:locations]).to be_nil
       end
 

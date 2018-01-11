@@ -21,9 +21,9 @@ We use bundler to manage gems. You can install bundler and other required gems l
 
 ### Elasticsearch
 
-We're using [Elasticsearch](http://www.elasticsearch.org/) (>= 1.4.0) for fulltext search. On a Mac, it's easy to install with [Homebrew](http://mxcl.github.com/homebrew/).
+We're using [Elasticsearch](http://www.elasticsearch.org/) (>= 5.6) for fulltext search. On a Mac, it's easy to install with [Homebrew](http://mxcl.github.com/homebrew/).
 
-    $ brew install elasticsearch
+    $ brew install elasticsearch@5.6
 
 Otherwise, follow the [instructions](http://www.elasticsearch.org/download/) to download and run it.
 
@@ -32,21 +32,21 @@ Otherwise, follow the [instructions](http://www.elasticsearch.org/download/) to 
 Install Docker if you haven't done so yet. Follow the instruction [here](https://www.docker.com/community-edition)
 Once you have Docker installed on your machine, run the following command in your terminal
 
-    $ docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:1.4.5
+    $ docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:5.6
 
-This will download an docker image containing elasticsearch=1.4.5 from docker hub, run it, and expose port 9200 & 9300 to your machine. You can verify your setup with the following command.
+This will download an docker image containing elasticsearch=5.6.5 from docker hub, run it, and expose port 9200 & 9300 to your machine. You can verify your setup with the following command.
 
     $ curl localhost:9200
     {
-      "status" : 200,
-      "name" : "Aegis",
+      "name" : "u2bQgL2",
       "cluster_name" : "elasticsearch",
+      "cluster_uuid" : "qZ-Xas_PR_2ARtHpY724Ug",
       "version" : {
-        "number" : "1.4.5",
-        "build_hash" : "2aaf797f2a571dcb779a3b61180afe8390ab61f9",
-        "build_timestamp" : "2015-04-27T08:06:06Z",
+        "number" : "5.6.5",
+        "build_hash" : "6a37571",
+        "build_date" : "2017-12-04T07:50:10.466Z",
         "build_snapshot" : false,
-        "lucene_version" : "4.10.4"
+        "lucene_version" : "6.6.1"
       },
       "tagline" : "You Know, for Search"
     }

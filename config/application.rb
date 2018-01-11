@@ -2,7 +2,6 @@ require_relative 'boot'
 
 require 'rails'
 require 'action_controller/railtie'
-# require 'tire/rails/logger' # This does not work with Rails 5
 
 Bundler.require(*Rails.groups)
 
@@ -30,5 +29,6 @@ module JobsApi
     end
 
     config.airbrake = config_for(:airbrake)
+    config.elasticsearch = config_for(:elasticsearch)
   end
 end

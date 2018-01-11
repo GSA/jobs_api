@@ -11,7 +11,7 @@ describe UsajobsData do
       expect(PositionOpening).to receive(:import) do |position_openings|
         expect(position_openings.length).to eq(3)
         expect(position_openings[0]).to eq(
-          {type: 'position_opening', source: 'usajobs', external_id: 305972200, _ttl: ttl,
+          {type: 'position_opening', source: 'usajobs', external_id: 305972200,
            position_title: 'Medical Officer', tags: %w(federal),
            organization_id: 'AF09', organization_name: 'Air Force Personnel Center',
            locations: [{city: 'Dyess AFB', state: 'TX'}],
@@ -19,7 +19,7 @@ describe UsajobsData do
            minimum: 60274, maximum: 155500, rate_interval_code: 'PA', position_schedule_type_code: 1, position_offering_type_code: 15327}
         )
         expect(position_openings[1]).to eq(
-          {type: 'position_opening', source: 'usajobs', external_id: 325054900, _ttl: ttl,
+          {type: 'position_opening', source: 'usajobs', external_id: 325054900,
            position_title: 'Physician (Surgical Critical Care)', tags: %w(federal),
            organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
            locations: [{city: 'Charleston', state: 'SC'}],
@@ -27,7 +27,7 @@ describe UsajobsData do
            minimum: 125000, maximum: 295000, rate_interval_code: 'PA', position_schedule_type_code: 2, position_offering_type_code: 15317}
         )
         expect(position_openings[2]).to eq(
-          {type: 'position_opening', source: 'usajobs', external_id: 327358300, _ttl: ttl,
+          {type: 'position_opening', source: 'usajobs', external_id: 327358300,
            position_title: 'Student Nurse Technicians', tags: %w(federal),
            organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
            locations: [{city: 'Odessa', state: 'TX'},
@@ -48,15 +48,15 @@ describe UsajobsData do
         expect(PositionOpening).to receive(:import) do |position_openings|
           expect(position_openings.length).to eq(3)
           expect(position_openings[0]).to eq(
-            {type: 'position_opening', source: 'usajobs', external_id: 305972200, _ttl: '1s',
+            {type: 'position_opening', source: 'usajobs', external_id: 305972200,
              tags: %w(federal), locations: [{:city => "Dyess AFB", :state => "TX"}]}
           )
           expect(position_openings[1]).to eq(
-            {type: 'position_opening', source: 'usajobs', external_id: 325054900, _ttl: '1s',
+            {type: 'position_opening', source: 'usajobs', external_id: 325054900,
              tags: %w(federal), locations: [{:city => "Charleston", :state => "SC"}]}
           )
           expect(position_openings[2]).to eq(
-            {type: 'position_opening', source: 'usajobs', external_id: 327358300, _ttl: '1s',
+            {type: 'position_opening', source: 'usajobs', external_id: 327358300,
              tags: %w(federal), locations: [{:city => "Odessa", :state => "TX"},
                                             {:city => "Pentagon, Arlington", :state => "VA"},
                                             {:city => "San Angelo", :state => "TX"},
@@ -75,14 +75,14 @@ describe UsajobsData do
         expect(PositionOpening).to receive(:import) do |position_openings|
           expect(position_openings.length).to eq(2)
           expect(position_openings[0]).to eq(
-            {type: "position_opening", source: 'usajobs', external_id: 305972200, _ttl: ttl, position_title: "Medical Officer",
+            {type: "position_opening", source: 'usajobs', external_id: 305972200, position_title: "Medical Officer",
              organization_id: "AF09", organization_name: "Air Force Personnel Center", tags: %w(federal),
              locations: [{:city => "Fulton", :state => "MD"}],
              start_date: Date.parse('28 Dec 2011'), end_date: far_away,
              minimum: 60274, maximum: 155500, rate_interval_code: "PA", position_schedule_type_code: 1, position_offering_type_code: 15327}
           )
           expect(position_openings[1]).to eq(
-            {type: "position_opening", source: 'usajobs', external_id: 325054900, _ttl: "1s", locations: [], tags: %w(federal)}
+            {type: "position_opening", source: 'usajobs', external_id: 325054900, locations: [], tags: %w(federal)}
           )
         end
         bad_location_importer.import
@@ -96,7 +96,7 @@ describe UsajobsData do
         expect(PositionOpening).to receive(:import) do |position_openings|
           expect(position_openings.length).to eq(1)
           expect(position_openings[0]).to eq(
-            {type: 'position_opening', source: 'usajobs', external_id: 327358300, _ttl: '1s',
+            {type: 'position_opening', source: 'usajobs', external_id: 327358300,
              tags: %w(federal), locations: []}
           )
         end

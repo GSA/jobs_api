@@ -8,8 +8,6 @@ end
 gem 'rails', '5.1.4'
 gem 'rails-controller-testing', '~> 1.0'
 gem 'nokogiri', '~> 1.8.0'
-gem 'tire', '~> 0.6.2' #deprecated in 2013
-gem 'tire-contrib', '~> 0.1.2'
 gem 'oj', '~> 3.1.3' # Unused?
 gem 'faraday_middleware', '~> 0.12.2'
 gem 'net-http-persistent', '~> 2.8'
@@ -20,6 +18,10 @@ gem 'rack-cors', '~> 1.0.2'
 gem 'us_states', '~> 0.1.1', git: 'https://github.com/GSA/us_states.git'
 gem 'newrelic_rpm', '~> 4.6.0'
 gem 'rake', '~> 11.0'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+gem 'elasticsearch-dsl'
+gem 'whenever'
 
 group :development, :test do
   gem 'puma', '~> 3.7'

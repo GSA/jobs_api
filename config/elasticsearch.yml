@@ -1,2 +1,9 @@
 production:
   index_name:
+  url:
+  username:
+  password:
+development:
+  url: 'localhost:9200'
+test:
+  url: 'localhost:9200'

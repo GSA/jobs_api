@@ -1,7 +1,16 @@
 module Elasticsearch; end
 
-es_config = (YAML.load_file("#{Rails.root}/config/elasticsearch.yml") || {})[Rails.env]
+config = Rails.application.config.elasticsearch
 
-Tire::Configuration.url(es_config['url']) if es_config && es_config['url'].present?
+Elasticsearch::INDEX_NAME = config && config['index_name'].present? ? config['index_name'].freeze : "#{Rails.env}:jobs".freeze
 
-Elasticsearch::INDEX_NAME = es_config && es_config['index_name'].present? ? es_config['index_name'].freeze : "#{Rails.env}:jobs".freeze
+elasticsearch_client = Elasticsearch::Client.new(
+  url: config['url'],
+  user: config['username'],
+  password: config['password']
+)
+
+Elasticsearch::Model.client = elasticsearch_client
+
+PositionOpening.create_search_index unless PositionOpening.search_index_exists?
+Geoname.create_search_index unless Geoname.search_index_exists?
