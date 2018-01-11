@@ -47,6 +47,7 @@ namespace :jobs do
 
   desc 'Delete expired position openings'
   task delete_expired_position_openings: :environment do
-    
+    PositionOpening.delete_expired_docs
+    PositionOpening.delete_invalid_docs
   end
 end

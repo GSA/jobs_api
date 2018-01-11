@@ -17,12 +17,6 @@ describe PositionOpening do
                                locations: [{ city: 'Andrews AFB', state: 'MD' },
                                            { city: 'Pentagon Arlington', state: 'VA' },
                                            { city: 'Air Force Academy', state: 'CO' }] }
-        # # deleted: end_date is nil
-        # position_openings << { source: 'usajobs', external_id: 8802, type: 'position_opening', position_title: 'Physician Assistant',
-        #                        position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
-        #                        organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
-        #                        start_date: Date.current, end_date: nil, minimum: 17, maximum: 23, rate_interval_code: 'PH',
-        #                        locations: [{ city: 'Fulton', state: 'MD' }] }
         # not deleted
         position_openings << { source: 'usajobs', external_id: 8803, type: 'position_opening', position_title: 'Future Person',
                                organization_id: 'FUTU', organization_name: 'Future Administration',
@@ -55,7 +49,7 @@ describe PositionOpening do
                                organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
                                start_date: Date.current, end_date: nil, minimum: 17, maximum: 23, rate_interval_code: 'PH',
                                locations: [{ city: 'Fulton', state: 'MD' }] }
-        #not deleted
+        # not deleted
         position_openings << { source: 'usajobs', external_id: 8806, type: 'position_opening', position_title: 'Future Person',
                                organization_id: 'FUTU', organization_name: 'Future Administration',
                                position_schedule_type_code: 2, position_offering_type_code: 15327, tags: %w(federal),
