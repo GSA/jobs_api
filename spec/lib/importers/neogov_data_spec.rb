@@ -111,27 +111,27 @@ describe NeogovData do
       end
     end
 
-    # context 'when invalid/expired position openings are in the feed' do
-    #   let(:expired_importer) { NeogovData.new('michigan', 'state', 'USMI') }
-    #
-    #   before do
-    #     allow(expired_importer).to receive(:fetch_jobs_rss).and_return File.open('spec/resources/neogov/expired.rss')
-    #   end
-    #
-    #   it 'should set their ttl to 1s' do
-    #     expect(PositionOpening).to receive(:get_external_ids_by_source).with('ng:michigan').and_return([])
-    #     expect(PositionOpening).to receive(:import) do |position_openings|
-    #       expect(position_openings.length).to eq(1)
-    #
-    #       expect(position_openings[0]).to eq(
-    #         {type: 'position_opening', source: 'ng:michigan',
-    #          organization_id: 'USMI', organization_name: 'State of Michigan, MI', tags: %w(state),
-    #          external_id: 282662, locations: [{city: 'Freeland', state: 'MI'}], ttl: '1s'}
-    #       )
-    #     end
-    #     expired_importer.import
-    #   end
-    # end
+    context 'when invalid/expired position openings are in the feed' do
+      let(:expired_importer) { NeogovData.new('michigan', 'state', 'USMI') }
+
+      before do
+        allow(expired_importer).to receive(:fetch_jobs_rss).and_return File.open('spec/resources/neogov/expired.rss')
+      end
+
+      it 'should still load the data' do
+        expect(PositionOpening).to receive(:get_external_ids_by_source).with('ng:michigan').and_return([])
+        expect(PositionOpening).to receive(:import) do |position_openings|
+          expect(position_openings.length).to eq(1)
+
+          expect(position_openings[0]).to eq(
+            {type: 'position_opening', source: 'ng:michigan',
+             organization_id: 'USMI', organization_name: 'State of Michigan, MI', tags: %w(state),
+             external_id: 282662, locations: [{city: 'Freeland', state: 'MI'}]}
+          )
+        end
+        expired_importer.import
+      end
+    end
 
     context 'when the city or state is invalid' do
       let(:bad_location_importer) { NeogovData.new('michigan', 'state', 'USMI') }

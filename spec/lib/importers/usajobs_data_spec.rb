@@ -5,7 +5,6 @@ require 'rails_helper'
 describe UsajobsData do
   let(:importer) { UsajobsData.new('doc/sample.xml') }
   let(:far_away) { Date.parse('2022-01-31') }
-  let(:ttl) { "#{(far_away - Date.current).to_i}d" }
 
   describe '#import' do
     it 'should load the PositionOpenings from filename' do
@@ -45,7 +44,7 @@ describe UsajobsData do
     context 'when records have been somehow marked as inactive/closed/expired' do
       let(:anti_importer) { UsajobsData.new('spec/resources/usajobs/anti_sample.xml') }
 
-      it 'should load the records with a ttl of 1s' do
+      it 'should load the records' do
         expect(PositionOpening).to receive(:import) do |position_openings|
           expect(position_openings.length).to eq(3)
           expect(position_openings[0]).to eq(

@@ -8,10 +8,12 @@ describe PositionOpening do
     PositionOpening.create_search_index
   end
 
+
+
   describe '.delete_expired_docs' do
     before do
       position_openings = []
-      # deleted : end date is now
+      # not deleted : end date is today
       position_openings << { source: 'usajobs', external_id: 8801, type: 'position_opening', position_title: 'Deputy Special Assistant to the Chief Nurse Practitioner',
                              organization_id: 'AF09', organization_name: 'Air Force Personnel Center',
                              position_schedule_type_code: 1, position_offering_type_code: 15_317, tags: %w[federal],
@@ -48,8 +50,9 @@ describe PositionOpening do
     it 'should delete the position openings that are expired (less than today)' do
       PositionOpening.delete_expired_docs
       res = PositionOpening.search('*', index: 'test:jobs')
-      expect(res.size).to eq 1
+      expect(res.size).to eq 2
       expect(res.results.first.id).to eq('usajobs:8803')
+      expect(res.results[1].id).to eq('usajobs:8801')
     end
   end
 
@@ -270,6 +273,32 @@ describe PositionOpening do
 
       it 'should use the from param' do
         expect(PositionOpening.search_for(query: 'jobs', size: 1, from: 1, sort_by: :id).first[:id]).to eq('usajobs:2')
+      end
+    end
+
+    describe 'search for all jobs' do
+      before do
+        position_openings = []
+        # starts today
+        position_openings << { source: 'usajobs', external_id: 9001, type: 'position_opening', position_title: 'Physician Assistant',
+                               position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                               organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                               start_date: Date.current, end_date: Date.current + 100, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                               locations: [{ city: 'Fulton', state: 'MD' }] }
+        # ends today
+        position_openings << { source: 'usajobs', external_id: 9002, type: 'position_opening', position_title: 'Physician Assistant',
+                              position_schedule_type_code: 2, position_offering_type_code: 15318, tags: %w(federal),
+                              organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+                              start_date: Date.current - 10, end_date: Date.current, minimum: 17, maximum: 23, rate_interval_code: 'PH',
+                              locations: [{ city: 'Fulton', state: 'MD' }] }
+        PositionOpening.import position_openings
+      end
+
+      it 'should include jobs that ends today or starts today' do
+        res = PositionOpening.search_for(query: '', sort_by: :end_date)
+        expect(res.size).to eq 8
+        expect(res.first[:id]).to eq('usajobs:9001')
+        expect(res.last[:id]).to eq('usajobs:9002')
       end
     end
 

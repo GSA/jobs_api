@@ -119,6 +119,12 @@ class PositionOpening
               end
             end
 
+            filter do
+              range :end_date do
+                gte Date.current
+              end
+            end
+
             must { term source: source } if source.present?
             must { terms tags: tags } if tags
             if query.position_offering_type_code.present?
@@ -229,7 +235,6 @@ class PositionOpening
       end.to_hash
 
       search_results = __elasticsearch__.search(definition, index: INDEX_NAME)
-
       Rails.logger.info("[Query] #{options.merge(result_count: search_results.results.total).to_json}")
 
       search_results.results.collect do |item|
@@ -324,7 +329,7 @@ class PositionOpening
               bool do
                 should do
                   range :end_date do
-                    lte Date.current
+                    lt Date.current
                   end
                 end
 
@@ -341,6 +346,10 @@ class PositionOpening
                       end
                     end
                   end
+                end
+
+                should do
+                  script script: "doc['start_date'].value > doc['end_date'].value"
                 end
               end
             end
