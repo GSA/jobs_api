@@ -29,7 +29,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   Coveralls::SimpleCov::Formatter,
   SimpleCov::Formatter::HTMLFormatter,
 ]
-
+SimpleCov.minimum_coverage 100
 SimpleCov.start 'rails'
 
 RSpec.configure do |config|

@@ -1,7 +1,7 @@
 Jobs API Server
 ==============
 
-[![Build Status](https://travis-ci.org/GSA/jobs_api.png)](https://travis-ci.org/GSA/jobs_api)
+[![CircleCI](https://circleci.com/gh/GSA/jobs_api.svg?style=shield)](https://circleci.com/gh/GSA/jobs_api)
 [![Coverage Status](https://coveralls.io/repos/GSA/jobs_api/badge.png?branch=master)](https://coveralls.io/r/GSA/jobs_api?branch=master)
 
 The server code that runs the DigitalGov Search [Jobs API](http://search.gov/developer/jobs.html) is here on Github. If you're a Ruby developer, keep reading. Fork this repo to add features (such as additional datasets) or fix bugs.
