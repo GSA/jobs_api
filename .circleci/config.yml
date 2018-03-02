@@ -17,6 +17,18 @@ jobs:
           paths:
             - ~/app/vendor/bundle
       - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
           name: Waiting for Elasticsearch
           command: dockerize --wait http://localhost:9200 -timeout 1m
-      - run: bundle exec rspec spec
+      - run:
+          name: RSpec
+          environment:
+            CC_TEST_REPORTER_ID: 1cb7d88afe742f36bc639789a56e44e6383fb10cd776c55432a4725effd4db79
+          command: |
+            ./cc-test-reporter before-build
+            bundle exec rspec spec
+            ./cc-test-reporter after-build --exit-code $?
