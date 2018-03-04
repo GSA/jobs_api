@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_model'
 require 'elasticsearch/dsl'
 
@@ -6,20 +8,20 @@ class Geoname
   include Elasticsearch::Model
   include Elasticsearch::DSL
 
-  INDEX_NAME = "#{Rails.env}:geonames".freeze
+  INDEX_NAME = "#{Rails.env}:geonames"
 
   SYNONYMS = [
-    "afb, air force base",
-    "afs, air force station",
-    "ang, air national guard",
-    "cavecreek, cave creek",
-    "ft, fort",
-    "junc, junction",
-    "natl, nat, national",
-    "newcastle, new castle",
-    "pk, park",
-    "spgs, springs",
-    "st, saint"
+    'afb, air force base',
+    'afs, air force station',
+    'ang, air national guard',
+    'cavecreek, cave creek',
+    'ft, fort',
+    'junc, junction',
+    'natl, nat, national',
+    'newcastle, new castle',
+    'pk, park',
+    'spgs, springs',
+    'st, saint'
   ].freeze
 
   SETTINGS = {
@@ -34,11 +36,11 @@ class Geoname
         custom_analyzer: {
           type: 'custom',
           tokenizer: 'whitespace',
-          filter: %w(standard lowercase synonym)
+          filter: %w[standard lowercase synonym]
         }
       }
     }
-  }
+  }.freeze
 
   settings index: SETTINGS do
     mappings dynamic: 'false' do
@@ -51,7 +53,6 @@ class Geoname
   end
 
   class << self
-
     def client
       @client ||= Geoname.__elasticsearch__.client
     end
@@ -64,7 +65,9 @@ class Geoname
     end
 
     def geocode(options = {})
-      search_for(options.merge(size: 1)).results.first.geo rescue nil
+      search_for(options.merge(size: 1)).results.first.geo
+    rescue StandardError
+      nil
     end
 
     def search_for(options)

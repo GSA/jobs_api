@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 namespace :jobs do
   desc 'Import USAJobs XML file'
-  task :import_usajobs_xml, [:filename] => :environment do |t, args|
+  task :import_usajobs_xml, [:filename] => :environment do |_t, args|
     if args.filename.nil?
       puts 'usage: rake jobs:import_usajobs_xml[filename.xml]'
     else
@@ -10,12 +12,14 @@ namespace :jobs do
   end
 
   desc 'Import Neogov YAML file containing agency info'
-  task :import_neogov_rss, [:yaml_filename] => :environment do |t, args|
+  task :import_neogov_rss, [:yaml_filename] => :environment do |_t, args|
     begin
-      YAML.load(File.read(args.yaml_filename)).each do |config|
+      YAML.safe_load(File.read(args.yaml_filename)).each do |config|
         agency, details = config
-        tags, organization_id, organization_name = details['tags'], details['organization_id'], details['organization_name']
-        if agency.blank? or tags.blank? or organization_id.blank?
+        tags = details['tags']
+        organization_id = details['organization_id']
+        organization_name = details['organization_name']
+        if agency.blank? || tags.blank? || organization_id.blank?
           puts 'Agency, tags, and organization ID are required for each record. Skipping record....'
         else
           importer = NeogovData.new(agency, tags, organization_id, organization_name)
@@ -23,17 +27,17 @@ namespace :jobs do
           puts "Imported jobs for #{agency} at #{Time.now}"
         end
       end
-    rescue Exception => e
+    rescue StandardError => e
       puts "Trouble running import script: #{e}"
       puts e.backtrace
-      puts '-'*80
-      puts "usage: rake jobs:import_neogov_rss[yaml_filename]"
-      puts "Example YAML file syntax:"
-      puts "bloomingtonmn:"
+      puts '-' * 80
+      puts 'usage: rake jobs:import_neogov_rss[yaml_filename]'
+      puts 'Example YAML file syntax:'
+      puts 'bloomingtonmn:'
       puts "\ttags: city tag_2"
       puts "\torganization_id: US-MN:CITY-BLOOMINGTON"
       puts "\torganization_name: City of Bloomington"
-      puts "ohio:"
+      puts 'ohio:'
       puts "\ttags: state tag_3"
       puts "\torganization_id: US-OH"
     end

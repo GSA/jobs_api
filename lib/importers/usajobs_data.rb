@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class UsajobsData
   CATCHALL_THRESHOLD = 20
-  SOURCE = 'usajobs'.freeze
+  SOURCE = 'usajobs'
   XPATHS = {
     opening: '//xmlns:PositionOpening',
     start_date: 'xmlns:PositionProfile/xmlns:PositionPeriod/xmlns:StartDate/xmlns:FormattedDateTime',
@@ -33,8 +35,8 @@ class UsajobsData
     start_date = Date.parse(job_xml.xpath(XPATHS[:start_date]).inner_text)
     days_remaining = (end_date - Date.current).to_i
     inactive = job_xml.xpath(XPATHS[:status_code]).inner_text != 'Active'
-    days_remaining = 0 if days_remaining < 0 || start_date > end_date || inactive
-    entry = {type: 'position_opening', source: SOURCE, tags: %w(federal)}
+    days_remaining = 0 if days_remaining.negative? || start_date > end_date || inactive
+    entry = { type: 'position_opening', source: SOURCE, tags: %w[federal] }
     entry[:external_id] = job_xml.xpath(XPATHS[:id]).inner_text.to_i
     entry[:locations] = process_locations(job_xml)
     entry[:locations] = [] if entry[:locations].size >= CATCHALL_THRESHOLD
@@ -59,24 +61,26 @@ class UsajobsData
       location_str = location_name_xml.inner_text.strip
       normalized_location_str = normalize_location(location_str)
       cities_comma_state = normalized_location_str.rpartition(',')
-      city, state = cities_comma_state.first.strip, cities_comma_state.last.strip
-      {city: city, state: state} if state.length == 2
+      city = cities_comma_state.first.strip
+      state = cities_comma_state.last.strip
+      { city: city, state: state } if state.length == 2
     end.compact
   end
 
   def normalize_location(location_str)
-    location_str.gsub!(/[()]/, '')
-    location_str.sub!(/ Arizona Strip$/i, '')
-    location_str.sub!(/ ?(United States|, US)$/i, '')
-    location_str.sub!(/(, GQ)? Guam$/i, ', GQ')
-    location_str.sub!(/(, PR)? Puerto Rico$/i, ', PR')
-    location_str.sub!(/^(Dist(\.|rict)? of Columbia)$/i, 'Washington, DC')
-    location_str.sub!(/(Dist(\.|rict)? of Columbia|D.C.)$/i, 'DC')
-    location_str.sub!(/ DC, DC/i, ' DC')
-    location_str.sub!(/^Dist(\.|rict)? of Columbia( County)?/i, 'Washington')
-    location_str.sub!(/^Washington DC Metro Area/i, 'Washington Metro Area')
-    location_str.sub!(/Washington DC$/i, 'Washington, DC')
-    abbreviate_state_name(location_str)
+    abbreviate_state_name(
+      location_str.gsub(/[()]/, '')
+      .sub(/ Arizona Strip$/i, '')
+      .sub(/ ?(United States|, US)$/i, '')
+      .sub(/(, GQ)? Guam$/i, ', GQ')
+      .sub(/(, PR)? Puerto Rico$/i, ', PR')
+      .sub(/^(Dist(\.|rict)? of Columbia)$/i, 'Washington, DC')
+      .sub(/(Dist(\.|rict)? of Columbia|D.C.)$/i, 'DC')
+      .sub(/ DC, DC/i, ' DC')
+      .sub(/^Dist(\.|rict)? of Columbia( County)?/i, 'Washington')
+      .sub(/^Washington DC Metro Area/i, 'Washington Metro Area')
+      .sub(/Washington DC$/i, 'Washington, DC')
+    )
   end
 
   def abbreviate_state_name(location_str)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'Position Openings API V2' do
@@ -29,19 +31,19 @@ describe 'Position Openings API V2' do
         it 'should return with jobs data' do
           results_array = JSON.parse(response.body)
           expect(results_array.size).to eq(2)
-          expect(results_array.first).to eq({'id'=>'usajobs:327358300', 'position_title'=>'Student <em>Nurse</em> Technicians',
-                                         'organization_name'=>'Veterans Affairs, Veterans Health Administration',
-                                         'rate_interval_code'=>'PH', 'minimum'=>17, 'maximum'=>23,
-                                         'start_date'=>'2012-09-19', 'end_date'=>'2022-01-31',
-                                         'locations'=>['Odessa, TX', 'Pentagon, VA', 'San Angelo, TX', 'Abilene, TX'],
-                                         'url' => 'https://www.usajobs.gov/GetJob/ViewDetails/327358300'})
+          expect(results_array.first).to eq('id' => 'usajobs:327358300', 'position_title' => 'Student <em>Nurse</em> Technicians',
+                                            'organization_name' => 'Veterans Affairs, Veterans Health Administration',
+                                            'rate_interval_code' => 'PH', 'minimum' => 17, 'maximum' => 23,
+                                            'start_date' => '2012-09-19', 'end_date' => '2022-01-31',
+                                            'locations' => ['Odessa, TX', 'Pentagon, VA', 'San Angelo, TX', 'Abilene, TX'],
+                                            'url' => 'https://www.usajobs.gov/GetJob/ViewDetails/327358300')
 
-          expect(results_array.last).to eq({'id'=>'ng:michigan:234175', 'position_title'=>'Registered <em>Nurse</em> Non-Career',
-                                        'organization_name'=>'State of Michigan, MI',
-                                        'rate_interval_code'=>'PH', 'minimum'=>28.37, 'maximum'=>38.87,
-                                        'start_date'=>'2010-06-08', 'end_date'=>'2022-01-31',
-                                        'locations'=>['Munising, MI'],
-                                        'url' => 'http://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&jobid=234175'})
+          expect(results_array.last).to eq('id' => 'ng:michigan:234175', 'position_title' => 'Registered <em>Nurse</em> Non-Career',
+                                           'organization_name' => 'State of Michigan, MI',
+                                           'rate_interval_code' => 'PH', 'minimum' => 28.37, 'maximum' => 38.87,
+                                           'start_date' => '2010-06-08', 'end_date' => '2022-01-31',
+                                           'locations' => ['Munising, MI'],
+                                           'url' => 'http://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&jobid=234175')
         end
       end
 

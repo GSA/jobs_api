@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Location do
@@ -41,6 +43,5 @@ describe Location do
         expect(location.city).to eq('albuquerque')
       end
     end
-
   end
 end

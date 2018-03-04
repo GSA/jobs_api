@@ -1,8 +1,10 @@
-module Agencies
-  ENDPOINT = '/api/v2/agencies/search'.freeze
-  HOST = 'https://search.usa.gov'.freeze
+# frozen_string_literal: true
 
-  ONE_DAY = 86400
+module Agencies
+  ENDPOINT = '/api/v2/agencies/search'
+  HOST = 'https://search.usa.gov'
+
+  ONE_DAY = 86_400
 
   @agency_api_connection = Faraday.new HOST do |conn|
     conn.request :json
@@ -16,9 +18,8 @@ module Agencies
 
   def self.find_organization_ids(organization_str)
     @agency_api_connection.get(ENDPOINT, query: organization_str).body['organization_codes']
-  rescue Exception => e
+  rescue StandardError => e
     Rails.logger.error e
     nil
   end
-
 end

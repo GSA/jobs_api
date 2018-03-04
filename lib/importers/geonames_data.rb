@@ -1,5 +1,10 @@
+# frozen_string_literal: true
+
 class GeonamesData
-  LOCATION, LAT, LON, STATE = 1, 4, 5, 10
+  LOCATION = 1
+  LAT = 4
+  LON = 5
+  STATE = 10
 
   def initialize(filename)
     @filename = filename
@@ -26,5 +31,4 @@ class GeonamesData
   def geoname_normalized_city(location)
     location.sub(/,? ?D\.? ?C\.?/, '')
   end
-
 end

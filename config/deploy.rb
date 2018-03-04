@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'bundler/capistrano'
 
-set :stages, %w(staging production)
+set :stages, %w[staging production]
 set :default_stage, 'staging'
 require 'capistrano/ext/multistage'
 
@@ -12,12 +14,12 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, 'git'
-set :repository,  "git@github.com:GSA/#{application}.git"
+set :repository, "git@github.com:GSA/#{application}.git"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
-after "deploy:restart", "deploy:cleanup"
+after 'deploy:restart', 'deploy:cleanup'
 
 namespace :deploy do
   task :symlink_config, roles: :app do
@@ -33,12 +35,12 @@ namespace :deploy do
   end
   after 'deploy:restart', 'deploy:notify_newrelic'
 
-  task :start, :roles => :app do
+  task :start, roles: :app do
     run "touch #{current_release}/tmp/restart.txt"
   end
 
-  desc "Restart Application"
-  task :restart, :roles => :app do
+  desc 'Restart Application'
+  task :restart, roles: :app do
     run "touch #{current_release}/tmp/restart.txt"
   end
 end
