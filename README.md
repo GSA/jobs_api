@@ -2,7 +2,8 @@ Jobs API Server
 ==============
 
 [![CircleCI](https://circleci.com/gh/GSA/jobs_api.svg?style=shield)](https://circleci.com/gh/GSA/jobs_api)
-[![Coverage Status](https://coveralls.io/repos/GSA/jobs_api/badge.png?branch=master)](https://coveralls.io/r/GSA/jobs_api?branch=master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c6c6cfecc489b3ab621c/maintainability)](https://codeclimate.com/github/GSA/jobs_api/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c6c6cfecc489b3ab621c/test_coverage)](https://codeclimate.com/github/GSA/jobs_api/test_coverage)
 
 The server code that runs the DigitalGov Search [Jobs API](http://search.gov/developer/jobs.html) is here on Github. If you're a Ruby developer, keep reading. Fork this repo to add features (such as additional datasets) or fix bugs.
 

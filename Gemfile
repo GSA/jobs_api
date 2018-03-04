@@ -36,7 +36,6 @@ group :development do
 end
 
 gem 'capistrano', '~> 2.15.4', group: :development
-gem 'coveralls', '~> 0.7.0', require: false
 
 group :test do
   gem 'shoulda-matchers', '~> 2.7.0'
