@@ -128,5 +128,36 @@
           </categories>
         </item>
 
+        <item xmlns:joblisting="http://www.neogov.com/namespaces/JobListing" xmlns:atom="http://www.w3.org/2005/Atom">
+          <title>Registered Nurse Non-Career (Invalid)</title>
+          <link>http://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=234176</link>
+          <pubDate>2010-08-10 16:07:30.237</pubDate>
+          <description>&lt;table style=&quot;border: medium none;    border-collapse: collapse;&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; border=&quot;1&quot;&gt;      &lt;tbody&gt;          &lt;tr style=&quot;height: 150pt;&quot;&gt;              &lt;td style=&quot;border: windowtext 2.25pt solid; padding-right: 5.4pt;  padding-left: 5.4pt; padding-bottom: 0in;  width: 7.45in; padding-top: 0in;  height: 150pt; background-color: transparent;&quot; valign=&quot;top&quot;&gt;              &lt;p class=&quot;CellText&quot; style=&quot;margin: 3pt 0in 0pt 22.3pt;&quot;&gt;&lt;span style=&quot;font-size: 12pt; font-family: arial;&quot;&gt;This is a registered professional nurse position requiring advanced clinical decision making skills/judgment.&#xa0; This position is first, and sometimes the only, health care professional to assess and/or treat correctional prisoners.&#xa0; It is this position who determines the need for and timeliness of an appropriate referral to the physician/provider.&#xa0; He/she is the only health care professional expected to independently perform the full range of their duties in any setting, including housing units, camps, transport vehicles, ambulances, etc.&#xa0; In any and all settings, this position is expected to initiate and sustain life-saving care and measures as appropriate, as well as perform the full range of clinical nursing duties.&#xa0; The complexity of the work exceeds written, established methods and procedures often available and therefore this position is expected to exercise considerable independent judgment in selecting the most appropriate course of action.&#xa0; The nurse at this level works as an emergency clinic nurse, an inpatient staff nurse, a mental health nurse, or as an ambulatory clinic nurse.&#xa0; The employee may be hired for a specific area, but may be held responsible to move to any or all ambulatory/inpatient settings within the complex/facility.&lt;/span&gt;&lt;/p&gt;              &lt;/td&gt;          &lt;/tr&gt;      &lt;/tbody&gt;  &lt;/table&gt;  </description>
+          <joblisting:jobNumberSingle>4735-12-10</joblisting:jobNumberSingle>
+          <joblisting:jobId>234176</joblisting:jobId>
+          <joblisting:advertiseFromDate>Invalid Date</joblisting:advertiseFromDate>
+          <joblisting:advertiseToDateTime>Invalid Date</joblisting:advertiseToDateTime>
+          <joblisting:advertiseFromDateUTC>Invalid Date</joblisting:advertiseFromDateUTC>
+          <joblisting:advertiseToDateTimeUTC>Invalid Date</joblisting:advertiseToDateTimeUTC>
+          <joblisting:minimumSalary>28.37</joblisting:minimumSalary>
+          <joblisting:maximumSalary>38.87</joblisting:maximumSalary>
+          <joblisting:salaryCurrency>USD</joblisting:salaryCurrency>
+          <joblisting:salaryInterval>Hour</joblisting:salaryInterval>
+          <joblisting:jobType>Non Career</joblisting:jobType>
+          <joblisting:location>Munising</joblisting:location>
+          <joblisting:state>Michigan</joblisting:state>
+          <joblisting:department>Corrections - Alger Maximum Correctional Facility</joblisting:department>
+          <guid isPermaLink="true">http://agency.governmentjobs.com/michigan/default.cfm?action=viewjob&amp;jobid=234176</guid>
+          <categories>
+                <category xmlns:joblisting="http://www.neogov.com/namespaces/JobListing" xmlns:atom="http://www.w3.org/2005/Atom">
+                  <CategoryCode>Corrections</CategoryCode>
+                  <Category>Corrections</Category>
+                </category>
+                <category xmlns:joblisting="http://www.neogov.com/namespaces/JobListing" xmlns:atom="http://www.w3.org/2005/Atom">
+                  <CategoryCode>Nursing</CategoryCode>
+                  <Category>Nursing</Category>
+                </category>
+          </categories>
+        </item>
     </channel>
   </rss>

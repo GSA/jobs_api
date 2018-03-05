@@ -21,7 +21,7 @@ describe NeogovData do
       it 'should load the PositionOpenings from filename' do
         expect(PositionOpening).to receive(:get_external_ids_by_source).with('ng:michigan').and_return([])
         expect(PositionOpening).to receive(:import) do |position_openings|
-          expect(position_openings.length).to eq(4)
+          expect(position_openings.length).to eq(5)
 
           expect(position_openings[0]).to eq(
             type: 'position_opening', source: 'ng:michigan',
@@ -59,6 +59,12 @@ describe NeogovData do
             locations: [{ city: 'Munising', state: 'MI' }], position_title: 'Registered Nurse Non-Career',
             start_date: Date.parse('2010-06-08'), end_date: far_away, minimum: 28.37, maximum: 38.87,
             rate_interval_code: 'PH', position_offering_type_code: nil, position_schedule_type_code: nil
+          )
+
+          expect(position_openings[4]).to eq(
+            type: 'position_opening', source: 'ng:michigan',
+            organization_id: 'USMI', organization_name: 'State of Michigan, MI', tags: %w[state],
+            external_id: 234_176, locations: [{ city: 'Munising', state: 'MI' }]
           )
         end
         importer.import
@@ -159,7 +165,7 @@ describe NeogovData do
       it 'should use the predefined organization name' do
         expect(PositionOpening).to receive(:get_external_ids_by_source).with('ng:michigan').and_return([])
         expect(PositionOpening).to receive(:import) do |position_openings|
-          expect(position_openings.length).to eq(4)
+          expect(position_openings.length).to eq(5)
           expect(position_openings.map { |po| po[:organization_name] }.uniq).to eq(['State of Michigan'])
         end
         org_name_importer.import

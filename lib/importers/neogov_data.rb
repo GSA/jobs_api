@@ -90,7 +90,7 @@ class NeogovData
 
     seconds_remaining = [0, end_datetime_utc.to_i - pubdate.to_i].max
     seconds_remaining = 0 if start_date.nil? || end_date.nil? || (start_date > end_date)
-    seconds_remaining = 0 if now > end_datetime_utc
+    seconds_remaining = 0 if end_datetime_utc.nil? || (now > end_datetime_utc)
 
     entry = { type: 'position_opening',
               source: @source,
