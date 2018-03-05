@@ -32,3 +32,6 @@ jobs:
             ./cc-test-reporter before-build
             bundle exec rspec spec
             ./cc-test-reporter after-build --exit-code $?
+      - store_artifacts:
+          path: coverage
+          destination: ~/coverage
