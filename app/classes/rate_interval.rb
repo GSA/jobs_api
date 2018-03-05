@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RateInterval
   CODES = { bi_weekly: 'BW',
             fee_basis: 'FB',
@@ -8,16 +10,14 @@ class RateInterval
             piece_work: 'PW',
             student_stipend_paid: 'ST',
             school_year: 'SY',
-            without_compensation: 'WC' }
+            without_compensation: 'WC' }.freeze
 
   def self.get_code(name)
     CODES[parse(name)]
   end
 
-  private
-
   def self.parse(name)
-    name_str = name.squish.underscore.gsub(/ /, '_')
+    name_str = name.squish.underscore.tr(' ', '_')
     case name_str
     when /^day$/ then :per_day
     when /^year$/ then :per_year

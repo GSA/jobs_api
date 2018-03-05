@@ -1,3 +1,5 @@
+# frozen_string_literal: false
+
 require 'rails_helper'
 
 describe Query do
@@ -15,7 +17,7 @@ describe Query do
     end
 
     context 'when city and valid state are passed in before/after job token' do
-      let(:query_strings) { ["jobs fulton md", "fulton maryland jobs", "jobs in fulton, md"] }
+      let(:query_strings) { ['jobs fulton md', 'fulton maryland jobs', 'jobs in fulton, md'] }
       it 'should set both city and state' do
         query_strings.each do |str|
           query = Query.new(str, nil)
@@ -27,22 +29,22 @@ describe Query do
     end
 
     context 'when city/state and job title surround job token' do
-      let(:query_strings) { ["fulton maryland jobs nursing", "nursing jobs fulton md"] }
+      let(:query_strings) { ['fulton maryland jobs nursing', 'nursing jobs fulton md'] }
       it 'should set both city and state' do
         query_strings.each do |str|
           query = Query.new(str, nil)
           expect(query.location.state).to eq('MD')
           expect(query.location.city).to eq('fulton')
-          expect(query.keywords).to eq("nursing")
+          expect(query.keywords).to eq('nursing')
         end
       end
     end
 
     context 'when seasonal/internship job specified in query' do
       it 'should set position_offering_type_code' do
-        expect(Query.new('intern jobs', nil).position_offering_type_code).to eq(15328)
-        expect(Query.new('internship jobs', nil).position_offering_type_code).to eq(15328)
-        expect(Query.new('park ranger seasonal jobs', nil).position_offering_type_code).to eq(15322)
+        expect(Query.new('intern jobs', nil).position_offering_type_code).to eq(15_328)
+        expect(Query.new('internship jobs', nil).position_offering_type_code).to eq(15_328)
+        expect(Query.new('park ranger seasonal jobs', nil).position_offering_type_code).to eq(15_322)
       end
 
       it 'should remove the phrase from the query' do
@@ -75,7 +77,7 @@ describe Query do
     end
 
     context 'when organization_ids param is not passed in' do
-      context "when query has both organization and location specified in query" do
+      context 'when query has both organization and location specified in query' do
         before do
           allow(Agencies).to receive(:find_organization_ids).with('cia').and_return ['CI00']
         end
@@ -123,7 +125,7 @@ describe Query do
         end
 
         it 'should strip the keyword from the resulting query keyword text' do
-          %w{position job opening posting opportunity vacancy employment}.each do |job_keyword|
+          %w[position job opening posting opportunity vacancy employment].each do |job_keyword|
             [job_keyword, job_keyword.pluralize].each do |variant|
               expect(Query.new("fun summer #{variant}", nil).keywords).to eq('fun summer')
               expect(Query.new("#{variant} security", nil).keywords).to eq('security')
@@ -177,10 +179,10 @@ describe Query do
           allow(Agencies).to receive(:find_organization_ids)
         end
 
-        let(:query) { Query.new('fun jobs', ['dd00', 'abcd']) }
+        let(:query) { Query.new('fun jobs', %w[dd00 abcd]) }
 
         it 'should set capitalized organization_ids from param' do
-          expect(query.organization_ids).to eq(['DD00', 'ABCD'])
+          expect(query.organization_ids).to eq(%w[DD00 ABCD])
         end
       end
 
@@ -204,13 +206,13 @@ describe Query do
 
   describe '#organization_prefixes' do
     it 'should return org codes that are 2 chars long' do
-      expect(Query.new('jobs', ['AB', 'CDEF', 'AF', 'A123']).organization_prefixes).to eq(%w(AB AF))
+      expect(Query.new('jobs', %w[AB CDEF AF A123]).organization_prefixes).to eq(%w[AB AF])
     end
   end
 
   describe '#organization_terms' do
     it 'should return org codes that are > 2 chars long' do
-      expect(Query.new('jobs', ['AB', 'CDEF', 'AF', 'A123']).organization_terms).to eq(%w(CDEF A123))
+      expect(Query.new('jobs', %w[AB CDEF AF A123]).organization_terms).to eq(%w[CDEF A123])
     end
   end
 end

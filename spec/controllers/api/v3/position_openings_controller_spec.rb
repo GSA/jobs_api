@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Api::V3::PositionOpeningsController do
   describe '#search' do
     let(:search_params) do
-      {'query' => 'tsa jobs', 'organization_ids' => 'ABCD,EFGH,VA,AF', 'tags' => 'state city', 'from' => '2', 'size' => '3',
-       'hl' => '1', 'lat_lon' => '37.41919999999,-122.0574'}
+      { 'query' => 'tsa jobs', 'organization_ids' => 'ABCD,EFGH,VA,AF', 'tags' => 'state city', 'from' => '2', 'size' => '3',
+        'hl' => '1', 'lat_lon' => '37.41919999999,-122.0574' }
     end
 
     let(:search_results) { double('search results') }

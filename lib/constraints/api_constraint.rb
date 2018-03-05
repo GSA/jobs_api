@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApiConstraint
   def initialize(options)
     @version = options[:version]
@@ -6,7 +8,6 @@ class ApiConstraint
 
   def matches?(request)
     @default ||
-      (request.headers['Accept'] &&
-        request.headers['Accept'].include?("application/vnd.usagov.position_openings.v#{@version}"))
+      (request.headers['Accept']&.include?("application/vnd.usagov.position_openings.v#{@version}"))
   end
 end

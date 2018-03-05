@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe UsajobsData do
@@ -6,36 +8,35 @@ describe UsajobsData do
   let(:ttl) { "#{(far_away - Date.current).to_i}d" }
 
   describe '#import' do
-
     it 'should load the PositionOpenings from filename' do
       expect(PositionOpening).to receive(:import) do |position_openings|
         expect(position_openings.length).to eq(3)
         expect(position_openings[0]).to eq(
-          {type: 'position_opening', source: 'usajobs', external_id: 305972200,
-           position_title: 'Medical Officer', tags: %w(federal),
-           organization_id: 'AF09', organization_name: 'Air Force Personnel Center',
-           locations: [{city: 'Dyess AFB', state: 'TX'}],
-           start_date: Date.parse('2011-12-28'), end_date: far_away,
-           minimum: 60274, maximum: 155500, rate_interval_code: 'PA', position_schedule_type_code: 1, position_offering_type_code: 15327}
+          type: 'position_opening', source: 'usajobs', external_id: 305_972_200,
+          position_title: 'Medical Officer', tags: %w[federal],
+          organization_id: 'AF09', organization_name: 'Air Force Personnel Center',
+          locations: [{ city: 'Dyess AFB', state: 'TX' }],
+          start_date: Date.parse('2011-12-28'), end_date: far_away,
+          minimum: 60_274, maximum: 155_500, rate_interval_code: 'PA', position_schedule_type_code: 1, position_offering_type_code: 15_327
         )
         expect(position_openings[1]).to eq(
-          {type: 'position_opening', source: 'usajobs', external_id: 325054900,
-           position_title: 'Physician (Surgical Critical Care)', tags: %w(federal),
-           organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
-           locations: [{city: 'Charleston', state: 'SC'}],
-           start_date: Date.parse('27 Aug 2012'), end_date: far_away,
-           minimum: 125000, maximum: 295000, rate_interval_code: 'PA', position_schedule_type_code: 2, position_offering_type_code: 15317}
+          type: 'position_opening', source: 'usajobs', external_id: 325_054_900,
+          position_title: 'Physician (Surgical Critical Care)', tags: %w[federal],
+          organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+          locations: [{ city: 'Charleston', state: 'SC' }],
+          start_date: Date.parse('27 Aug 2012'), end_date: far_away,
+          minimum: 125_000, maximum: 295_000, rate_interval_code: 'PA', position_schedule_type_code: 2, position_offering_type_code: 15_317
         )
         expect(position_openings[2]).to eq(
-          {type: 'position_opening', source: 'usajobs', external_id: 327358300,
-           position_title: 'Student Nurse Technicians', tags: %w(federal),
-           organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
-           locations: [{city: 'Odessa', state: 'TX'},
-                       {city: 'Pentagon, Arlington', state: 'VA'},
-                       {city: 'San Angelo', state: 'TX'},
-                       {city: 'Abilene', state: 'TX'}],
-           start_date: Date.parse('19 Sep 2012'), end_date: far_away,
-           minimum: 17, maximum: 23, rate_interval_code: 'PH', position_schedule_type_code: 2, position_offering_type_code: 15522}
+          type: 'position_opening', source: 'usajobs', external_id: 327_358_300,
+          position_title: 'Student Nurse Technicians', tags: %w[federal],
+          organization_id: 'VATA', organization_name: 'Veterans Affairs, Veterans Health Administration',
+          locations: [{ city: 'Odessa', state: 'TX' },
+                      { city: 'Pentagon, Arlington', state: 'VA' },
+                      { city: 'San Angelo', state: 'TX' },
+                      { city: 'Abilene', state: 'TX' }],
+          start_date: Date.parse('19 Sep 2012'), end_date: far_away,
+          minimum: 17, maximum: 23, rate_interval_code: 'PH', position_schedule_type_code: 2, position_offering_type_code: 15_522
         )
       end
       importer.import
@@ -48,24 +49,23 @@ describe UsajobsData do
         expect(PositionOpening).to receive(:import) do |position_openings|
           expect(position_openings.length).to eq(3)
           expect(position_openings[0]).to eq(
-            {type: 'position_opening', source: 'usajobs', external_id: 305972200,
-             tags: %w(federal), locations: [{:city => "Dyess AFB", :state => "TX"}]}
+            type: 'position_opening', source: 'usajobs', external_id: 305_972_200,
+            tags: %w[federal], locations: [{ city: 'Dyess AFB', state: 'TX' }]
           )
           expect(position_openings[1]).to eq(
-            {type: 'position_opening', source: 'usajobs', external_id: 325054900,
-             tags: %w(federal), locations: [{:city => "Charleston", :state => "SC"}]}
+            type: 'position_opening', source: 'usajobs', external_id: 325_054_900,
+            tags: %w[federal], locations: [{ city: 'Charleston', state: 'SC' }]
           )
           expect(position_openings[2]).to eq(
-            {type: 'position_opening', source: 'usajobs', external_id: 327358300,
-             tags: %w(federal), locations: [{:city => "Odessa", :state => "TX"},
-                                            {:city => "Pentagon, Arlington", :state => "VA"},
-                                            {:city => "San Angelo", :state => "TX"},
-                                            {:city => "Abilene", :state => "TX"}]}
+            type: 'position_opening', source: 'usajobs', external_id: 327_358_300,
+            tags: %w[federal], locations: [{ city: 'Odessa', state: 'TX' },
+                                           { city: 'Pentagon, Arlington', state: 'VA' },
+                                           { city: 'San Angelo', state: 'TX' },
+                                           { city: 'Abilene', state: 'TX' }]
           )
         end
         anti_importer.import
       end
-
     end
 
     context 'when location is invalid/empty' do
@@ -75,14 +75,14 @@ describe UsajobsData do
         expect(PositionOpening).to receive(:import) do |position_openings|
           expect(position_openings.length).to eq(2)
           expect(position_openings[0]).to eq(
-            {type: "position_opening", source: 'usajobs', external_id: 305972200, position_title: "Medical Officer",
-             organization_id: "AF09", organization_name: "Air Force Personnel Center", tags: %w(federal),
-             locations: [{:city => "Fulton", :state => "MD"}],
-             start_date: Date.parse('28 Dec 2011'), end_date: far_away,
-             minimum: 60274, maximum: 155500, rate_interval_code: "PA", position_schedule_type_code: 1, position_offering_type_code: 15327}
+            type: 'position_opening', source: 'usajobs', external_id: 305_972_200, position_title: 'Medical Officer',
+            organization_id: 'AF09', organization_name: 'Air Force Personnel Center', tags: %w[federal],
+            locations: [{ city: 'Fulton', state: 'MD' }],
+            start_date: Date.parse('28 Dec 2011'), end_date: far_away,
+            minimum: 60_274, maximum: 155_500, rate_interval_code: 'PA', position_schedule_type_code: 1, position_offering_type_code: 15_327
           )
           expect(position_openings[1]).to eq(
-            {type: "position_opening", source: 'usajobs', external_id: 325054900, locations: [], tags: %w(federal)}
+            type: 'position_opening', source: 'usajobs', external_id: 325_054_900, locations: [], tags: %w[federal]
           )
         end
         bad_location_importer.import
@@ -96,8 +96,8 @@ describe UsajobsData do
         expect(PositionOpening).to receive(:import) do |position_openings|
           expect(position_openings.length).to eq(1)
           expect(position_openings[0]).to eq(
-            {type: 'position_opening', source: 'usajobs', external_id: 327358300,
-             tags: %w(federal), locations: []}
+            type: 'position_opening', source: 'usajobs', external_id: 327_358_300,
+            tags: %w[federal], locations: []
           )
         end
         recruiting_importer.import

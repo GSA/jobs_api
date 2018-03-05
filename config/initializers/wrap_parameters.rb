@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Be sure to restart your server when you modify this file.
 #
 # This file contains settings for ActionController::ParamsWrapper which
@@ -5,8 +7,8 @@
 
 # Enable parameter wrapping for JSON. You can disable this by setting :format to an empty array.
 ActiveSupport.on_load(:action_controller) do
-  #NOTE: had to comment this out or we got errors
-  #wrap_parameters format: [:json]
+  # NOTE: had to comment this out or we got errors
+  # wrap_parameters format: [:json]
 end
 
 # Disable root element in JSON by default.

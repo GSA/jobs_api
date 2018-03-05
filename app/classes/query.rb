@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'agencies'
 
 class Query
-
-  JOB_KEYWORD_TOKENS = '(position|job|employment|career|trabajo|puesto|empleo|vacante)s?'.freeze
+  JOB_KEYWORD_TOKENS = '(position|job|employment|career|trabajo|puesto|empleo|vacante)s?'
   NON_CAPTURING_JOB_KEYWORD_TOKENS = JOB_KEYWORD_TOKENS.sub('(', '(?:')
-  STOPWORDS = 'appl(y|ications?)|for|the|a|and|available|gov(ernment)?|usa|current|civilian|fed(eral)?|(usajob|opening|posting|description|announcement|listing)s?|(opportunit|vacanc)(y|ies)|search(es)?|(posicion|ocupacion|oportunidad|federal)es|gobierno'.freeze
+  STOPWORDS = 'appl(y|ications?)|for|the|a|and|available|gov(ernment)?|usa|current|civilian|fed(eral)?|(usajob|opening|posting|description|announcement|listing)s?|(opportunit|vacanc)(y|ies)|search(es)?|(posicion|ocupacion|oportunidad|federal)es|gobierno'
 
   attr_accessor :location, :organization_ids, :keywords, :position_offering_type_code, :position_schedule_type_code, :rate_interval_code
 
@@ -14,11 +15,11 @@ class Query
     self.organization_ids ||= organization_ids
   end
 
-  def has_state?
+  def state?
     location.present? && location.state.present?
   end
 
-  def has_city?
+  def city?
     location.present? && location.city.present?
   end
 
@@ -43,27 +44,27 @@ class Query
       nil
     end
     query.gsub!(/\b(seasonal|intern(ship)?s?)\b/) do
-      self.position_offering_type_code = PositionOfferingType.get_code("#{$1}")
+      self.position_offering_type_code = PositionOfferingType.get_code(Regexp.last_match(1).to_s)
       nil
     end
     query.gsub!(/(full|part)([- ])?time ?/) do
-      self.position_schedule_type_code = PositionScheduleType.get_code("#{$1}_time")
+      self.position_schedule_type_code = PositionScheduleType.get_code("#{Regexp.last_match(1)}_time")
       nil
     end
     query.gsub!(/ ?(at|with) (.*) in (.*)/) do
-      self.organization_ids = ::Agencies.find_organization_ids($2)
-      self.location = Location.new($3)
+      self.organization_ids = ::Agencies.find_organization_ids(Regexp.last_match(2))
+      self.location = Location.new(Regexp.last_match(3))
       nil
     end
     query.gsub!(/ ?(at|with) (.*)/) do
-      self.organization_ids = ::Agencies.find_organization_ids($2)
+      self.organization_ids = ::Agencies.find_organization_ids(Regexp.last_match(2))
       nil
     end
     query.gsub!(/ ?in (.*)/) do
-      self.location = Location.new($1)
+      self.location = Location.new(Regexp.last_match(1))
       nil
     end
-    if self.location.nil? && (location_str = extract_location_string(query))
+    if location.nil? && (location_str = extract_location_string(query))
       self.location = Location.new(location_str)
       query.gsub!(location_str, '')
     end
@@ -76,7 +77,7 @@ class Query
   end
 
   def normalize(query)
-    query.downcase.gsub('.', '').gsub(/[^0-9a-z \-]/, ' ').gsub(/\b(#{Date.current.year}|#{STOPWORDS})\b/, ' ').squish
+    query.downcase.delete('.').gsub(/[^0-9a-z \-]/, ' ').gsub(/\b(#{Date.current.year}|#{STOPWORDS})\b/, ' ').squish
   end
 
   def extract_possible_org(query)
@@ -87,10 +88,9 @@ class Query
   end
 
   def extract_location_string(query)
-    if (matches = query.match(/(.*)?\b#{NON_CAPTURING_JOB_KEYWORD_TOKENS}\b(.*)?/))
-      return matches[2].strip if Location.new(matches[2]).state.present?
-      return matches[1].strip if Location.new(matches[1]).state.present?
-    end
+    matches = query.match(/(.*)?\b#{NON_CAPTURING_JOB_KEYWORD_TOKENS}\b(.*)?/)
+    return unless matches
+    return matches[2].strip if Location.new(matches[2]).state.present?
+    return matches[1].strip if Location.new(matches[1]).state.present?
   end
-
 end

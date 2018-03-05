@@ -1,29 +1,31 @@
+# frozen_string_literal: true
+
 class NeogovData
   XPATHS = {
-      organization_name: '/rss/channel/title',
-      item: '//item',
-      pubdate: './pubDate',
-      start_date: './joblisting:advertiseFromDate',
-      end_date: './joblisting:advertiseToDateTime',
-      end_date_utc: './joblisting:advertiseToDateTimeUTC',
-      position_title: './title',
-      id: './joblisting:jobId',
-      location: './joblisting:location',
-      state: './joblisting:state',
-      job_type: './joblisting:jobType',
-      minimum: './joblisting:minimumSalary',
-      maximum: './joblisting:maximumSalary',
-      salary_interval: './joblisting:salaryInterval'
+    organization_name: '/rss/channel/title',
+    item: '//item',
+    pubdate: './pubDate',
+    start_date: './joblisting:advertiseFromDate',
+    end_date: './joblisting:advertiseToDateTime',
+    end_date_utc: './joblisting:advertiseToDateTimeUTC',
+    position_title: './title',
+    id: './joblisting:jobId',
+    location: './joblisting:location',
+    state: './joblisting:state',
+    job_type: './joblisting:jobType',
+    minimum: './joblisting:minimumSalary',
+    maximum: './joblisting:maximumSalary',
+    salary_interval: './joblisting:salaryInterval'
   }.freeze
 
-  HOST = 'agency.governmentjobs.com'.freeze
-  PATH = '/jobfeed.cfm?agency='.freeze
-  USER_AGENT = 'USASearch Jobs API'.freeze
+  HOST = 'agency.governmentjobs.com'
+  PATH = '/jobfeed.cfm?agency='
+  USER_AGENT = 'USASearch Jobs API'
 
   INVALID_LOCATION_REGEX = /\b(various|locations?)\b/i
 
-  ADVERTISE_DATE_FORMAT = '%a, %d %b %Y'.freeze
-  ADVERTISE_DATETIME_FORMAT = '%a, %d %b %Y %H:%M:%S'.freeze
+  ADVERTISE_DATE_FORMAT = '%a, %d %b %Y'
+  ADVERTISE_DATETIME_FORMAT = '%a, %d %b %Y %H:%M:%S'
 
   def initialize(agency, tags, organization_id, organization_name = nil)
     @agency = agency
@@ -42,7 +44,7 @@ class NeogovData
     existing_external_ids = PositionOpening.get_external_ids_by_source(@source)
     expired_ids = existing_external_ids - updated_external_ids
     expired_openings = expired_ids.collect do |expired_id|
-      {type: 'position_opening', source: @source, external_id: expired_id}
+      { type: 'position_opening', source: @source, external_id: expired_id }
     end
     position_openings.push(*expired_openings)
     PositionOpening.import position_openings
@@ -50,7 +52,7 @@ class NeogovData
 
   def fetch_jobs_rss
     http = Net::HTTP.new(HOST)
-    req = Net::HTTP::Get.new("#{PATH}#{@agency}", {'User-Agent' => USER_AGENT})
+    req = Net::HTTP::Get.new("#{PATH}#{@agency}", 'User-Agent' => USER_AGENT)
     response = http.request(req)
     response.body
   end
@@ -68,21 +70,33 @@ class NeogovData
       end_date = end_datetime_utc.to_date
     else
       end_datetime_utc_str = job_xml.xpath(XPATHS[:end_date_utc]).inner_text.squish
-      end_datetime_utc = DateTime.strptime(end_datetime_utc_str, ADVERTISE_DATETIME_FORMAT) rescue nil
-      end_date = Date.strptime(end_date_str, ADVERTISE_DATETIME_FORMAT) rescue nil
+      end_datetime_utc = begin
+                           DateTime.strptime(end_datetime_utc_str, ADVERTISE_DATETIME_FORMAT)
+                         rescue StandardError
+                           nil
+                         end
+      end_date = begin
+                   Date.strptime(end_date_str, ADVERTISE_DATETIME_FORMAT)
+                 rescue StandardError
+                   nil
+                 end
     end
 
-    start_date = Date.strptime(job_xml.xpath(XPATHS[:start_date]).inner_text.strip, ADVERTISE_DATE_FORMAT) rescue nil
+    start_date = begin
+                   Date.strptime(job_xml.xpath(XPATHS[:start_date]).inner_text.strip, ADVERTISE_DATE_FORMAT)
+                 rescue StandardError
+                   nil
+                 end
 
     seconds_remaining = [0, end_datetime_utc.to_i - pubdate.to_i].max
     seconds_remaining = 0 if start_date.nil? || end_date.nil? || (start_date > end_date)
-    seconds_remaining = 0 if now > end_datetime_utc
+    seconds_remaining = 0 if end_datetime_utc.nil? || (now > end_datetime_utc)
 
-    entry = {type: 'position_opening',
-             source: @source,
-             organization_id: @organization_id,
-             organization_name: @organization_name,
-             tags: @tags}
+    entry = { type: 'position_opening',
+              source: @source,
+              organization_id: @organization_id,
+              organization_name: @organization_name,
+              tags: @tags }
     entry[:external_id] = job_xml.xpath(XPATHS[:id]).inner_text.to_i
     entry[:locations] = process_location_and_state(job_xml.xpath(XPATHS[:location]).inner_text,
                                                    job_xml.xpath(XPATHS[:state]).inner_text)
@@ -106,7 +120,7 @@ class NeogovData
     state_name = state_str.squish
     state = State.member?(state_name) ? State.normalize(state_name) : nil
 
-    city.present? && state.present? ? [{city: city, state: state}] : []
+    city.present? && state.present? ? [{ city: city, state: state }] : []
   end
 
   def process_salary_interval(salary_interval_str)
@@ -133,10 +147,10 @@ class NeogovData
   private
 
   def remove_trailing_state_zip(city_str)
-    city_str.sub(/, ?[A-Z]{2} ?\d{5}?-?(\d{4})?$/,'')
+    city_str.sub(/, ?[A-Z]{2} ?\d{5}?-?(\d{4})?$/, '')
   end
 
   def strip_prefix(city_str)
-    city_str.sub(/^[^a-zA-Z]+/,'')
+    city_str.sub(/^[^a-zA-Z]+/, '')
   end
 end

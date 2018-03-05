@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Geoname do
@@ -7,25 +9,25 @@ describe Geoname do
   end
 
   describe '.geocode(options)' do
-
     describe 'basic location/state lookup' do
       before do
-        Geoname.import [{type: 'geoname', location: "Someplace", state: 'XY', geo: {lat: 12.34, lon: -123.45}}]
+        Geoname.import [{ type: 'geoname', location: 'Someplace', state: 'XY', geo: { lat: 12.34, lon: -123.45 } }]
       end
 
       it 'should return the lat/lon hash of the place' do
-        expect(Geoname.geocode(location: "Someplace", state: 'XY').to_json).to eq({lat: 12.34, lon: -123.45}.to_json)
+        expect(Geoname.geocode(location: 'Someplace', state: 'XY').to_json).to eq({ lat: 12.34, lon: -123.45 }.to_json)
       end
     end
 
     context 'when query terms contain a synonym match with terms in location field' do
       before do
-        geonames, @first_synonyms = [], []
+        geonames = []
+        @first_synonyms = []
         Geoname::SYNONYMS.each do |batch_str|
           first_synonym, remainder = batch_str.strip.gsub(/ ?, ?/, ',').split(',', 2)
           @first_synonyms << first_synonym
           remainder.split(',').each do |synonym|
-            geonames << {type: 'geoname', location: "#{synonym} City", state: 'CA', geo: {lat: rand * 90, lon: rand * 180}}
+            geonames << { type: 'geoname', location: "#{synonym} City", state: 'CA', geo: { lat: rand * 90, lon: rand * 180 } }
           end
         end
         Geoname.import geonames
@@ -43,13 +45,12 @@ describe Geoname do
 
   describe '.import(geonames)' do
     it 'should set the document ID' do
-      Geoname.import [{type: 'geoname', location: "Someplace", state: 'XY', geo: {lat: 12.34, lon: -123.45}}]
-      Geoname.import [{type: 'geoname', location: "Someplace", state: 'XY', geo: {lat: 82.34, lon: 23.45}}]
+      Geoname.import [{ type: 'geoname', location: 'Someplace', state: 'XY', geo: { lat: 12.34, lon: -123.45 } }]
+      Geoname.import [{ type: 'geoname', location: 'Someplace', state: 'XY', geo: { lat: 82.34, lon: 23.45 } }]
       search = Geoname.search_for(location: 'Someplace', state: 'XY', size: 2)
       expect(search.results.total).to eq(1)
       expect(search.results.first.id).to eq('Someplace:XY')
       expect(search.results.first.geo.lat).to eq(82.34)
     end
   end
-
 end

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 namespace :geonames do
   desc 'Import Geonames tab-delimited file of US locations'
-  task :import, [:filename] => :environment do |t, args|
+  task :import, [:filename] => :environment do |_t, args|
     if args.filename.nil?
       puts 'usage: rake geonames:import[us.txt]'
     else

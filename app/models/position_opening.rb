@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_model'
 require 'elasticsearch/dsl'
 
@@ -6,34 +8,34 @@ class PositionOpening
   include Elasticsearch::Model
   include Elasticsearch::DSL
 
-  INDEX_NAME = "#{Elasticsearch::INDEX_NAME}".freeze
+  INDEX_NAME = Elasticsearch::INDEX_NAME.to_s.freeze
 
-  MAX_RETURNED_DOCUMENTS = 100.freeze
+  MAX_RETURNED_DOCUMENTS = 100
 
   SYNONYMS = [
-    "architect, architecture",
-    "certified nursing assistant, cna",
-    "clerk, clerical",
-    "counselor, counseling, therapy, therapist",
-    "custodial, janitor, custodian",
-    "cypa, child and youth program assistant, childcare",
-    "cys, child youth services",
-    "electronic, electrical",
-    "forester, forestry",
-    "green, environment, environmental",
-    "information technology, it, tech, computer",
-    "linguist, language",
-    "legal, attorney",
-    "lpn, licensed practical nurse",
-    "lvn, licensed vocational nurse",
-    "pa, physician assistant",
-    "physician, doctor",
-    "rn, registered nurse",
-    "teacher, teaching",
-    "technical, technician",
-    "technology, technologist",
-    "tso, transportation security officer",
-    "tv, television"
+    'architect, architecture',
+    'certified nursing assistant, cna',
+    'clerk, clerical',
+    'counselor, counseling, therapy, therapist',
+    'custodial, janitor, custodian',
+    'cypa, child and youth program assistant, childcare',
+    'cys, child youth services',
+    'electronic, electrical',
+    'forester, forestry',
+    'green, environment, environmental',
+    'information technology, it, tech, computer',
+    'linguist, language',
+    'legal, attorney',
+    'lpn, licensed practical nurse',
+    'lvn, licensed vocational nurse',
+    'pa, physician assistant',
+    'physician, doctor',
+    'rn, registered nurse',
+    'teacher, teaching',
+    'technical, technician',
+    'technology, technologist',
+    'tso, transportation security officer',
+    'tv, television'
   ].freeze
 
   SETTINGS = {
@@ -48,11 +50,11 @@ class PositionOpening
         custom_analyzer: {
           type: 'custom',
           tokenizer: 'whitespace',
-          filter: %w(standard lowercase synonym snowball)
+          filter: %w[standard lowercase synonym snowball]
         }
       }
     }
-  }
+  }.freeze
 
   settings index: SETTINGS do
     mappings dynamic: 'false' do
@@ -83,7 +85,6 @@ class PositionOpening
   end
 
   class << self
-
     def client
       @client ||= PositionOpening.__elasticsearch__.client
     end
@@ -101,7 +102,11 @@ class PositionOpening
       source = options[:source]
       sort_by = options[:sort_by] || :timestamp
       tags = options[:tags].present? ? options[:tags].split(/[ ,]/) : nil
-      lat, lon = options[:lat_lon].split(',') rescue [nil, nil]
+      begin
+        lat, lon = options[:lat_lon].split(',')
+      rescue StandardError
+        [nil, nil]
+      end
       organization_ids = organization_ids_from_options(options)
       query = Query.new(options[:query], organization_ids)
 
@@ -116,69 +121,85 @@ class PositionOpening
 
             must { term source: source } if source.present?
             must { terms tags: tags } if tags
-            must do
-              match :position_offering_type_code do
-                query query.position_offering_type_code
+            if query.position_offering_type_code.present?
+              must do
+                match :position_offering_type_code do
+                  query query.position_offering_type_code
+                end
               end
-            end if query.position_offering_type_code.present?
+            end
 
-            must do
-              match :position_schedule_type_code do
-                query query.position_schedule_type_code
+            if query.position_schedule_type_code.present?
+              must do
+                match :position_schedule_type_code do
+                  query query.position_schedule_type_code
+                end
               end
-            end if query.position_schedule_type_code.present?
+            end
 
-            should do
-              match :position_title do
-                query query.keywords
-                analyzer 'custom_analyzer'
+            if query.keywords.present?
+              should do
+                match :position_title do
+                  query query.keywords
+                  analyzer 'custom_analyzer'
+                end
               end
-            end if query.keywords.present?
-            should do
-              nested do
-                path 'locations'
-                query do
-                  match 'locations.city' do
-                    query query.keywords
-                    operator 'and'
+            end
+            if query.keywords.present? && query.location.nil?
+              should do
+                nested do
+                  path 'locations'
+                  query do
+                    match 'locations.city' do
+                      query query.keywords
+                      operator 'and'
+                    end
                   end
                 end
               end
-            end if query.keywords.present? && query.location.nil?
+            end
 
-            must do
-              match :rate_interval_code do
-                query query.rate_interval_code
+            if query.rate_interval_code.present?
+              must do
+                match :rate_interval_code do
+                  query query.rate_interval_code
+                end
               end
-            end if query.rate_interval_code.present?
+            end
 
-            must do
-              bool do
-                should { terms organization_id: query.organization_terms } if query.organization_terms.present?
-                if query.organization_prefixes.present?
-                  query.organization_prefixes.each do |prefix|
-                    should { prefix organization_id: prefix }
+            if query.organization_ids.present?
+              must do
+                bool do
+                  should { terms organization_id: query.organization_terms } if query.organization_terms.present?
+                  if query.organization_prefixes.present?
+                    query.organization_prefixes.each do |prefix|
+                      should { prefix organization_id: prefix }
+                    end
                   end
                 end
               end
-            end if query.organization_ids.present?
+            end
 
-            must do
-              nested do
-                path 'locations'
-                query do
-                  bool do
-                    must { term 'locations.state': query.location.state } if query.has_state?
-                    must do
-                      match 'locations.city' do
-                        query query.location.city
-                        operator 'and'
+            if query.location.present?
+              must do
+                nested do
+                  path 'locations'
+                  query do
+                    bool do
+                      must { term 'locations.state': query.location.state } if query.state?
+                      if query.city?
+                        must do
+                          match 'locations.city' do
+                            query query.location.city
+                            operator 'and'
+                          end
+                        end
                       end
-                    end if query.has_city?
+                    end
                   end
                 end
               end
-            end if query.location.present?
+            end
 
             minimum_should_match '0<1'
           end
@@ -187,18 +208,18 @@ class PositionOpening
         sort do
           if query.keywords.blank?
             if lat.blank? || lon.blank?
-              by "#{sort_by}", order: 'desc'
+              by sort_by.to_s, order: 'desc'
             else
-              by({
+              by(
                 _geo_distance: {
                   'locations.geo': { lat: lat.to_f, lon: lon.to_f },
                   order: 'asc',
                   nested_path: 'locations'
                 }
-              })
+              )
             end
           else
-            by "#{sort_by}", order: 'desc'
+            by sort_by.to_s, order: 'desc'
           end
         end
 
@@ -216,7 +237,7 @@ class PositionOpening
           id: item.id,
           source: item.source,
           external_id: item.external_id,
-          position_title: (options[:hl] == '1' && item.try(:highlight).present?) ? item.highlight[:position_title][0] : item.position_title,
+          position_title: options[:hl] == '1' && item.try(:highlight).present? ? item.highlight[:position_title][0] : item.position_title,
           organization_name: item.try(:organization_name),
           rate_interval_code: item.rate_interval_code,
           minimum: item.minimum,
@@ -230,7 +251,9 @@ class PositionOpening
     end
 
     def delete_search_index
-      client.indices.delete index: INDEX_NAME rescue nil
+      client.indices.delete index: INDEX_NAME
+    rescue StandardError
+      nil
     end
 
     def search_index_exists?
@@ -239,8 +262,8 @@ class PositionOpening
 
     def import(position_openings)
       position_openings.each do |opening|
-        data = opening.each_with_object({timestamp: DateTime.current}) do |(key, value), data|
-          data[key] =
+        data = opening.each_with_object(timestamp: DateTime.current) do |(key, value), d|
+          d[key] =
             case key
             when :locations
               value.map do |v|
@@ -273,10 +296,10 @@ class PositionOpening
       from_index = 0
       total = 0
       external_ids = []
-      begin
+      loop do
         search_definition = {
-          query: { match: { source: { query: source }}},
-          stored_fields: %w(external_id),
+          query: { match: { source: { query: source } } },
+          stored_fields: %w[external_id],
           _source: true
         }
 
@@ -288,7 +311,8 @@ class PositionOpening
         external_ids.push(*search.results.map(&:external_id))
         from_index += search.results.count
         total = search.results.total
-      end while external_ids.count < total
+        break if external_ids.count >= total
+      end
       external_ids.flatten
     end
 
@@ -318,7 +342,6 @@ class PositionOpening
                     end
                   end
                 end
-
               end
             end
           end
@@ -331,13 +354,11 @@ class PositionOpening
 
     def url_for_position_opening(position_opening)
       case position_opening.source
-        when 'usajobs'
-          "https://www.usajobs.gov/GetJob/ViewDetails/#{position_opening.external_id}"
-        when /^ng:/
-          agency = position_opening.source.split(':')[1]
-          "http://agency.governmentjobs.com/#{agency}/default.cfm?action=viewjob&jobid=#{position_opening.external_id}"
-        else
-          nil
+      when 'usajobs'
+        "https://www.usajobs.gov/GetJob/ViewDetails/#{position_opening.external_id}"
+      when /^ng:/
+        agency = position_opening.source.split(':')[1]
+        "http://agency.governmentjobs.com/#{agency}/default.cfm?action=viewjob&jobid=#{position_opening.external_id}"
       end
     end
 
