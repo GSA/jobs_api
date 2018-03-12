@@ -40,7 +40,7 @@ class UsajobsData
     entry[:external_id] = job_xml.xpath(XPATHS[:id]).inner_text.to_i
     entry[:locations] = process_locations(job_xml)
     entry[:locations] = [] if entry[:locations].size >= CATCHALL_THRESHOLD
-    # entry[:_ttl] = (days_remaining.zero? || entry[:locations].empty?) ? '1s' : "#{days_remaining}d"
+
     unless entry[:locations].empty? || days_remaining.zero?
       entry[:position_title] = job_xml.xpath(XPATHS[:position_title]).inner_text.strip
       entry[:organization_id] = job_xml.xpath(XPATHS[:organization_id]).inner_text.strip.upcase
