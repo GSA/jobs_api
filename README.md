@@ -5,7 +5,11 @@ Jobs API Server
 [![Code Climate](https://codeclimate.com/github/GSA/jobs_api/badges/gpa.svg)](https://codeclimate.com/github/GSA/jobs_api)
 [![Test Coverage](https://codeclimate.com/github/GSA/jobs_api/badges/coverage.svg)](https://codeclimate.com/github/GSA/jobs_api)
 
-The server code that runs the DigitalGov Search [Jobs API](http://search.gov/developer/jobs.html) is here on Github. If you're a Ruby developer, keep reading. Fork this repo to add features (such as additional datasets) or fix bugs.
+**NOTE:** USAJobs now provides a direct API for retrieving job postings with the U.S. federal government. Please leverage that API for any new projects: https://developer.usajobs.gov/
+
+The API in this repo is primarily for use by Search.gov.
+
+The server code that runs the Search.gov [Jobs API](http://search.gov/developer/jobs.html) is here on Github. If you're a Ruby developer, keep reading. Fork this repo to add features (such as additional datasets) or fix bugs.
 
 The documentation on request parameters and response format is on the [API developer page](http://search.gov/developer/jobs.html). This README just covers software development of the API service itself.
 
