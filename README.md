@@ -15,7 +15,7 @@ The documentation on request parameters and response format is on the [API devel
 
 ### Ruby
 
-This code is currently tested against [Ruby 2.3](http://www.ruby-lang.org/en/downloads/).
+This code is currently tested against [Ruby 2.5.3](http://www.ruby-lang.org/en/downloads/).
 
 ### Gems
 
