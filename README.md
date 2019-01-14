@@ -7,7 +7,7 @@ Jobs API Server
 
 **NOTE:** Important Note: The Jobs API will be deprecated early 2019. Please use the [USAJOBS API](https://developer.usajobs.gov/) instead.
 
-USAJobs now provides a direct API for retrieving job postings with the U.S. federal government. 
+USAJOBS now provides a direct API for retrieving job postings with the U.S. federal government. 
 
 The API in this repo is primarily for use by Search.gov.
 
