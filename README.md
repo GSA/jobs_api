@@ -5,7 +5,7 @@ Jobs API Server
 [![Code Climate](https://codeclimate.com/github/GSA/jobs_api/badges/gpa.svg)](https://codeclimate.com/github/GSA/jobs_api)
 [![Test Coverage](https://codeclimate.com/github/GSA/jobs_api/badges/coverage.svg)](https://codeclimate.com/github/GSA/jobs_api)
 
-**NOTE:** Important Note: The Jobs API will be deprecated early 2019. Please use the [USAJOBS API](https://developer.usajobs.gov/) instead.
+**IMPORTANT NOTE:** The Jobs API will be deprecated early 2019. Please use the [USAJOBS API](https://developer.usajobs.gov/) instead.
 
 USAJOBS now provides a direct API for retrieving job postings with the U.S. federal government. 
 
